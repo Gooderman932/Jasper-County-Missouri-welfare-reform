@@ -24,7 +24,7 @@ export function maskPhone(value: string | null | undefined): string {
 export function maskEmail(value: string | null | undefined): string {
   if (!value) return "";
   const [user, domain] = value.split("@");
-  if (!domain) return "***";
+  if (!user || !domain) return "***";
   const visible = user.length <= 2 ? user[0] ?? "*" : `${user.slice(0, 2)}***`;
   return `${visible}@${domain}`;
 }
