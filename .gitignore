@@ -46,3 +46,9 @@ coverage/
 
 # EAS
 eas.json.local
+
+# Generated exports — keep DRAFT.md tracked as the latest review baseline,
+# ignore any other generated artifacts (screenshots, regenerated runs).
+exports/*
+!exports/case-summary-sd38180-DRAFT.md
+!exports/local-dev-home-screen.png

@@ -59,7 +59,7 @@ export function CaptureScreen() {
       if (!user) return;
       const list = await container.cases.listCases(user.id);
       setCases(list);
-      if (list.length > 0 && !activeCase) setActiveCase(list[0].id);
+      if (list.length > 0 && !activeCase && list[0]) setActiveCase(list[0].id);
     })();
   }, [container, user, activeCase]);
 
@@ -69,6 +69,7 @@ export function CaptureScreen() {
     const res = await DocumentPicker.getDocumentAsync({ copyToCacheDirectory: true });
     if (res.canceled) return;
     const file = res.assets[0];
+    if (!file) return;
     try {
       await container.usecases.uploadDocumentWithOcr({
         caseId: activeCase,
@@ -91,6 +92,7 @@ export function CaptureScreen() {
     const res = await ImagePicker.launchCameraAsync({ quality: 0.8 });
     if (res.canceled) return;
     const file = res.assets[0];
+    if (!file) return;
     try {
       await container.usecases.uploadDocumentWithOcr({
         caseId: activeCase,

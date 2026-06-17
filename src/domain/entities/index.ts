@@ -106,6 +106,8 @@ export type DocumentCategory =
   | 'screenshot'
   | 'audio_note'
   | 'correspondence'
+  | 'evidence'
+  | 'transcript'
   | 'other';
 
 export type RedactionStatus = 'raw' | 'redacted' | 'needs_review';

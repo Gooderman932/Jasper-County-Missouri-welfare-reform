@@ -9,6 +9,9 @@ import { RootNavigator } from '@app/navigation/RootNavigator';
 import { useContainer, Container } from '@app/hooks/useContainer';
 import { AppContextProvider } from '@app/hooks/useApp';
 import { theme } from '@app/theme';
+import { seedSD38180IfFirstRun } from '@infra/seed/sd38180';
+
+const USE_MEMORY = process.env.EXPO_PUBLIC_USE_MEMORY_REPOS === 'true';
 
 export default function App() {
   const container = useContainer();
@@ -19,6 +22,23 @@ export default function App() {
     (async () => {
       const u = await container.auth.getCurrentUser();
       setUser(u);
+      // In LOCAL-DEV memory mode, auto-seed SD38180 on first boot so the
+      // app lands directly on the case data without needing a backend.
+      if (USE_MEMORY && u) {
+        try {
+          await seedSD38180IfFirstRun({
+            auth: container.auth,
+            cases: container.cases,
+            parties: container.parties,
+            events: container.events,
+            documents: container.documents,
+            issues: container.issues,
+          });
+        } catch (err) {
+          // eslint-disable-next-line no-console
+          console.warn('[App] auto-seed failed (continuing anyway):', err);
+        }
+      }
       setReady(true);
     })();
   }, [container]);

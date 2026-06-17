@@ -18,7 +18,7 @@ export function ExportScreen({ route, navigation }: any) {
       if (!user) return;
       const list = await container.cases.listCases(user.id);
       setCases(list);
-      if (!activeCase && list.length > 0) setActiveCase(list[0].id);
+      if (!activeCase && list.length > 0 && list[0]) setActiveCase(list[0].id);
     })();
   }, [container, user, activeCase]);
 
