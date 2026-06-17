@@ -53,8 +53,15 @@ async function ok<T>(label: string, fn: () => Promise<T>): Promise<T | undefined
     console.log(`✓ ${label}`);
     return r;
   } catch (e: any) {
-    if (e?.code === 409 || /already exists/i.test(e?.message || '')) {
-      console.log(`• ${label} (already exists)`);
+    if (
+      e?.code === 409 ||
+      /already exists/i.test(e?.message || '') ||
+      // Appwrite Cloud free tier reports 'already exists for this resource'
+      // as a 403 plan-limit error when the resource is at the free-tier cap.
+      // Treat that the same as 409 so re-runs are idempotent.
+      (e?.code === 403 && /maximum number of/i.test(e?.message || ''))
+    ) {
+      console.log(`• ${label} (already exists or at plan limit — assuming present)`);
       return undefined;
     }
     console.error(`✗ ${label}: ${e.message}`);
