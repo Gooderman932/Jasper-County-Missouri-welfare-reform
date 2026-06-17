@@ -64,13 +64,23 @@ module.exports = async ({ req, res, log, error }) => {
     const storage = new sdk.Storage(client);
 
     // ----- Entitlement check -----
+    // Entitlements are keyed by ownerId (not document id) - see
+    // scripts/provision-appwrite.ts and server/functions/verify-purchase.
     let entitlement;
     try {
-      entitlement = await databases.getDocument(APPWRITE_DATABASE_ID, 'entitlements', userId);
+      const ents = await databases.listDocuments(
+        APPWRITE_DATABASE_ID,
+        'entitlements',
+        [sdk.Query.equal('ownerId', userId), sdk.Query.limit(1)],
+      );
+      entitlement = ents.documents[0];
     } catch (_) {
       return res.json({ ok: false, error: 'No active entitlement. Export is a premium feature.' }, 402);
     }
-    if (!entitlement?.isPremium) {
+    const isPremium =
+      entitlement?.isPremium === true ||
+      ['trial', 'active', 'grace_period'].includes(entitlement?.status);
+    if (!isPremium) {
       return res.json({ ok: false, error: 'Premium subscription required to export.' }, 402);
     }
 
@@ -128,8 +138,8 @@ module.exports = async ({ req, res, log, error }) => {
     const fileName = `case-${caseId}-${Date.now()}.zip`;
     const inputFile = sdk.InputFile.fromBuffer(zipBuffer, fileName);
     const uploaded = await storage.createFile(APPWRITE_EXPORTS_BUCKET, sdk.ID.unique(), inputFile, [
-      `read("user:${userId}")`,
-      `delete("user:${userId}")`,
+      sdk.Permission.read(sdk.Role.user(userId)),
+      sdk.Permission.delete(sdk.Role.user(userId)),
     ]);
 
     // ----- Record export row -----
@@ -150,7 +160,10 @@ module.exports = async ({ req, res, log, error }) => {
         expiresAt,
         createdAt: new Date().toISOString(),
       },
-      [`read("user:${userId}")`, `delete("user:${userId}")`],
+      [
+        sdk.Permission.read(sdk.Role.user(userId)),
+        sdk.Permission.delete(sdk.Role.user(userId)),
+      ],
     );
 
     const downloadUrl = `${APPWRITE_ENDPOINT}/storage/buckets/${APPWRITE_EXPORTS_BUCKET}/files/${uploaded.$id}/download?project=${APPWRITE_PROJECT_ID}`;

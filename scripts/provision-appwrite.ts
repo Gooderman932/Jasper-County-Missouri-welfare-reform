@@ -275,6 +275,10 @@ async function collection(id: string, name: string) {
   await collection('entitlements', 'Entitlements');
   await str('entitlements', 'ownerId', 64, true);
   await bool('entitlements', 'isPremium', false, false);
+  // status mirrors the Google Play state machine: trial | active |
+  // grace_period | billing_issue | expired | canceled. verify-purchase writes
+  // both isPremium (derived) and status (raw) so consumers can pick.
+  await str('entitlements', 'status', 20);
   await str('entitlements', 'productId', 80);
   await str('entitlements', 'basePlanId', 80);
   await str('entitlements', 'offerId', 80);
