@@ -64,3 +64,34 @@ jobs:
         # backlog is clear.
         run: npx eslint . --ext .ts,.tsx --max-warnings=9999 || true
         continue-on-error: false
+
+  jest:
+    name: Jest unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci --no-audit --no-fund
+        env:
+          CI: true
+      - name: Run jest
+        run: npm test --silent -- --ci --passWithNoTests
+
+  secret-scan:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Scan for committed secrets
+        run: |
+          if grep -rEn '(sk_live_|whsec_live_|AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]+PRIVATE KEY-----)' \
+               --include='*.ts' --include='*.tsx' --include='*.js' --include='*.json' \
+               --exclude-dir=node_modules --exclude-dir=.git . ; then
+            echo "::error::Possible secret committed"
+            exit 1
+          fi
