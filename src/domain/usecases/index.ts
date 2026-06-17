@@ -23,6 +23,7 @@ import {
   UploadDocumentInput,
 } from '../repositories';
 import { runGuidedReview, GuidedReviewAnswers } from '../services/guidedReview';
+import { scanDocument } from '../services/prejudicialLanguage';
 
 export interface UseCaseDeps {
   auth: AuthRepository;
@@ -49,15 +50,46 @@ export function makeUseCases(deps: UseCaseDeps) {
       if (!user) throw new Error('Not signed in');
       const doc = await deps.documents.uploadDocument({ ...input, ownerUserId: user.id });
       // Best-effort OCR (async; OCR failure should not block upload)
+      let extractedText: string | undefined;
       try {
         const url = await deps.documents.getDownloadUrl(doc.id);
-        const { text } = await deps.ocr.extractText(url, doc.mimeType);
-        if (text) {
-          await deps.documents.updateDocumentMetadata(doc.id, { extractedText: text });
+        const result = await deps.ocr.extractText(url, doc.mimeType);
+        if (result.text) {
+          extractedText = result.text;
+          await deps.documents.updateDocumentMetadata(doc.id, { extractedText: result.text });
         }
       } catch (err) {
         // OCR is best-effort; surface via logs but don't fail upload.
+        // eslint-disable-next-line no-console
         console.warn('[ocr] extraction failed', err);
+      }
+
+      // Run prejudicial-language scanner on any text we obtained. Emits issue
+      // flags for prosecution-style framing detected in the document. Pure
+      // pattern matching; no LLM. Best-effort — never blocks the upload.
+      if (extractedText) {
+        try {
+          const scan = scanDocument({
+            documentId: doc.id,
+            documentTitle: doc.title,
+            category: doc.category,
+            extractedText,
+          });
+          for (const finding of scan.findings) {
+            await deps.issues.createIssueFlag({
+              caseId: doc.caseId,
+              type: finding.issueType,
+              severity: finding.severity,
+              summary: finding.summary,
+              explanation: finding.explanation,
+              sourceRefs: [doc.id, `rule:${finding.ruleId}`],
+              status: 'system_generated',
+            });
+          }
+        } catch (err) {
+          // eslint-disable-next-line no-console
+          console.warn('[prejudicial-scan] failed', err);
+        }
       }
       return doc;
     },

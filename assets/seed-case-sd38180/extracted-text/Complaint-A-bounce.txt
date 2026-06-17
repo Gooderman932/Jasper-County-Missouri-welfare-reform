@@ -1,0 +1,18 @@
+Subject: Returned mail: see transcript for details
+From: Mail Delivery Subsystem <MAILER-DAEMON@smpsa0002.courts.state.mo.us>
+To: mpgooderman@gmail.com
+Date: Tue, 24 May 2022 05:51:55 -0500
+
+The original message was received at Tue, 24 May 2022 05:51:55 -0500
+from smpsa0002.courts.state.mo.us [127.0.0.1]
+
+   ----- The following addresses had permanent fatal errors -----
+<complaint.juvenile.officer@courts.mo.gov>
+    (reason: 550 complaint.juvenile.officer@courts.mo.gov... No such user)
+
+   ----- Transcript of session follows -----
+... while talking to [10.100.1.37]:
+>>> DATA
+<<< 550 complaint.juvenile.officer@courts.mo.gov... No such user
+550 5.1.1 <complaint.juvenile.officer@courts.mo.gov>... User unknown
+<<< 503 Issue RCPT TO: command before DATA command

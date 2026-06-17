@@ -52,6 +52,27 @@ export function CaseDetailScreen({ route, navigation }: any) {
           {record.caseType} · {record.jurisdictionState}
           {record.jurisdictionCounty ? ` · ${record.jurisdictionCounty}` : ''} · {record.status}
         </Body>
+        <Card>
+          <Body style={{ fontWeight: '600' }}>
+            Visibility: {record.visibility === 'public' ? '🌐 Public reference case' : '🔒 Private'}
+          </Body>
+          {record.visibility === 'public' && record.publicSlug ? (
+            <Body muted>Public slug: /{record.publicSlug}</Body>
+          ) : null}
+          {record.visibility === 'public' ? (
+            <Button
+              label="Make private"
+              variant="danger"
+              onPress={() => navigation.navigate('UnpublishCase', { caseId: record.id })}
+            />
+          ) : (
+            <Button
+              label="Publish as reference case"
+              variant="secondary"
+              onPress={() => navigation.navigate('PublishCase', { caseId: record.id })}
+            />
+          )}
+        </Card>
 
         <H2>Parties</H2>
         {parties.length === 0 ? <Body muted>No parties added.</Body> :

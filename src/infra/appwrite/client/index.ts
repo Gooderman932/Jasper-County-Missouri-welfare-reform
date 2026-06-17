@@ -34,7 +34,11 @@ export const COLLECTIONS = {
   purchase_records: 'purchase_records',
   exports: 'exports',
   attorney_review_requests: 'attorney_review_requests',
+  content_reports: 'content_reports',
 } as const;
+
+/** Admin team id for moderation grants (must match the team in Appwrite). */
+export const ADMIN_TEAM_ID = extra.appwriteAdminTeamId ?? 'admin';
 
 export const BUCKETS = {
   raw: 'raw-documents',

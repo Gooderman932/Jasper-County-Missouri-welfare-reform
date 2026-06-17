@@ -1,0 +1,14 @@
+Subject: Delivery Status Notification (Failure)
+From: Mail Delivery Subsystem <mailer-daemon@googlemail.com>
+To: mpgooderman@gmail.com
+Date: Sat, 07 May 2022 13:53:38 -0700
+
+
+** Message too large **
+
+Your message couldn't be delivered to jennifer.emmons@dss.mo.gov because it exceeds the size limit. Try reducing the message size and resending.
+
+
+
+The response from the remote server was:
+550 5.7.0 Message Size Violation - The message you sent to shania.riley@dss.mo.gov, jennifer.emmons@dss.mo.gov is too large and cannot be delivered.

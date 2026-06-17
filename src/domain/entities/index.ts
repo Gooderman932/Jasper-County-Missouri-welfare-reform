@@ -31,6 +31,20 @@ export type CaseType =
 
 export type CaseStatus = 'open' | 'closed' | 'appeal' | 'archived';
 
+export type CaseVisibility = 'private' | 'public';
+
+/**
+ * Snapshot of the redaction policy chosen at publish time.
+ * Recorded so future readers know how the public version of a case
+ * was scrubbed before being made visible.
+ */
+export interface RedactionPolicy {
+  childPii: 'initials_only' | 'initials_birthyear' | 'firstname_birthyear' | 'full';
+  ownerPii: 'initials_city' | 'name_only' | 'name_city' | 'full';
+  thirdParties: 'public_full_private_initials' | 'all_full' | 'all_initials';
+  documents: 'titles_only' | 'titles_and_user_authored' | 'all_visible';
+}
+
 export interface CaseRecord {
   id: string;
   ownerUserId: string;
@@ -42,6 +56,16 @@ export interface CaseRecord {
   openedAt?: string;
   createdAt: string;
   updatedAt: string;
+  // Public-case fields (all optional so existing records remain valid)
+  visibility?: CaseVisibility;
+  publicSlug?: string;
+  publishedAt?: string;
+  publishedBy?: string;
+  unpublishedAt?: string;
+  publicTitle?: string; // optional override shown to public readers
+  publicSummary?: string; // markdown blurb shown on the public detail screen
+  redactionPolicy?: RedactionPolicy;
+  isReferenceCase?: boolean; // curated/admin-published reference (SD38180)
 }
 
 export type PartyRole =
@@ -93,6 +117,14 @@ export interface CaseEvent {
   sourceDocumentId?: string;
   tags: string[];
   createdAt: string;
+  /**
+   * Per-event override. When the parent case is public:
+   *   - undefined or 'inherit' → visible publicly
+   *   - 'private' → hidden even though parent case is public
+   *   - 'public' → explicitly marked public (same as inherit; reserved for future)
+   * Has no effect when the parent case is private.
+   */
+  visibility?: 'inherit' | 'private' | 'public';
 }
 
 export type DocumentCategory =
@@ -125,6 +157,12 @@ export interface DocumentRecord {
   extractedText?: string;
   redactionStatus: RedactionStatus;
   tags: string[];
+  /**
+   * Per-document override for public cases. See CaseEvent.visibility.
+   * Used by the publish flow when the user chooses 'titles_only' or
+   * 'titles_and_user_authored' and we hide specific files.
+   */
+  visibility?: 'inherit' | 'private' | 'public';
 }
 
 export type IssueType =
@@ -137,6 +175,8 @@ export type IssueType =
   | 'service_access'
   | 'visitation'
   | 'placement'
+  | 'prejudicial_language'
+  | 'document_framing'
   | 'other';
 
 export type IssueSeverity = 'info' | 'watch' | 'serious';
@@ -152,6 +192,36 @@ export interface IssueFlag {
   explanation: string;
   sourceRefs: string[];
   createdAt: string;
+  /** Per-flag override for public cases. See CaseEvent.visibility. */
+  visibility?: 'inherit' | 'private' | 'public';
+}
+
+// ---------------------------------------------------------------------------
+// Public-case reports (Play UGC policy requirement)
+// ---------------------------------------------------------------------------
+
+export type ContentReportReason =
+  | 'pii_exposure'
+  | 'minor_identification'
+  | 'defamation'
+  | 'harassment'
+  | 'inaccurate'
+  | 'copyright'
+  | 'illegal_content'
+  | 'other';
+
+export type ContentReportStatus = 'open' | 'reviewing' | 'resolved' | 'dismissed';
+
+export interface ContentReport {
+  id: string;
+  caseId: string;
+  reporterUserId?: string; // optional: allow anonymous reports
+  reason: ContentReportReason;
+  details?: string;
+  status: ContentReportStatus;
+  createdAt: string;
+  resolvedAt?: string;
+  resolutionNote?: string;
 }
 
 export type PatternMatchType =

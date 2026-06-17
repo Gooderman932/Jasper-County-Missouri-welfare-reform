@@ -4,6 +4,7 @@ import {
   CaseParty,
   CaseRecord,
   CoalitionOptIn,
+  ContentReport,
   DocumentRecord,
   IssueFlag,
   PatternMatch,
@@ -34,6 +35,15 @@ export const mapCase = (d: Doc): CaseRecord => ({
   openedAt: d.openedAt ?? undefined,
   createdAt: d.$createdAt,
   updatedAt: d.$updatedAt,
+  visibility: d.visibility ?? undefined,
+  publicSlug: d.publicSlug ?? undefined,
+  publishedAt: d.publishedAt ?? undefined,
+  publishedBy: d.publishedBy ?? undefined,
+  unpublishedAt: d.unpublishedAt ?? undefined,
+  publicTitle: d.publicTitle ?? undefined,
+  publicSummary: d.publicSummary ?? undefined,
+  redactionPolicy: d.redactionPolicy ?? undefined,
+  isReferenceCase: d.isReferenceCase ?? undefined,
 });
 
 export const mapParty = (d: Doc): CaseParty => ({
@@ -55,6 +65,7 @@ export const mapEvent = (d: Doc): CaseEvent => ({
   sourceDocumentId: d.sourceDocumentId ?? undefined,
   tags: d.tags ?? [],
   createdAt: d.$createdAt,
+  visibility: d.visibility ?? undefined,
 });
 
 export const mapDocument = (d: Doc): DocumentRecord => ({
@@ -70,6 +81,7 @@ export const mapDocument = (d: Doc): DocumentRecord => ({
   extractedText: d.extractedText ?? undefined,
   redactionStatus: d.redactionStatus ?? 'raw',
   tags: d.tags ?? [],
+  visibility: d.visibility ?? undefined,
 });
 
 export const mapIssue = (d: Doc): IssueFlag => ({
@@ -82,6 +94,19 @@ export const mapIssue = (d: Doc): IssueFlag => ({
   explanation: d.explanation,
   sourceRefs: d.sourceRefs ?? [],
   createdAt: d.$createdAt,
+  visibility: d.visibility ?? undefined,
+});
+
+export const mapContentReport = (d: Doc): ContentReport => ({
+  id: d.$id,
+  caseId: d.caseId,
+  reporterUserId: d.reporterUserId ?? undefined,
+  reason: d.reason,
+  details: d.details ?? undefined,
+  status: d.status ?? 'open',
+  createdAt: d.$createdAt,
+  resolvedAt: d.resolvedAt ?? undefined,
+  resolutionNote: d.resolutionNote ?? undefined,
 });
 
 export const mapPattern = (d: Doc): PatternMatch => ({

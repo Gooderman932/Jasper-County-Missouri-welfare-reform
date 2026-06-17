@@ -20,6 +20,11 @@ import { PatternScreen } from '@app/screens/PatternScreen';
 import { ExportScreen } from '@app/screens/ExportScreen';
 import { PaywallScreen } from '@app/screens/PaywallScreen';
 import { SettingsScreen } from '@app/screens/SettingsScreen';
+import { PublicCasesScreen } from '@app/screens/PublicCasesScreen';
+import { PublicCaseDetailScreen } from '@app/screens/PublicCaseDetailScreen';
+import { PublishCaseScreen } from '@app/screens/PublishCaseScreen';
+import { UnpublishCaseScreen } from '@app/screens/UnpublishCaseScreen';
+import { ReportContentScreen } from '@app/screens/ReportContentScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,6 +35,7 @@ function MainTabs() {
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Cases" component={CasesScreen} />
       <Tab.Screen name="Capture" component={CaptureScreen} />
+      <Tab.Screen name="Reference" component={PublicCasesScreen} options={{ title: 'Reference cases' }} />
       <Tab.Screen name="Review" component={RightsReviewScreen} />
       <Tab.Screen name="Export" component={ExportScreen} />
     </Tab.Navigator>
@@ -57,6 +63,10 @@ export function RootNavigator() {
           <Stack.Screen name="Paywall" component={PaywallScreen} options={{ title: 'Premium' }} />
           <Stack.Screen name="Settings" component={SettingsScreen} options={{ title: 'Settings' }} />
           <Stack.Screen name="CreateFirstCase" component={CreateFirstCaseScreen} options={{ title: 'New case' }} />
+          <Stack.Screen name="PublicCaseDetail" component={PublicCaseDetailScreen} options={{ title: 'Public case' }} />
+          <Stack.Screen name="PublishCase" component={PublishCaseScreen} options={{ title: 'Publish case' }} />
+          <Stack.Screen name="UnpublishCase" component={UnpublishCaseScreen} options={{ title: 'Make private' }} />
+          <Stack.Screen name="ReportContent" component={ReportContentScreen} options={{ title: 'Report content' }} />
         </>
       )}
     </Stack.Navigator>

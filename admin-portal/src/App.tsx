@@ -9,7 +9,7 @@ const client = new Client().setEndpoint(ENDPOINT).setProject(PROJECT);
 const databases = new Databases(client);
 const account = new Account(client);
 
-type Tab = 'attorney' | 'exports' | 'ocr' | 'patterns';
+type Tab = 'attorney' | 'exports' | 'ocr' | 'patterns' | 'reports' | 'public_cases';
 
 export default function App() {
   const [tab, setTab] = useState<Tab>('attorney');
@@ -78,12 +78,16 @@ export default function App() {
         <button className={tab === 'exports' ? '' : 'secondary'} onClick={() => setTab('exports')}>Recent exports</button>
         <button className={tab === 'ocr' ? '' : 'secondary'} onClick={() => setTab('ocr')}>OCR failures</button>
         <button className={tab === 'patterns' ? '' : 'secondary'} onClick={() => setTab('patterns')}>Patterns</button>
+        <button className={tab === 'reports' ? '' : 'secondary'} onClick={() => setTab('reports')}>Content reports</button>
+        <button className={tab === 'public_cases' ? '' : 'secondary'} onClick={() => setTab('public_cases')}>Public cases</button>
       </div>
 
       {tab === 'attorney' && <AttorneyRequests />}
       {tab === 'exports' && <RecentExports />}
       {tab === 'ocr' && <OcrFailures />}
       {tab === 'patterns' && <Patterns />}
+      {tab === 'reports' && <ContentReports />}
+      {tab === 'public_cases' && <PublicCases />}
     </div>
   );
 }
@@ -170,6 +174,91 @@ function OcrFailures() {
         <tbody>
           {rows.map((r) => (
             <tr key={r.$id}><td>{r.$id}</td><td>{r.title}</td><td><code>{r.ocrError}</code></td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function ContentReports() {
+  const { rows, err, setRows } = useList('content_reports', [Query.orderDesc('createdAt'), Query.limit(100)]);
+  async function setStatus(id: string, status: string, resolutionNote?: string) {
+    const patch: any = { status };
+    if (status === 'resolved' || status === 'dismissed') {
+      patch.resolvedAt = new Date().toISOString();
+      if (resolutionNote) patch.resolutionNote = resolutionNote;
+    }
+    await databases.updateDocument(DB, 'content_reports', id, patch);
+    setRows((r) => r.map((x) => (x.$id === id ? { ...x, ...patch } : x)));
+  }
+  async function unpublishCase(caseId: string) {
+    if (!confirm('Force-unpublish this case? It will be removed from public view immediately.')) return;
+    await databases.updateDocument(DB, 'cases', caseId, {
+      visibility: 'private',
+      unpublishedAt: new Date().toISOString(),
+    });
+    alert('Case unpublished.');
+  }
+  return (
+    <div className="card">
+      <h2>Content reports</h2>
+      <p className="muted">UGC reports submitted on public cases. Triage promptly to comply with Play Store policy.</p>
+      {err && <p className="muted">Error: {err}</p>}
+      <table>
+        <thead>
+          <tr><th>Created</th><th>Case</th><th>Reason</th><th>Reporter</th><th>Status</th><th>Details</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.$id}>
+              <td>{r.createdAt?.slice(0, 19).replace('T', ' ')}</td>
+              <td><code>{r.caseId}</code></td>
+              <td><span className="badge warn">{r.reason}</span></td>
+              <td>{r.reporterUserId || 'anonymous'}</td>
+              <td><span className={`badge ${r.status === 'resolved' ? 'ok' : r.status === 'open' ? 'warn' : ''}`}>{r.status}</span></td>
+              <td>{r.details || '—'}</td>
+              <td className="row">
+                <button onClick={() => setStatus(r.$id, 'reviewing')}>Reviewing</button>
+                <button onClick={() => setStatus(r.$id, 'resolved', 'Content updated or removed.')}>Resolve</button>
+                <button className="secondary" onClick={() => setStatus(r.$id, 'dismissed', 'No violation found.')}>Dismiss</button>
+                <button className="secondary" onClick={() => unpublishCase(r.caseId)}>Force unpublish</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function PublicCases() {
+  const { rows, err, setRows } = useList('cases', [Query.equal('visibility', 'public'), Query.orderDesc('publishedAt'), Query.limit(100)]);
+  async function forceUnpublish(id: string) {
+    if (!confirm('Force-unpublish this case?')) return;
+    await databases.updateDocument(DB, 'cases', id, {
+      visibility: 'private',
+      unpublishedAt: new Date().toISOString(),
+    });
+    setRows((r) => r.filter((x) => x.$id !== id));
+  }
+  return (
+    <div className="card">
+      <h2>Public cases</h2>
+      <p className="muted">All cases currently visible in the public reference library.</p>
+      {err && <p className="muted">Error: {err}</p>}
+      <table>
+        <thead><tr><th>Slug</th><th>Title</th><th>Owner</th><th>Reference?</th><th>Published</th><th></th></tr></thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.$id}>
+              <td><code>{r.publicSlug}</code></td>
+              <td>{r.publicTitle || r.title}</td>
+              <td>{r.publishedBy || r.ownerId}</td>
+              <td>{r.isReferenceCase ? '✓' : ''}</td>
+              <td>{r.publishedAt?.slice(0, 10)}</td>
+              <td><button className="secondary" onClick={() => forceUnpublish(r.$id)}>Force unpublish</button></td>
+            </tr>
           ))}
         </tbody>
       </table>

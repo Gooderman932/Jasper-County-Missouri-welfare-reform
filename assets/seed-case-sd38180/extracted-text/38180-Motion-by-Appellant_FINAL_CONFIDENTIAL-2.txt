@@ -1,0 +1,1620 @@
+                                                                            FILED
+                                                                             APR 20, 2024
+Matthew Goodman                                                              CRAIG A. STREET
+                                                                        MISSOURI COURT OF APPEALS
+8681 SE 71ST ST                                                             SOUTHERN DISTRICT
+                                                                               SD38180
+Baxter Springs KS. 66713
+malcolmgoodmen@gmail.com
+417-388-0890
+Date: 2024-04-09
+
+
+Craig A. Street, Clerk Missouri Court of Appeals 300 S. Hammons Pkwy Ste 300
+Springfield MO.
+
+
+Dear Mr. Street,
+       I write to address specific procedural and legal oversights that have
+significantly impacted the outcome of the dependency proceedings involving my
+son, Kody Goodman. This motion seeks reconsideration of the judgment on
+grounds that it is multifaceted and materially affects my right to fair representation
+and due process. Moreover, this motion challenges the validity of the judgment
+about the termination of my parental rights over Kody Goodman, under appeal
+number SD38180 and 22AO-JU00288.
+       As I continue to assert my parental rights, I question the judicial process
+leading to the termination. This motion presents a critical opportunity for this
+Court to reexamine and potentially reshape the principles governing the fairness
+and equality of parental rights, the application of federal rights under 42 U.S.C. §
+1983 in state proceedings, and to reinforce the constitutional safeguards of due
+process. In grappling with these pivotal issues, this Court has the unique capacity
+to render a decision that may serve as a benchmark for the protection of paternal
+rights and equitable jurisprudence nationwide
+    IN THE MISSOURI COURT OF APPEALS SOUTHERN DISTRICT
+
+
+                            Appeal No. SD38180
+        __________________________________________________
+
+
+ IN THE INTEREST OF K.C.G. M.P.G. Appellant, vs. B.L.M. and C.T.A.M.,
+                            JASPER
+
+
+                 COUNTY JUVENILE OFFICE, Respondent
+        __________________________________________________
+
+
+MOTION FOR RECONSIDERATION, REQUEST FOR EN BANC REVIEW
+TRANSFER, AND PETITION FOR INJUNCTIVE RELIEF FOR ONGOING
+VIOLATION OF FEDERAL RIGHTS UNDER 42 U.S.C. § 1983 AND THE EX
+                     PARTE YOUNG DOCTRINE
+        __________________________________________________
+
+
+  On Appeal from the Circuit Court of Jasper County For the 29th District of
+                                 Missouri
+        __________________________________________________
+
+
+      MATTHEW PRESTON GOODMAN Telephone: 417 –388-0890
+           Malcolmgoodmen@gmail.com Pro Se Litigant.,
+                            TABLE OF AUTHORITIES
+
+    ● 42 U.S.C. § 1983: This federal statute provides a means for citizens to seek
+      relief against the violation of their constitutional rights by persons acting
+      under state law.2.
+
+    ● Ex parte Young, 209 U.S. 123 (1908): A U.S. Supreme Court case that
+      allows federal courts to order state officials to comply with federal law.
+
+●      Claudio v. Scully, 982 F.2d 798 (2d Cir. 1992)
+●      PEOPLE v. STULTZ, S263034 (Cal. Aug. 31,2010)
+●      JENNINGS v. WOODFORD,290 F.3d 1006 (9th Cir. 2002)
+
+    ● Lucas v. Jones, (Supreme Court of Arkansas, 2012): A case relating to
+      the standards for appointing counsel for indigent individuals.
+
+    ● United States ex rel. McDonald v. Hodge, (UNITED STATES
+      DISTRICT COURT NORTHERN DISTRICT OF ILLINOIS
+      EASTERN DIVISION, 2012): A case that may address issues concerning
+      the withdrawal of appointed counsel.
+
+    ● Alameda Cnty. Soc. Servs. Agency v. M.B. (In re A.R.): Regarding
+      effective assistance of counsel in dependency proceedings.
+
+    ● S.B. v. DEPT. OF CHILDREN AND FAM and In re O.S.: Issues
+      surrounding ineffective assistance and the right to legal representation in
+      dependency proceedings.
+
+    ● In re EMILYE A and L.W. v. DEPT. OF CHILDREN AND FAMILIES:
+      Standards for evaluating legal representation in cases involving parental
+      rights.
+
+    ● McKASKLE v. WIGGINS, (465 U.S. 168, U.S. Supreme Court, 1984): A
+      case discussing the right to direct one's own defense.
+
+    ● Romero v. State, (Court of Appeals of Texas, Fifth District, Dallas,
+      2024): A case dealing with self-representation at the appellate level.
+
+    ● Cone v. Bell, (556 U.S. 449, U.S. Supreme Court, 2009): A case concerned
+      with ineffective assistance of counsel and withholding evidence.
+● Lassiter v. Department of Social Services: A U.S. Supreme Court case
+  about the right to appointed counsel in civil cases that involve the
+  termination of parental rights.
+
+● In re P.D., (144 S.W.3d 907, Missouri Court of Appeals, Eastern
+  District.,2004): Discusses the impact of denied motions for continuance on
+  due process rights.
+
+● STANLEY v. ILLINOIS, (405 U.S. 645, U.S. Supreme Court, 1972): A
+  Supreme Court case regarding the due process rights of parents in judicial
+  proceedings.
+
+● In re Stephanie M., In re Marilyn H: Circumstances under which parental
+  rights may be terminated.
+
+● Youngberg v. Romeo, 457 U.S. 307, 102 S. Ct. 2452 (1982): A case about
+  the rights of involuntarily committed persons, which might be applied by
+  analogy, and imply K.G has the right to safety in current placement
+
+● Santosky v. Kramer: Sets the standard of proof for termination of parental
+  rights as "clear and convincing evidence."
+
+● KOHL v. LEHLBACK 160 U.S. 293 (1895): A case reference that may
+  pertain to due process or parental rights.
+
+● Green v. Mansour, Pennsylvania v. Finley: Cases discussing the rights to
+  seek remedy under 42 U.S.C. § 1983.
+
+● In re S.M.H.: A case requiring clear and convincing evidence for the
+  termination of parental rights as per Missouri law.
+
+● Strickland v. Washington: A U.S. Supreme Court case laying out the
+  standard for claims of ineffective assistance of counsel.
+
+● Luleff v. State and State ex rel. J.D.S. v. Edwards: Cases that address the
+  role of counsel in legal defenses and the procedural processes in parental
+  rights adjudications.
+                       JURISDICTIONAL STATEMENT
+
+
+       This appeal is properly before the Missouri Court of Appeals for the
+Southern District pursuant to Rule 30.01(d) of the Missouri Rules of Appellate
+Procedure, following a final judgment from the Circuit Court of Jasper County for
+the 29th District of Missouri. This Court has jurisdiction under Mo. Rev. Stat. §
+512.020, as the appeal seeks review of a final judgment involving the termination
+of parental rights, a decision appealable as of right. Furthermore, the issuance of
+injunctive relief against ongoing violations of Federal Rights, including those
+rights protected under 42 U.S.C. § 1983, invokes this Court's Jurisdiction under the
+EX PARTE YOUNG DOCTRINE, which allows Federal Courts to enjoin state
+officials from violating Federal Law, as established by the United States Supreme
+Court in Ex parte Young, 209 U.S. 123 (1908). This motion timely follows the
+entry of judgment, adhering to the timeframe established by Rule 84.04 of the
+Missouri Rules of Appellate Procedure, ensuring that the Court may exercise its
+jurisdiction to provide relief as necessary.
+                            STANDARD OF REVIEW
+      In the appeal concerning the interests of K.C.G., and the subsequent legal
+matters involving M.P.G., Appellant vs. B.L.M. and C.T.A.M., Jasper County
+Juvenile Office, Respondents, the standards of review that the Missouri Court of
+Appeals, Southern District, should employ are delineated as follows:
+1. DE NOVO REVIEW:
+      For questions of jurisdiction and legal interpretation, which involve the
+thorough examination of statutory provisions, case law, and constitutional
+principles, a de novo standard of review is essential. When reviewing these
+matters, the Appellate Court exercises an independent, non-deferential judgment.
+This court must reassess the standard of review for legal issues presented without
+presumption of correctness of the lower court’s ruling, ensuring that the legal
+foundations dictating the outcome of the case are solidly in accordance with the
+law and legal precedent.
+2. SUBSTANTIAL EVIDENCE STANDARD:
+      In reviewing the factual findings made by the trial Court, the standard of
+review should shift to the substantial evidence test. This standard directs the
+appellate court to affirm the lower court's determinations if the findings are
+supported by substantial evidence on the record. Substantial evidence is such
+relevant evidence that a reasonable mind might accept as adequate to support a
+conclusion, even if it is possible to draw two inconsistent conclusions from the
+evidence. (“Giha v. Garland, No. 15-73085 (9th Cir. 2021) :: Justia”) The
+question is not whether the evidence could support a different conclusion but
+whether it supports the conclusion that was reached by the trial Court.
+3. CLEARLY ERRONEOUS STANDARD:
+       When addressing the potential clear error in the trial court’s findings of fact,
+it is warranted that such findings are left undisturbed unless the reviewing court, on
+the entire evidence, is left with the definite and firm conviction that a mistake has
+been made. This heightened degree of assurance in the trial court's factual accuracy
+recognizes the trial judge’s role as the primary factfinder, having had the
+opportunity to observe witness demeanor and to weigh the evidence presented
+firsthand.
+       The employment of these distinct standards of review acknowledges the dual
+nature of appellate scrutiny, where legal issues are reviewed with precision and
+independence, and factual determinations are accorded deference unless they fall
+short of the evidentiary benchmark or are manifestly erroneous.
+1. BACKGROUND
+      1. K.G was born October 13,2018
+      2. K.G resided with mother at 1441 Kimberling Lane Apartment E.,
+Carthage MO.64836 at the time the dependency case was initiated.
+      3. Father of K.G is M.G
+      4.Father resided at 8681 SE 71ST ST BAXTER SPRINGS KS when the case
+began and still resides at the same address.
+      5. The case at hand originated from complex child in need of services
+(CHINS) proceedings which resulted in the controversial termination of my
+parental rights
+      .6. Appellate hired an attorney and petitioned the Court to establish paternity
+and custody. And to change last name of K.G from Alton to Goodman; on or about
+9-5-2019
+       7. A judgment of Paternity and Order of Custody from Angela Vorhees the
+same judge who conducted the trial in question for the termination of parental
+rights was issued on or about 9-4-2019 a year and a half prior to the proceedings of
+abuse and neglect by the mother of K.G were initiated
+      8. The decree granted M.G 50/50 physical and legal custody, then once K.G
+turned 3 years old M.G was to be granted visits with him every other two weeks
+for two weeks every other week.
+      9. On Jan 2,2021 K.G was taken to the emergency room in Carthage Mo.
+and had tested positive for an illegal substance.
+      10.K.G was removed from his mother's Custody.
+       11. At the time K.G was taken from his biological MOTHERS Custody
+father had visits every other weekend and every Wednesday in which K.G stayed
+with me in Kansas
+       12.At the time K.G was TAKEN from MOTHERS CUSTODY it was NOT
+fathers' weekend to have K.G in his immediate control care and custody.
+     13.Appellate could not have known of the situation living in Kansas at 8681
+SE 71ST ST Baxter Springs KS 66713
+        14./Appellate became aware within days informed by his uncle who lived in
+Carthage MO. and attempted to intervene in the situation when K.G was sheltered
+at the. Childrens Haven in Joplin after a visit set up by myself and Kathleen after
+multiple attempts to locate my son and finally was told about K.G, and his
+whereabouts''.
+15. I M.G was told I could not take my son from the Shelter by Jennifer Emmons,
+the situation being what it was I didn't argue because of the trauma already
+inflicted and the fact K.G was with his brother who isn't my biological son.
+16. Multiple hearings were held without me being appointed counsel such as
+emergency shelter hearing on or about January 4,2021
+17. Another hearing being an adjudication hearing on or about February 9,
+2021shown in notice received at location of hearing.
+18. Again on or about 2-23-2021 All of which I had no counsel shown in notice I
+received at prior hearing as shown in exhibits.
+19. Feb,23,2021 after not getting appointed counsel I had petitioned the court with
+a motion for rehearing noting that meaningful contact between my son K.G and I
+M.G was disrupted as proven by exhibits
+20. February 23, 2021, father also filed a family access motion as shown in the
+notice of entry from the same date 2-23-2021
+21.February 23, 2021, Father filed a MOTION TO PROCEED AS A POOR
+PERSON and a MOTION FOR FAMILY ACCESS also on February 23,2021in the
+Circuit Court of Jasper County
+22. Father M.G also filed in the
+
+
+Family Court of Jasper County Missouri a MOTION TO MODIFY CUSTODY.
+22. February 23, 2021, Court denied motions filed on February 23, 2021, And
+found that M.G had sufficient funds (Exhibit filed 2-23-2021) the MOTION TO
+MODIFY CUSTODY was stayed pending juvenile court jurisdiction.
+23. The Circuit Court of Jasper County then appointed Ron Sparling without my
+knowledge on February 23, 2021, as shown in the Notice of court appointment
+presented in exhibits I seen this notice provided after requesting court files for the
+first time on June 6, 2022
+24. As of today's date 19th of April 2024 the MOTION TO MODIFY CUSTODY
+has not been disposed
+25. The court had mailed a notice to the wrong address in which the house number
+and street were correct not the city and State. Shown in exhibit provided a copy of
+a letter mailed from Mellisa Holcomb to M.G at 8681 SE 71ST ST Carthage MO.
+64836 an address non existing.
+26. March 09, 2021, Kathleen wolf Miller filed an ENTRY OF APPEARANCE
+pro bono (exhibit ENTRY OF APPEARANCE)
+27.February 17,2022 was to be the first and only hearing held in person where I
+was to be represented by counsel and it was rescheduled to March 10, 2022 and
+then to March 31,2022 All of which counsel did not appear .
+28. March 31 2022 judge Vorhees on the record announced that if she didn’t show
+the next court appearance that Kathleen Wolf Miller would be held in contempt and
+that we would proceed with or without her.
+29..on April 7 2022 the motion to modify from reunification to adoption requested
+by juvenile division was held some 3 hearings from the Hearing original scheduled
+on February 17 2022 where counsel failed to appear every time
+
+
+30 Appellate is unsure exactly when Kathleen Wolf Miller Withdrew for a
+prosecutorial role creating a possible conflict of interest.
+31. Spellman Robertson was appointed on October 26, 2022, several unsuccessful
+attempts were made to contact Mr. Robertson before trial that were brought in
+person by M.G, to the clerk's office about my concerns' A single day prior to trial I
+was able to meet with Attorney Spellman, exhibit (NOTICE OF COURT
+APPOINTMENT FOR SPELLMAN ROBERTSON)
+        Petitioner highlights the shortcomings in the presentation of evidence at the
+trial level and the necessity for allowances in presenting such evidence at the
+appellate stage, as advised by: In re A.M.A., (Court of Appeals of Texas, 2021),
+wherein the complexities of presenting contradictory evidence by pro se litigants in
+appellate court were contemplated.
+       I have meticulously adhered to a stringent rehabilitation program,
+successfully completing substance abuse treatment, and have had no instance of
+illegal substance use since completing treatment under the aegis of The Peoples
+Network. Reports and attestations from Client services corroborate this milestone
+(Exhibit. letter from TPN highlighting accomplishments in the treatment program)
+post-treatment evaluations starkly contravene the pre-existing assumptions,
+underscoring my unwavering commitment to sobriety and responsible parenthood
+and contradicting the claim of not doing a drug evaluation or mental health
+evaluation and case plan. (Exhibit assessment sent to Kathleen Wolf Miller)
+      INSUFFICIENT COUNSEL REPRESENTATION
+ Petitioner contends that his right to effective counsel was compromised as
+evidenced by the following:
+   ● Lucas v. Jones, (Supreme Court of Arkansas, 2012), which highlights the
+     requisite standards for appointing counsel for indigent individuals,
+     underscoring such appointment as essential for ensuring fairness in judicial
+     proceedings.
+   ● United States ex rel. McDonald v. Hodge, (UNITED STATES
+     DISTRICT COURT NORTHERN DISTRICT OF ILLINOIS
+     EASTERN DIVISION, 2012), offers insight into the implications of the
+     withdrawal of appointed counsel, a principle that bears relevance to
+     Petitioner's case where counsel withdrawal was executed prematurely
+     without proper notice or consent.
+   ● Alameda Cnty. Soc. Servs. Agency v. M.B. (In re A.R.) My right to
+     effective assistance of counsel was severely compromised throughout the
+     dependency proceedings. Initially unrepresented, the involvement of
+     appointed counsel Kathleen Wolf Miller was brief, as her premature actions
+     and unnotified withdrawal, along with the appointment of Ron Sparling—a
+     detail I was unaware of until my attempts to self-represent—were
+     detrimental to the case. Subsequently, Spellman Robertson was unprepared
+     to navigate my case at trial, with only a single day's notice before
+     proceedings commenced. Given the premature motion to reconsider filed
+     during juvenile dependency stages and the subsequent withdrawal of counsel
+     without due notice or consent, the situation merits a reevaluation, guided by
+     pertinent case law:
+   ● S.B. v. DEPT. OF CHILDREN AND FAM lends credence to the challenge
+     of ineffective assistance, especially in dependency proceedings where the
+     qualifications of appointed counsel are crucial.
+   ● In re O.S., supra, 102 Cal.App.4th 1402, 1406. elucidates the critical need
+     for notice and the opportunity for legal representation to establish paternal
+     claims and defend parental rights effectively.
+   ● In re Emilye A. 9Cal. App.4th 1695 provides judicial guidance on the
+     criteria to assess effective legal representation, a benchmark that was not met
+     in this case.
+   ● L.W. v. DEPT. OF CHILDREN AND FAMILIES underscores the
+     importance of competent legal representation, particularly for indigent
+     parents, setting a precedent overlooked in my situation.
+ RIGHT TO SELF-REPRESENTATION/DIRECT ONES OWN DEFENCE
+Further asserting his right to self-representation and to control his defense, as
+delineated in:
+   ● McKASKLE v. WIGGINS, (465 U.S. 168, U.S. Supreme Court, 1984),
+     which firmly establishes a defendant's prerogative to self-representation and
+     underscores the significance of declarant control within their defense.
+   ● Romero v. State, (Court of Appeals of Texas, Fifth District, Dallas,
+     2024), which discusses the procedural necessities and the protected right of a
+     party in electing to represent themselves at the appellate level.
+Procedural Irregularities Concerning other areas of procedural mishandling that
+        Petitioner seeks to bring before the Court, attention is drawn to
+   ● Cone v. Bell, (556 U.S. 449, U.S. Supreme Court, 2009), that converses on
+     the grave consequences of ineffective assistance of counsel, including the
+     ramifications of withholding crucial evidence.
+   ● Lassiter v. Department of Social Services
+                             DUE PROCESS VIOLATIONS
+• In re P.D., (144 S.W.3d 907, Missouri Court of Appeals, Eastern District.,
+2004), which gives a narrative on the adverse impact of denying motions for
+continuance and how such denials could impinge upon due process rights. The
+proceedings have been marred by several anomalies, inviting the court's scrutiny
+for a fair reassessment Including the request by Spellman before Trial requesting
+continuance for having little or no contact with Appellate.
+   ● PREMATURE FILING OF MOTIONS:
+The motion to reconsider was filed prematurely during the initial dependency
+procedures before I could attain adequate counsel, at several periods during the
+abuse and neglect case I was without council in which I felt as if something should
+be filed of course without counsel it most certainly ended resulting in considerable
+prejudice against my legal position.
+      WITHDRAWAL OF COUNSEL:
+ Multiple attorneys throughout the duration of the court process as well as counsel
+assigned to me missed several scheduled hearings and also withdrew without
+providing notice or securing consent, leaving me unrepresented at a crucial point,
+contravening expected procedural norms.
+      INSUFFICIENCY OF EVIDENCE
+   ●    Santosky v. Kramer 455 U.S. 745 (1982) Referenced within the Bess v.
+       Barroso citation, this case sets a high standard of proof (clear and convincing
+       evidence) for the termination of parental rights,
+                ACCUSATION OF CHEMICAL DEPENDENCY
+Additionally, essential to this motion is the invalid accusation of chemical
+dependency leveled against me without substantial evidence or the benefit of
+robust legal defense, which questions the veracity and sufficiency of the evidence
+presented at trial .
+   ● KOHL v. LEHLBACK 160 U.S. 293 (1895)
+16 S. Ct. 304
+New Evidence and Procedural Irregularities Subsequent to the Court's decision,
+new evidence has surfaced that warrants reevaluation. Concurrently, procedural
+missteps, including inadequate legal counsel and misdirected communications,
+have prejudiced the judicial outcome.
+   ● Allegations concerning my history with substances have been predicated on
+     fragile testimonies and reports, devoid of the crucial context which
+     elucidates a journey of resilience and reform, culminating in my current
+     abstinent lifestyle
+   ● Procedural missteps marked by a premature motion to reconsider induce a
+     pressing need for a retrospective evaluation, while the allegations of
+     chemical dependency, void of substantiated proof, further augment of my
+     petition for this Court to grant rehearing.
+                         JURISDICTION AND VENUE:
+The federal courts are implored, under 42 U.S.C. § 1983 and as per the doctrine of
+Ex-Partee Young, to provide relief from ongoing violations of due process
+concerning the enforcement of the State of Missouri's termination of my parental
+rights. In addition, the jurisdiction of the abuse and neglect proceedings is
+questioned, drawing upon:
+• STANLEY v. ILLINOIS, (405 U.S. 645, U.S. Supreme Court, 1972), which
+upholds the rights of parents in judicial proceedings, directly impacting the context
+of the present case involving the rights and assertions made by an unwed father.
+• Jurisdictional Concerns and Miscommunications
+The administrative grievance of jurisdictional overstep looms over this case. My
+perpetual presence in my son's life rebut this overreach, and the inadvertent
+misplacement of crucial communications hamstrung my capability to navigate
+through my legal predicaments.
+• I respectfully invoke the Court to employ its mandated jurisdiction under federal
+law to afford an equitable resolution to the rights infringed upon within the state
+judiciary's confines.
+G. Denial of parental rights:
+In re Stephanie M., F04CP15003270B (Conn. Super. Ct. Nov. 30, 2017) and In
+re In re Marilyn H, 5 Cal.4th 295, 19 Cal. Rptr. 2d 544, 851 P.2d 826 (Cal.
+1993) were My rights were restricted solely based on the mother's actions, and
+challenge this decision, arguing that it is an inappropriate punitive measure against
+me when I was not the parent responsible for the neglect.
+E. Implications of the ICPC Assessment Not Performed
+Youngberg v. Romeo, 457 U.S. 307, 102 S. Ct. 2452 (1982) An ICPC
+assessment's glaring omission has potentially exposed my son to unwarranted
+perils of well documented sexual and physical abuse in his current adoptive
+placement within the foster system, a scenario that could have been mitigated or
+preempted with appropriate diligence. (Exhibit emails to and from case supervisor
+)
+                                Argument Highlights
+I. Novel Application of Ex Parte Young to Family Law In a groundbreaking
+argument, I assert that the principles of the Ex Parte Young doctrine be extended to
+encompass state family law proceedings. This unconventional approach seeks
+judicial acknowledgment that constitutional violations within family law merit the
+same rigorous scrutiny and injunctive relief historically granted in other federal
+rights disputes.
+II. Equal Parental Rights in Missouri law now recognizes paternal rights as being
+equal to maternal rights. This appeal shows how the lower court's decision fails to
+reflect these egalitarian principles and implores the Court to uphold the equitable
+treatment of fathers within the jurisdiction, thus carving a path for similar cases.
+III. Ensuring Due Process Challenges to due process in this case underlines the
+importance of rigorous procedural safeguards, particularly where the risk of error
+carries profound consequences on familial bonds. This Court's intervention is
+imperative to affirm due process rights inherent in parental rights proceedings.
+IV. The Intersection of Legal Representation and Self-Representation I illustrate
+the perils faced when effective counsel is absent, and the right to
+self-representation is encumbered. This motion seeks the Court's injunction for
+more explicit guidelines to be set, thus safeguarding these rights for all litigants,
+especially those proceeding pro se.
+V. Implications for Public Policy A favorable ruling will champion the
+indispensable role of fathers in children's lives, reinforcing the state's commitment
+to family integrity and the child's best interest — a ruling with profound
+ramifications for family law jurisprudence.
+ The precedent set forth in PEOPLE v. STULTZ by the Court of Appeals of
+the State of New York in 2004 underscores the crucial role that due process
+plays within judicial proceedings. In Stultz, the court rigorously examined the
+procedural safeguards to ensure that the rights of the individuals were not
+overshadowed by administrative expediency. In the present appeal, a similar
+comprehensive examination is warranted to determine whether due process
+was adequately provided during the proceedings culminating in the
+termination of my parental rights.
+Similarly, JENNINGS v. WOODFORD, a decision by the United States Court
+of Appeals, Ninth Circuit in 2002, illustrates the pivotal nature of effective
+legal representation in the context of protecting constitutional rights. The
+Jennings court carefully parsed the impact of counsel's performance on the
+outcome of the case. Here, the appellant contends that parallels can be drawn
+regarding the inadequate representation received, thus casting significant
+doubt on the fairness of the trial’s result.
+In juxtaposition to our case, CLAUDIO v. SCULLY sheds light on the
+principles of justice being equally meted out to all parties involved in a family
+law context. In Claudio, the court meticulously addressed the balance between
+state interests and individual rights, particularly in the context of parental
+rights. The reflection of this balance is questioned in the case at bar, where the
+scales of justice seem to have tilted unfavorably and prematurely against the
+involvement and rights of a devoted father. Therefore, premised on the
+aforementioned arguments and antecedenting case laws which highlight the
+jurisprudence surrounding due process and effective counsel, the petitioner
+respectfully submits this motion for the court’s reconsideration and requests
+an en banc review to revisit and potentially rectify the decision pertaining to
+the termination of parental rights.
+Coupled with the presented new evidence, the aforementioned cases assert the
+appellant’s stance that significant procedural irregularities occurred. Such
+occurrences testify to the need for an injunction to halt the enforcement of the
+termination order. This would prevent ongoing violations of the appellant's
+federal rights under 42 U.S.C. § 1983 and the protective doctrine established
+in EX PARTE Young.
+The petitioner submits that granting these requests is not only in the best
+interest of K.C.G. but also upholds the integrity of legal proceedings and the
+fundamental principles of due process and parental rights—cornerstones of
+our judicial system and society as a wholle
+
+
+
+ CLAIM FOR RELIEF:
+The failure to conduct an ICPC assessment or consider placement with the
+undersigned Petitioner, despite pre-established shared custody, constitutes a
+continuous violation of due process rights as guaranteed by the Fourteenth.
+Amendment. Furthermore, Merging the aforementioned variables fabricates an
+undeniable tapestry of judicial oversight and systemic faltering. Cumulatively,
+these factors have precipitated an injustice that beckons redress. This appeal is
+constructed not solely on a father's fervent plea but is firmly rooted in the
+principles of justice and equity that embody the judicial mantle this Court
+espouses, A clarion call is made to this Honorable Court to issue a declaratory
+judgment affirming this case's role as a potential vanguard for constitutional
+applications in family law. Further, I beseech the Court for an injunction preventing
+the enforcement of my parental rights termination, pending a full and fair
+consideration of the issues I've presented. Finally, the Court is invited to grant any
+additional relief it deems appropriate, heralding a new epoch in the judicial
+valorization of fatherhood rights. [Fair notice] Granting this motion and
+considering the legal positions articulated would not only serve the ends of legal
+rectification for one father but would also potentially illumine the path for future
+jurisprudence, safeguarding the integrity of family and the sanctity of parental
+rights.
+
+
+A. Due Process and Parental Rights Appellate Argues the importance of
+maintaining procedural due process and rely on STANLEY v. ILLINOIS, (405
+U.S. 645, U.S. Supreme Court, 1972), Santosky v. Kramer: Referenced within the
+Bess v. Barroso citation, these cases set a high standard of proof (clear and
+convincing evidence) for the termination of parental rights,;
+B. Ineffective Assistance of Counsel The appellant respectfully asserts that the
+assistance of counsel provided during the preliminary and subsequent hearings was
+not within the standard required by the Sixth Amendment as defined by the United
+States Supreme Court in Strickland v. Washington. To establish a claim of
+ineffective assistance of counsel, two requirements must be met: first, that
+counsel’s performance was deficient; second, that the deficient performance
+prejudiced the defense.
+1. Deficient Performance
+Counsel’s performance was deficient in several critical respects:
+· Failure to file key motions: Counsel did not file motions essential to the
+protection of the appellant's parental rights, including motions to challenge the
+sufficiency of the evidence against the appellant and motions to suppress evidence
+introduced in violation of the appellant's rights.
+· Lack of preparation for hearings: On numerous occasions, counsel appeared at
+hearings without having adequately prepared the case, failing to call important
+witnesses, or present crucial evidence in defense of the appellant’s ability and right
+to parent.
+· Inadequate communication: Counsel failed to maintain reasonable
+communication with the appellant, depriving him of the opportunity to make
+informed decisions and to contribute effectively to his own defense.
+2. Prejudice to the Defense
+The deficient performance of counsel resulted in substantial prejudice to the
+defense. Critical evidence favorable to the appellant was not introduced,
+cross-examination of the state's witnesses was insufficient, and potential defenses
+were not raised, thereby denying the appellant the opportunity for a fair trial.
+According to McKaskle v. Wiggins,
+this failure undermines the “adversary process that our system counts on to
+produce just results.”
+3. Applicable Authorities
+In alignment with aforementioned standards, the appraisal of counsel’s
+effectiveness must be grounded in an objective standard of reasonableness under
+prevailing professional norms:
+· In Luleff v. State and State ex rel. J.D.S. v. Edwards, the Missouri Supreme Court
+emphasized the duty of defense counsel to engage in active advocacy and pursue a
+strategic defense, obligations unmet in the present case.
+· The U.S. Supreme Court in Stanley v. Illinois underscored the importance of
+process in parental rights adjudications - a process hampered by ineffective
+counsel, leading to a failure in safeguarding the appellant’s due process rights as
+mandated in Santosky v. Kramer.
+C. Request for En Banc Review
+The appellant respectfully requests an en banc review of this case to address
+significant legal issues and discrepancies in the application of family law that
+extend beyond the individual circumstance. The complexity and importance of the
+issues raised herein warrant the collective expertise and judgment of the full bench
+of the Missouri Court of Appeals.
+1. Significance of Constitutional Issues
+This appeal presents substantial constitutional questions that are pivotal for
+determining parental rights not only within the purview of Missouri law but also in
+interpreting the interface between state and federal jurisprudence regarding civil
+rights under 42 U.S.C. § 1983 as elaborated in Green v. Mansour and due process
+protections under the Fourteenth Amendment as expounded in Lassiter v.
+Department of Social Services.
+2. Broader Implications for Family Law
+The issues at stake hold the potential to set vital precedents affecting the future
+interpretation and application of parental rights in Missouri. They also raise broad
+legal questions regarding the representation of pro se litigants and the effective
+assistance of counsel — concerns which the Missouri Supreme Court has noted
+require careful consideration as highlighted in Luleff v. State and J.A.R. v. D.G.R..
+3. Discrepancies in Legal Interpretation
+This case has uncovered meaningful inconsistencies in the judicial application of
+established law which echo sentiments expressed in State ex rel. J. D. S. v.
+Edwards. There is a clear need for authoritative clarification that can only be
+provided by an en banc review. This will ensure uniformity and fairness in future
+proceedings, a necessity underlined by the Missouri Court of Appeals cases such as
+In re P.D. and In re Interest of V.C.N.C..
+4. Need for En Banc Consideration
+The appellant submits that the instant case presents questions of exceptional
+importance. McKaskle v. Wiggins emphasizes the role of adversarial testing in
+preserving the integrity of the process, which is particularly pertinent in cases
+regarding the termination of parental rights, an area where state and federal
+interests often intersect as portrayed in Santosky v. Kramer and Stanley v. Illinois.
+Given the presence of these broad and significant legal questions and their
+implications for the public, as well as for the development of constitutional
+principles within the context of state family law proceedings, an en banc hearing is
+not only appropriate but essential. En banc consideration will allow for a more
+detailed and comprehensive analysis of these issues and will help to develop a
+coherent and fair body of law that adequately protects the rights of parents and the
+welfare of children across the state.
+Therefore, the appellant respectfully insists that an en banc review by this
+Honorable Court is justified and requests the same in the interest of achieving the
+most equitable resolution of this case.
+D. Application of 42 U.S.C. § 1983
+The appellant hereby asserts the application of 42 U.S.C. § 1983 regarding
+violations of federal rights stemming from the unjust termination of parental rights.
+The actions contested within the scope of this appeal infringe upon
+Constitutionally protected rights and seek remedy through federal courts as per the
+allowances of this statute.
+1. Violation of Federal Rights
+The termination of parental rights, as adjudicated, in this case, has transgressed
+fundamental rights to due process and equal protection under the law. Such rights
+are not merely procedural but are substantive in nature, affecting life's most
+essential bond—between parent and child, as protected under the Fourteenth
+Amendment and underpinned by the legal narrative developed in Santosky v.
+Kramer.
+2. State Actions Under 42 U.S.C. § 1983
+When state actors, such as the juvenile office and its representatives, execute
+actions that lead to termination of parental rights, these actions become subject to
+scrutiny under 42 U.S.C. § 1983 if they contravene federal Constitutional rights.
+The Appellant avers that in the course of these proceedings, actions rising to the
+level of Constitutional violations have indeed occurred.
+3. Relevance of Green v. Mansour, 474 U.S. 64, 106 S. Ct. 423 (1985) and
+Pennsylvania v. Finley, 481 U.S. 551, 107 S. Ct. 1990 (1987)
+The principles established in Green v. Mansour and Pennsylvania v. Finley
+illuminate the considerations of this Court under 42 U.S.C. § 1983. While Green v.
+Mansour details the limits of declaratory relief where no ongoing violation of
+federal law exists, the intensive involvement and interference by state actors in this
+case mandate federal intervention for the continued breach. Similarly,
+Pennsylvania v. Finley reinforces the idea that the right to appointed counsel
+extends beyond the criminal courtroom, especially in proceedings that place a
+heavy burden on an individual's rights — a stark similarity to the circumstances
+faced by the appellant.
+4. Missouri Precedents and Federal Rights
+Missouri case law notably recognizes the gravity of terminating parental rights,
+with the Supreme Court of Missouri in cases like In re S.M.H., No.
+07-18-00148-CV (Tex. App. Nov. 6, 2019) requiring clear and convincing
+evidence. When federal rights are compromised, as claimed here, an immediate
+and federal judicial purview becomes necessary, invoking 42 U.S.C. § 1983 as a
+defensive bulwark.
+5. Conclusion
+It is presented to this Honorable Court that the totality of actions culminating in the
+termination of the appellant's parental rights not merely infringe upon state law but
+elevate the dispute to a federal forum under the auspices of 42 U.S.C. § 1983. The
+appellant invokes this statute to correct the injustices born out of state action,
+rectify ongoing violations of federal law, and restore the appellant’s rights as a
+parent that have been inappropriately severed.
+In light of the above, the appellant respectfully requests this Court to grant an
+injunction to halt the enforcement of the termination order under the weight of 42
+U.S.C. § 1983 and to interpret the facts in light of the Constitutional guarantees
+that frame the canvas of this nation's legal ethos.
+In light of the above, the appellant respectfully requests this Court to grant an
+injunction to halt the enforcement of the termination order under the weight of 42
+U.S.C. § 1983 and to interpret the facts in light of the Constitutional guarantees
+that frame the canvas of this nation's legal ethos.
+F. Equitable Relief and Jurisdiction
+In light of the new evidence and significant rehabilitation efforts of the appellant,
+there is a compelling case for the issuance of equitable relief to prevent ongoing
+violations of constitutional rights. Accordingly, the appellant invokes the court’s
+jurisdiction to issue such relief, as is consistent with the principles established in
+Ex parte Young and supported by a thread of precedential authorities which afford
+this honorable court the power to act justly in the face of potential miscarriages of
+justice.
+1. The Necessity of Injunctive Relief
+The appellant has demonstrated a substantive change in circumstances that directly
+affect the welfare of K.C.G. In accordance with the federal oversight afforded by
+42 U.S.C. § 1983, and as illuminated through the lens of the Ex parte Young
+doctrine, there is critical jurisdiction for a federal remedy against ongoing state
+action perceived to violate the appellant's federal rights. The provision of
+injunctive relief becomes not merely a provision of equity but a necessity to
+prevent the ongoing deprivation of rights assured under the Fourteenth
+Amendment.
+2. Applicable Federal and State Authorities
+The authority under Ex parte Young enables the court to issue injunctions when
+constitutional rights are at stake, effectively halting state enforcement actions that
+are against federal law. Furthermore, consistent with Missouri’s judicial
+observations — as seen in State ex rel. State ex Rel. J. D. S. v. Edwards, 574
+S.W.2d 405 (Mo. 1978) and In re P.D., No. 11-1698 (W. Va. Jun. 25, 2012) —
+this call for suspension of the state's decision is rooted in the need to preserve the
+appellant's rights pending a closer examination of the adverse effects that such
+statutory actions may impose on him.
+3. Supported by the Guidelines in Ex parte Young
+Ex parte Young provides a clear basis for the federal court to enjoin state officials
+from enforcing state laws that are in violation of the federal Constitution. In this
+context, the termination of the appellant’s parental rights without due regard for his
+recent improvements and compelling evidence not only challenges the doctrines
+established in cases like Lassiter v. Department of Social Services and Santosky v.
+Kramer but also suggests a departure from the rigors of procedural due process.
+---
+VI. CONCLUSION AND PRAYER FOR RELIEF
+In conclusion, the appellant respectfully requests a reevaluation of the decision by
+this Honorable Court based on the principles of fairness, the presentation of new
+evidence, and relevant federal and state law considerations.
+Prayers for relief include:
+1. Reassessment of the decision terminating parental rights based on updated
+evidence and due process considerations.
+2. The convening of an en banc court to review significant legal questions
+presented in this case.
+3. Issuance of an injunction to halt the enforcement of the termination order
+pending a reevaluation of this case under the proper application of the law.
+4. Any other relief that this Court deems just and proper
+Based on the above-mentioned authorities, alongside compelling facts and
+circumstances apparent in the record, Petitioner respectfully requests that this
+Honorable Court grant the Motion to Reconsider. Petitioner seeks the opportunity
+to address the deficiencies noted herein and achieve an outcome that embodies the
+just, equitable principles that underpin our legal system. For the reasons stated, I
+respectfully request that the court grants this motion for reconsideration. I appeal to
+the Court's equitable conscience to deliberate on the augments herein with the
+urgency and gravity they warrant. It is not merely the father's right that rests in the
+balance but the unfolding future of Kody Goodman, over whose welfare I remain
+steadfastly vigilant. Ergo, I beseech the Court to sanction this motion, to initiate an
+en banc review with alacrity, and should it be deemed essential, to endorse a
+transfer to a judicial forum equipped to extend this case the breadth of
+consideration it merits. We put our faith in the hope that the Court's wisdom will
+navigate us to a just and compassionate resolution. Failing to do so not only affect
+my parental rights but more importantly, impacts the well-being and welfare of my
+son, Kody Goodman. Embracing the intricacies of this case, the Court has the
+esteemed duty of delivering justice not only to an individual but potentially to the
+very structure of family law jurisprudence. The outcomes sought herein stand to
+thoroughly embody the noblest legal principles, offering sturdy protection for
+paternal rights and setting a precedent of considerable legal worth.
+. Respectfully submitted,
+Matthew Goodman
+8681 SE 71ST
+BAXTER SPRINGS KS 66713
+phone 417-388-0890
+                      Missouri Court of Appeals
+                                         Southern District
+
+                                           No. SD38180
+
+IN THE INTEREST OF K.C.G.                         )
+                                                  )
+JASPER COUNTY JUVENILE OFFICE,                    )
+B.L.M., AND C.T.A.M.,                             )
+                                                  )                   FILED
+                       Respondents,               )                   APR 10 2024
+                                                  )
+                                                                   CRAIG A. STREET, CLERK
+vs.                                               )              MISSOURI COURT OF APPEALS
+                                                  )                  SOUTHERN DISTRICT
+M.P.G.,                                           )
+                                                  )
+                       Appellant.                 )
+
+                                              ORDER
+
+       Now on this day, the Court takes up appellant’s correspondence dated April 8, 2024, which
+the Court construes as a motion for an extension of time to file a motion for rehearing and/or
+application for transfer. Having fully considered the same, the Court grants leave to appellant,
+until April 30, 2024, to file a motion for rehearing and/or application for transfer. Any other relief
+requested in the motion is hereby denied.
+
+       Also, on this day, the Court takes up appellant’s second letter dated April 8, 2024. The
+Court denies any relief requested therein.
+
+
+
+
+cc:    Attorneys of Record – via the electronic filing system
+       Matthew Goodman – via email and U.S. mail
+Matthew Goodman
+8681 SE 71ST ST
+Baxter Springs KS. 66713
+malcolmgoodmen@gmail.com
+417-388-0890
+Date: 2024-04-09
+
+
+Craig A. Street, Clerk Missouri Court of Appeals 300 S. Hammons Pkwy Ste 300
+Springfield MO.
+
+
+Dear Mr. Street,
+       I write to address specific procedural and legal oversights that have
+significantly impacted the outcome of the dependency proceedings involving my
+son, Kody Goodman. This motion seeks reconsideration of the judgment on
+grounds that it is multifaceted and materially affects my right to fair representation
+and due process. Moreover, this motion challenges the validity of the judgment
+about the termination of my parental rights over Kody Goodman, under appeal
+number SD38180 and 22AO-JU00288.
+       As I continue to assert my parental rights, I question the judicial process
+leading to the termination. This motion presents a critical opportunity for this
+Court to reexamine and potentially reshape the principles governing the fairness
+and equality of parental rights, the application of federal rights under 42 U.S.C. §
+1983 in state proceedings, and to reinforce the constitutional safeguards of due
+process. In grappling with these pivotal issues, this Court has the unique capacity
+to render a decision that may serve as a benchmark for the protection of paternal
+rights and equitable jurisprudence nationwide
+    IN THE MISSOURI COURT OF APPEALS SOUTHERN DISTRICT
+
+
+                            Appeal No. SD38180
+        __________________________________________________
+
+
+ IN THE INTEREST OF K.C.G. M.P.G. Appellant, vs. B.L.M. and C.T.A.M.,
+                            JASPER
+
+
+                 COUNTY JUVENILE OFFICE, Respondent
+        __________________________________________________
+
+
+MOTION FOR RECONSIDERATION, REQUEST FOR EN BANC REVIEW
+TRANSFER, AND PETITION FOR INJUNCTIVE RELIEF FOR ONGOING
+VIOLATION OF FEDERAL RIGHTS UNDER 42 U.S.C. § 1983 AND THE EX
+                     PARTE YOUNG DOCTRINE
+        __________________________________________________
+
+
+  On Appeal from the Circuit Court of Jasper County For the 29th District of
+                                 Missouri
+        __________________________________________________
+
+
+      MATTHEW PRESTON GOODMAN Telephone: 417 –388-0890
+           Malcolmgoodmen@gmail.com Pro Se Litigant.,
+                            TABLE OF AUTHORITIES
+
+    ● 42 U.S.C. § 1983: This federal statute provides a means for citizens to seek
+      relief against the violation of their constitutional rights by persons acting
+      under state law.2.
+
+    ● Ex parte Young, 209 U.S. 123 (1908): A U.S. Supreme Court case that
+      allows federal courts to order state officials to comply with federal law.
+
+●      Claudio v. Scully, 982 F.2d 798 (2d Cir. 1992)
+●      PEOPLE v. STULTZ, S263034 (Cal. Aug. 31,2010)
+●      JENNINGS v. WOODFORD,290 F.3d 1006 (9th Cir. 2002)
+
+    ● Lucas v. Jones, (Supreme Court of Arkansas, 2012): A case relating to
+      the standards for appointing counsel for indigent individuals.
+
+    ● United States ex rel. McDonald v. Hodge, (UNITED STATES
+      DISTRICT COURT NORTHERN DISTRICT OF ILLINOIS
+      EASTERN DIVISION, 2012): A case that may address issues concerning
+      the withdrawal of appointed counsel.
+
+    ● Alameda Cnty. Soc. Servs. Agency v. M.B. (In re A.R.): Regarding
+      effective assistance of counsel in dependency proceedings.
+
+    ● S.B. v. DEPT. OF CHILDREN AND FAM and In re O.S.: Issues
+      surrounding ineffective assistance and the right to legal representation in
+      dependency proceedings.
+
+    ● In re EMILYE A and L.W. v. DEPT. OF CHILDREN AND FAMILIES:
+      Standards for evaluating legal representation in cases involving parental
+      rights.
+
+    ● McKASKLE v. WIGGINS, (465 U.S. 168, U.S. Supreme Court, 1984): A
+      case discussing the right to direct one's own defense.
+
+    ● Romero v. State, (Court of Appeals of Texas, Fifth District, Dallas,
+      2024): A case dealing with self-representation at the appellate level.
+
+    ● Cone v. Bell, (556 U.S. 449, U.S. Supreme Court, 2009): A case concerned
+      with ineffective assistance of counsel and withholding evidence.
+● Lassiter v. Department of Social Services: A U.S. Supreme Court case
+  about the right to appointed counsel in civil cases that involve the
+  termination of parental rights.
+
+● In re P.D., (144 S.W.3d 907, Missouri Court of Appeals, Eastern
+  District.,2004): Discusses the impact of denied motions for continuance on
+  due process rights.
+
+● STANLEY v. ILLINOIS, (405 U.S. 645, U.S. Supreme Court, 1972): A
+  Supreme Court case regarding the due process rights of parents in judicial
+  proceedings.
+
+● In re Stephanie M., In re Marilyn H: Circumstances under which parental
+  rights may be terminated.
+
+● Youngberg v. Romeo, 457 U.S. 307, 102 S. Ct. 2452 (1982): A case about
+  the rights of involuntarily committed persons, which might be applied by
+  analogy, and imply K.G has the right to safety in current placement
+
+● Santosky v. Kramer: Sets the standard of proof for termination of parental
+  rights as "clear and convincing evidence."
+
+● KOHL v. LEHLBACK 160 U.S. 293 (1895): A case reference that may
+  pertain to due process or parental rights.
+
+● Green v. Mansour, Pennsylvania v. Finley: Cases discussing the rights to
+  seek remedy under 42 U.S.C. § 1983.
+
+● In re S.M.H.: A case requiring clear and convincing evidence for the
+  termination of parental rights as per Missouri law.
+
+● Strickland v. Washington: A U.S. Supreme Court case laying out the
+  standard for claims of ineffective assistance of counsel.
+
+● Luleff v. State and State ex rel. J.D.S. v. Edwards: Cases that address the
+  role of counsel in legal defenses and the procedural processes in parental
+  rights adjudications.
+                       JURISDICTIONAL STATEMENT
+
+
+       This appeal is properly before the Missouri Court of Appeals for the
+Southern District pursuant to Rule 30.01(d) of the Missouri Rules of Appellate
+Procedure, following a final judgment from the Circuit Court of Jasper County for
+the 29th District of Missouri. This Court has jurisdiction under Mo. Rev. Stat. §
+512.020, as the appeal seeks review of a final judgment involving the termination
+of parental rights, a decision appealable as of right. Furthermore, the issuance of
+injunctive relief against ongoing violations of Federal Rights, including those
+rights protected under 42 U.S.C. § 1983, invokes this Court's Jurisdiction under the
+EX PARTE YOUNG DOCTRINE, which allows Federal Courts to enjoin state
+officials from violating Federal Law, as established by the United States Supreme
+Court in Ex parte Young, 209 U.S. 123 (1908). This motion timely follows the
+entry of judgment, adhering to the timeframe established by Rule 84.04 of the
+Missouri Rules of Appellate Procedure, ensuring that the Court may exercise its
+jurisdiction to provide relief as necessary.
+                            STANDARD OF REVIEW
+      In the appeal concerning the interests of K.C.G., and the subsequent legal
+matters involving M.P.G., Appellant vs. B.L.M. and C.T.A.M., Jasper County
+Juvenile Office, Respondents, the standards of review that the Missouri Court of
+Appeals, Southern District, should employ are delineated as follows:
+1. DE NOVO REVIEW:
+      For questions of jurisdiction and legal interpretation, which involve the
+thorough examination of statutory provisions, case law, and constitutional
+principles, a de novo standard of review is essential. When reviewing these
+matters, the Appellate Court exercises an independent, non-deferential judgment.
+This court must reassess the standard of review for legal issues presented without
+presumption of correctness of the lower court’s ruling, ensuring that the legal
+foundations dictating the outcome of the case are solidly in accordance with the
+law and legal precedent.
+2. SUBSTANTIAL EVIDENCE STANDARD:
+      In reviewing the factual findings made by the trial Court, the standard of
+review should shift to the substantial evidence test. This standard directs the
+appellate court to affirm the lower court's determinations if the findings are
+supported by substantial evidence on the record. Substantial evidence is such
+relevant evidence that a reasonable mind might accept as adequate to support a
+conclusion, even if it is possible to draw two inconsistent conclusions from the
+evidence. (“Giha v. Garland, No. 15-73085 (9th Cir. 2021) :: Justia”) The
+question is not whether the evidence could support a different conclusion but
+whether it supports the conclusion that was reached by the trial Court.
+3. CLEARLY ERRONEOUS STANDARD:
+       When addressing the potential clear error in the trial court’s findings of fact,
+it is warranted that such findings are left undisturbed unless the reviewing court, on
+the entire evidence, is left with the definite and firm conviction that a mistake has
+been made. This heightened degree of assurance in the trial court's factual accuracy
+recognizes the trial judge’s role as the primary factfinder, having had the
+opportunity to observe witness demeanor and to weigh the evidence presented
+firsthand.
+       The employment of these distinct standards of review acknowledges the dual
+nature of appellate scrutiny, where legal issues are reviewed with precision and
+independence, and factual determinations are accorded deference unless they fall
+short of the evidentiary benchmark or are manifestly erroneous.
+1. BACKGROUND
+      1. K.G was born October 13,2018
+      2. K.G resided with mother at 1441 Kimberling Lane Apartment E.,
+Carthage MO.64836 at the time the dependency case was initiated.
+      3. Father of K.G is M.G
+      4.Father resided at 8681 SE 71ST ST BAXTER SPRINGS KS when the case
+began and still resides at the same address.
+      5. The case at hand originated from complex child in need of services
+(CHINS) proceedings which resulted in the controversial termination of my
+parental rights
+      .6. Appellate hired an attorney and petitioned the Court to establish paternity
+and custody. And to change last name of K.G from Alton to Goodman; on or about
+9-5-2019
+       7. A judgment of Paternity and Order of Custody from Angela Vorhees the
+same judge who conducted the trial in question for the termination of parental
+rights was issued on or about 9-4-2019 a year and a half prior to the proceedings of
+abuse and neglect by the mother of K.G were initiated
+      8. The decree granted M.G 50/50 physical and legal custody, then once K.G
+turned 3 years old M.G was to be granted visits with him every other two weeks
+for two weeks every other week.
+      9. On Jan 2,2021 K.G was taken to the emergency room in Carthage Mo.
+and had tested positive for an illegal substance.
+      10.K.G was removed from his mother's Custody.
+       11. At the time K.G was taken from his biological MOTHERS Custody
+father had visits every other weekend and every Wednesday in which K.G stayed
+with me in Kansas
+       12.At the time K.G was TAKEN from MOTHERS CUSTODY it was NOT
+fathers' weekend to have K.G in his immediate control care and custody.
+     13.Appellate could not have known of the situation living in Kansas at 8681
+SE 71ST ST Baxter Springs KS 66713
+        14./Appellate became aware within days informed by his uncle who lived in
+Carthage MO. and attempted to intervene in the situation when K.G was sheltered
+at the. Childrens Haven in Joplin after a visit set up by myself and Kathleen after
+multiple attempts to locate my son and finally was told about K.G, and his
+whereabouts''.
+15. I M.G was told I could not take my son from the Shelter by Jennifer Emmons,
+the situation being what it was I didn't argue because of the trauma already
+inflicted and the fact K.G was with his brother who isn't my biological son.
+16. Multiple hearings were held without me being appointed counsel such as
+emergency shelter hearing on or about January 4,2021
+17. Another hearing being an adjudication hearing on or about February 9,
+2021shown in notice received at location of hearing.
+18. Again on or about 2-23-2021 All of which I had no counsel shown in notice I
+received at prior hearing as shown in exhibits.
+19. Feb,23,2021 after not getting appointed counsel I had petitioned the court with
+a motion for rehearing noting that meaningful contact between my son K.G and I
+M.G was disrupted as proven by exhibits
+20. February 23, 2021, father also filed a family access motion as shown in the
+notice of entry from the same date 2-23-2021
+21.February 23, 2021, Father filed a MOTION TO PROCEED AS A POOR
+PERSON and a MOTION FOR FAMILY ACCESS also on February 23,2021in the
+Circuit Court of Jasper County
+22. Father M.G also filed in the
+
+
+Family Court of Jasper County Missouri a MOTION TO MODIFY CUSTODY.
+22. February 23, 2021, Court denied motions filed on February 23, 2021, And
+found that M.G had sufficient funds (Exhibit filed 2-23-2021) the MOTION TO
+MODIFY CUSTODY was stayed pending juvenile court jurisdiction.
+23. The Circuit Court of Jasper County then appointed Ron Sparling without my
+knowledge on February 23, 2021, as shown in the Notice of court appointment
+presented in exhibits I seen this notice provided after requesting court files for the
+first time on June 6, 2022
+24. As of today's date 19th of April 2024 the MOTION TO MODIFY CUSTODY
+has not been disposed
+25. The court had mailed a notice to the wrong address in which the house number
+and street were correct not the city and State. Shown in exhibit provided a copy of
+a letter mailed from Mellisa Holcomb to M.G at 8681 SE 71ST ST Carthage MO.
+64836 an address non existing.
+26. March 09, 2021, Kathleen wolf Miller filed an ENTRY OF APPEARANCE
+pro bono (exhibit ENTRY OF APPEARANCE)
+27.February 17,2022 was to be the first and only hearing held in person where I
+was to be represented by counsel and it was rescheduled to March 10, 2022 and
+then to March 31,2022 All of which counsel did not appear .
+28. March 31 2022 judge Vorhees on the record announced that if she didn’t show
+the next court appearance that Kathleen Wolf Miller would be held in contempt and
+that we would proceed with or without her.
+29..on April 7 2022 the motion to modify from reunification to adoption requested
+by juvenile division was held some 3 hearings from the Hearing original scheduled
+on February 17 2022 where counsel failed to appear every time
+
+
+30 Appellate is unsure exactly when Kathleen Wolf Miller Withdrew for a
+prosecutorial role creating a possible conflict of interest.
+31. Spellman Robertson was appointed on October 26, 2022, several unsuccessful
+attempts were made to contact Mr. Robertson before trial that were brought in
+person by M.G, to the clerk's office about my concerns' A single day prior to trial I
+was able to meet with Attorney Spellman, exhibit (NOTICE OF COURT
+APPOINTMENT FOR SPELLMAN ROBERTSON)
+        Petitioner highlights the shortcomings in the presentation of evidence at the
+trial level and the necessity for allowances in presenting such evidence at the
+appellate stage, as advised by: In re A.M.A., (Court of Appeals of Texas, 2021),
+wherein the complexities of presenting contradictory evidence by pro se litigants in
+appellate court were contemplated.
+       I have meticulously adhered to a stringent rehabilitation program,
+successfully completing substance abuse treatment, and have had no instance of
+illegal substance use since completing treatment under the aegis of The Peoples
+Network. Reports and attestations from Client services corroborate this milestone
+(Exhibit. letter from TPN highlighting accomplishments in the treatment program)
+post-treatment evaluations starkly contravene the pre-existing assumptions,
+underscoring my unwavering commitment to sobriety and responsible parenthood
+and contradicting the claim of not doing a drug evaluation or mental health
+evaluation and case plan. (Exhibit assessment sent to Kathleen Wolf Miller)
+      INSUFFICIENT COUNSEL REPRESENTATION
+ Petitioner contends that his right to effective counsel was compromised as
+evidenced by the following:
+   ● Lucas v. Jones, (Supreme Court of Arkansas, 2012), which highlights the
+     requisite standards for appointing counsel for indigent individuals,
+     underscoring such appointment as essential for ensuring fairness in judicial
+     proceedings.
+   ● United States ex rel. McDonald v. Hodge, (UNITED STATES
+     DISTRICT COURT NORTHERN DISTRICT OF ILLINOIS
+     EASTERN DIVISION, 2012), offers insight into the implications of the
+     withdrawal of appointed counsel, a principle that bears relevance to
+     Petitioner's case where counsel withdrawal was executed prematurely
+     without proper notice or consent.
+   ● Alameda Cnty. Soc. Servs. Agency v. M.B. (In re A.R.) My right to
+     effective assistance of counsel was severely compromised throughout the
+     dependency proceedings. Initially unrepresented, the involvement of
+     appointed counsel Kathleen Wolf Miller was brief, as her premature actions
+     and unnotified withdrawal, along with the appointment of Ron Sparling—a
+     detail I was unaware of until my attempts to self-represent—were
+     detrimental to the case. Subsequently, Spellman Robertson was unprepared
+     to navigate my case at trial, with only a single day's notice before
+     proceedings commenced. Given the premature motion to reconsider filed
+     during juvenile dependency stages and the subsequent withdrawal of counsel
+     without due notice or consent, the situation merits a reevaluation, guided by
+     pertinent case law:
+   ● S.B. v. DEPT. OF CHILDREN AND FAM lends credence to the challenge
+     of ineffective assistance, especially in dependency proceedings where the
+     qualifications of appointed counsel are crucial.
+   ● In re O.S., supra, 102 Cal.App.4th 1402, 1406. elucidates the critical need
+     for notice and the opportunity for legal representation to establish paternal
+     claims and defend parental rights effectively.
+   ● In re Emilye A. 9Cal. App.4th 1695 provides judicial guidance on the
+     criteria to assess effective legal representation, a benchmark that was not met
+     in this case.
+   ● L.W. v. DEPT. OF CHILDREN AND FAMILIES underscores the
+     importance of competent legal representation, particularly for indigent
+     parents, setting a precedent overlooked in my situation.
+ RIGHT TO SELF-REPRESENTATION/DIRECT ONES OWN DEFENCE
+Further asserting his right to self-representation and to control his defense, as
+delineated in:
+   ● McKASKLE v. WIGGINS, (465 U.S. 168, U.S. Supreme Court, 1984),
+     which firmly establishes a defendant's prerogative to self-representation and
+     underscores the significance of declarant control within their defense.
+   ● Romero v. State, (Court of Appeals of Texas, Fifth District, Dallas,
+     2024), which discusses the procedural necessities and the protected right of a
+     party in electing to represent themselves at the appellate level.
+Procedural Irregularities Concerning other areas of procedural mishandling that
+        Petitioner seeks to bring before the Court, attention is drawn to
+   ● Cone v. Bell, (556 U.S. 449, U.S. Supreme Court, 2009), that converses on
+     the grave consequences of ineffective assistance of counsel, including the
+     ramifications of withholding crucial evidence.
+   ● Lassiter v. Department of Social Services
+                             DUE PROCESS VIOLATIONS
+• In re P.D., (144 S.W.3d 907, Missouri Court of Appeals, Eastern District.,
+2004), which gives a narrative on the adverse impact of denying motions for
+continuance and how such denials could impinge upon due process rights. The
+proceedings have been marred by several anomalies, inviting the court's scrutiny
+for a fair reassessment Including the request by Spellman before Trial requesting
+continuance for having little or no contact with Appellate.
+   ● PREMATURE FILING OF MOTIONS:
+The motion to reconsider was filed prematurely during the initial dependency
+procedures before I could attain adequate counsel, at several periods during the
+abuse and neglect case I was without council in which I felt as if something should
+be filed of course without counsel it most certainly ended resulting in considerable
+prejudice against my legal position.
+      WITHDRAWAL OF COUNSEL:
+ Multiple attorneys throughout the duration of the court process as well as counsel
+assigned to me missed several scheduled hearings and also withdrew without
+providing notice or securing consent, leaving me unrepresented at a crucial point,
+contravening expected procedural norms.
+      INSUFFICIENCY OF EVIDENCE
+   ●    Santosky v. Kramer 455 U.S. 745 (1982) Referenced within the Bess v.
+       Barroso citation, this case sets a high standard of proof (clear and convincing
+       evidence) for the termination of parental rights,
+                ACCUSATION OF CHEMICAL DEPENDENCY
+Additionally, essential to this motion is the invalid accusation of chemical
+dependency leveled against me without substantial evidence or the benefit of
+robust legal defense, which questions the veracity and sufficiency of the evidence
+presented at trial .
+   ● KOHL v. LEHLBACK 160 U.S. 293 (1895)
+16 S. Ct. 304
+New Evidence and Procedural Irregularities Subsequent to the Court's decision,
+new evidence has surfaced that warrants reevaluation. Concurrently, procedural
+missteps, including inadequate legal counsel and misdirected communications,
+have prejudiced the judicial outcome.
+   ● Allegations concerning my history with substances have been predicated on
+     fragile testimonies and reports, devoid of the crucial context which
+     elucidates a journey of resilience and reform, culminating in my current
+     abstinent lifestyle
+   ● Procedural missteps marked by a premature motion to reconsider induce a
+     pressing need for a retrospective evaluation, while the allegations of
+     chemical dependency, void of substantiated proof, further augment of my
+     petition for this Court to grant rehearing.
+                         JURISDICTION AND VENUE:
+The federal courts are implored, under 42 U.S.C. § 1983 and as per the doctrine of
+Ex-Partee Young, to provide relief from ongoing violations of due process
+concerning the enforcement of the State of Missouri's termination of my parental
+rights. In addition, the jurisdiction of the abuse and neglect proceedings is
+questioned, drawing upon:
+• STANLEY v. ILLINOIS, (405 U.S. 645, U.S. Supreme Court, 1972), which
+upholds the rights of parents in judicial proceedings, directly impacting the context
+of the present case involving the rights and assertions made by an unwed father.
+• Jurisdictional Concerns and Miscommunications
+The administrative grievance of jurisdictional overstep looms over this case. My
+perpetual presence in my son's life rebut this overreach, and the inadvertent
+misplacement of crucial communications hamstrung my capability to navigate
+through my legal predicaments.
+• I respectfully invoke the Court to employ its mandated jurisdiction under federal
+law to afford an equitable resolution to the rights infringed upon within the state
+judiciary's confines.
+G. Denial of parental rights:
+In re Stephanie M., F04CP15003270B (Conn. Super. Ct. Nov. 30, 2017) and In
+re In re Marilyn H, 5 Cal.4th 295, 19 Cal. Rptr. 2d 544, 851 P.2d 826 (Cal.
+1993) were My rights were restricted solely based on the mother's actions, and
+challenge this decision, arguing that it is an inappropriate punitive measure against
+me when I was not the parent responsible for the neglect.
+E. Implications of the ICPC Assessment Not Performed
+Youngberg v. Romeo, 457 U.S. 307, 102 S. Ct. 2452 (1982) An ICPC
+assessment's glaring omission has potentially exposed my son to unwarranted
+perils of well documented sexual and physical abuse in his current adoptive
+placement within the foster system, a scenario that could have been mitigated or
+preempted with appropriate diligence. (Exhibit emails to and from case supervisor
+)
+                                Argument Highlights
+I. Novel Application of Ex Parte Young to Family Law In a groundbreaking
+argument, I assert that the principles of the Ex Parte Young doctrine be extended to
+encompass state family law proceedings. This unconventional approach seeks
+judicial acknowledgment that constitutional violations within family law merit the
+same rigorous scrutiny and injunctive relief historically granted in other federal
+rights disputes.
+II. Equal Parental Rights in Missouri law now recognizes paternal rights as being
+equal to maternal rights. This appeal shows how the lower court's decision fails to
+reflect these egalitarian principles and implores the Court to uphold the equitable
+treatment of fathers within the jurisdiction, thus carving a path for similar cases.
+III. Ensuring Due Process Challenges to due process in this case underlines the
+importance of rigorous procedural safeguards, particularly where the risk of error
+carries profound consequences on familial bonds. This Court's intervention is
+imperative to affirm due process rights inherent in parental rights proceedings.
+IV. The Intersection of Legal Representation and Self-Representation I illustrate
+the perils faced when effective counsel is absent, and the right to
+self-representation is encumbered. This motion seeks the Court's injunction for
+more explicit guidelines to be set, thus safeguarding these rights for all litigants,
+especially those proceeding pro se.
+V. Implications for Public Policy A favorable ruling will champion the
+indispensable role of fathers in children's lives, reinforcing the state's commitment
+to family integrity and the child's best interest — a ruling with profound
+ramifications for family law jurisprudence.
+ The precedent set forth in PEOPLE v. STULTZ by the Court of Appeals of
+the State of New York in 2004 underscores the crucial role that due process
+plays within judicial proceedings. In Stultz, the court rigorously examined the
+procedural safeguards to ensure that the rights of the individuals were not
+overshadowed by administrative expediency. In the present appeal, a similar
+comprehensive examination is warranted to determine whether due process
+was adequately provided during the proceedings culminating in the
+termination of my parental rights.
+Similarly, JENNINGS v. WOODFORD, a decision by the United States Court
+of Appeals, Ninth Circuit in 2002, illustrates the pivotal nature of effective
+legal representation in the context of protecting constitutional rights. The
+Jennings court carefully parsed the impact of counsel's performance on the
+outcome of the case. Here, the appellant contends that parallels can be drawn
+regarding the inadequate representation received, thus casting significant
+doubt on the fairness of the trial’s result.
+In juxtaposition to our case, CLAUDIO v. SCULLY sheds light on the
+principles of justice being equally meted out to all parties involved in a family
+law context. In Claudio, the court meticulously addressed the balance between
+state interests and individual rights, particularly in the context of parental
+rights. The reflection of this balance is questioned in the case at bar, where the
+scales of justice seem to have tilted unfavorably and prematurely against the
+involvement and rights of a devoted father. Therefore, premised on the
+aforementioned arguments and antecedenting case laws which highlight the
+jurisprudence surrounding due process and effective counsel, the petitioner
+respectfully submits this motion for the court’s reconsideration and requests
+an en banc review to revisit and potentially rectify the decision pertaining to
+the termination of parental rights.
+Coupled with the presented new evidence, the aforementioned cases assert the
+appellant’s stance that significant procedural irregularities occurred. Such
+occurrences testify to the need for an injunction to halt the enforcement of the
+termination order. This would prevent ongoing violations of the appellant's
+federal rights under 42 U.S.C. § 1983 and the protective doctrine established
+in EX PARTE Young.
+The petitioner submits that granting these requests is not only in the best
+interest of K.C.G. but also upholds the integrity of legal proceedings and the
+fundamental principles of due process and parental rights—cornerstones of
+our judicial system and society as a wholle
+
+
+
+ CLAIM FOR RELIEF:
+The failure to conduct an ICPC assessment or consider placement with the
+undersigned Petitioner, despite pre-established shared custody, constitutes a
+continuous violation of due process rights as guaranteed by the Fourteenth.
+Amendment. Furthermore, Merging the aforementioned variables fabricates an
+undeniable tapestry of judicial oversight and systemic faltering. Cumulatively,
+these factors have precipitated an injustice that beckons redress. This appeal is
+constructed not solely on a father's fervent plea but is firmly rooted in the
+principles of justice and equity that embody the judicial mantle this Court
+espouses, A clarion call is made to this Honorable Court to issue a declaratory
+judgment affirming this case's role as a potential vanguard for constitutional
+applications in family law. Further, I beseech the Court for an injunction preventing
+the enforcement of my parental rights termination, pending a full and fair
+consideration of the issues I've presented. Finally, the Court is invited to grant any
+additional relief it deems appropriate, heralding a new epoch in the judicial
+valorization of fatherhood rights. [Fair notice] Granting this motion and
+considering the legal positions articulated would not only serve the ends of legal
+rectification for one father but would also potentially illumine the path for future
+jurisprudence, safeguarding the integrity of family and the sanctity of parental
+rights.
+
+
+A. Due Process and Parental Rights Appellate Argues the importance of
+maintaining procedural due process and rely on STANLEY v. ILLINOIS, (405
+U.S. 645, U.S. Supreme Court, 1972), Santosky v. Kramer: Referenced within the
+Bess v. Barroso citation, these cases set a high standard of proof (clear and
+convincing evidence) for the termination of parental rights,;
+B. Ineffective Assistance of Counsel The appellant respectfully asserts that the
+assistance of counsel provided during the preliminary and subsequent hearings was
+not within the standard required by the Sixth Amendment as defined by the United
+States Supreme Court in Strickland v. Washington. To establish a claim of
+ineffective assistance of counsel, two requirements must be met: first, that
+counsel’s performance was deficient; second, that the deficient performance
+prejudiced the defense.
+1. Deficient Performance
+Counsel’s performance was deficient in several critical respects:
+· Failure to file key motions: Counsel did not file motions essential to the
+protection of the appellant's parental rights, including motions to challenge the
+sufficiency of the evidence against the appellant and motions to suppress evidence
+introduced in violation of the appellant's rights.
+· Lack of preparation for hearings: On numerous occasions, counsel appeared at
+hearings without having adequately prepared the case, failing to call important
+witnesses, or present crucial evidence in defense of the appellant’s ability and right
+to parent.
+· Inadequate communication: Counsel failed to maintain reasonable
+communication with the appellant, depriving him of the opportunity to make
+informed decisions and to contribute effectively to his own defense.
+2. Prejudice to the Defense
+The deficient performance of counsel resulted in substantial prejudice to the
+defense. Critical evidence favorable to the appellant was not introduced,
+cross-examination of the state's witnesses was insufficient, and potential defenses
+were not raised, thereby denying the appellant the opportunity for a fair trial.
+According to McKaskle v. Wiggins,
+this failure undermines the “adversary process that our system counts on to
+produce just results.”
+3. Applicable Authorities
+In alignment with aforementioned standards, the appraisal of counsel’s
+effectiveness must be grounded in an objective standard of reasonableness under
+prevailing professional norms:
+· In Luleff v. State and State ex rel. J.D.S. v. Edwards, the Missouri Supreme Court
+emphasized the duty of defense counsel to engage in active advocacy and pursue a
+strategic defense, obligations unmet in the present case.
+· The U.S. Supreme Court in Stanley v. Illinois underscored the importance of
+process in parental rights adjudications - a process hampered by ineffective
+counsel, leading to a failure in safeguarding the appellant’s due process rights as
+mandated in Santosky v. Kramer.
+C. Request for En Banc Review
+The appellant respectfully requests an en banc review of this case to address
+significant legal issues and discrepancies in the application of family law that
+extend beyond the individual circumstance. The complexity and importance of the
+issues raised herein warrant the collective expertise and judgment of the full bench
+of the Missouri Court of Appeals.
+1. Significance of Constitutional Issues
+This appeal presents substantial constitutional questions that are pivotal for
+determining parental rights not only within the purview of Missouri law but also in
+interpreting the interface between state and federal jurisprudence regarding civil
+rights under 42 U.S.C. § 1983 as elaborated in Green v. Mansour and due process
+protections under the Fourteenth Amendment as expounded in Lassiter v.
+Department of Social Services.
+2. Broader Implications for Family Law
+The issues at stake hold the potential to set vital precedents affecting the future
+interpretation and application of parental rights in Missouri. They also raise broad
+legal questions regarding the representation of pro se litigants and the effective
+assistance of counsel — concerns which the Missouri Supreme Court has noted
+require careful consideration as highlighted in Luleff v. State and J.A.R. v. D.G.R..
+3. Discrepancies in Legal Interpretation
+This case has uncovered meaningful inconsistencies in the judicial application of
+established law which echo sentiments expressed in State ex rel. J. D. S. v.
+Edwards. There is a clear need for authoritative clarification that can only be
+provided by an en banc review. This will ensure uniformity and fairness in future
+proceedings, a necessity underlined by the Missouri Court of Appeals cases such as
+In re P.D. and In re Interest of V.C.N.C..
+4. Need for En Banc Consideration
+The appellant submits that the instant case presents questions of exceptional
+importance. McKaskle v. Wiggins emphasizes the role of adversarial testing in
+preserving the integrity of the process, which is particularly pertinent in cases
+regarding the termination of parental rights, an area where state and federal
+interests often intersect as portrayed in Santosky v. Kramer and Stanley v. Illinois.
+Given the presence of these broad and significant legal questions and their
+implications for the public, as well as for the development of constitutional
+principles within the context of state family law proceedings, an en banc hearing is
+not only appropriate but essential. En banc consideration will allow for a more
+detailed and comprehensive analysis of these issues and will help to develop a
+coherent and fair body of law that adequately protects the rights of parents and the
+welfare of children across the state.
+Therefore, the appellant respectfully insists that an en banc review by this
+Honorable Court is justified and requests the same in the interest of achieving the
+most equitable resolution of this case.
+D. Application of 42 U.S.C. § 1983
+The appellant hereby asserts the application of 42 U.S.C. § 1983 regarding
+violations of federal rights stemming from the unjust termination of parental rights.
+The actions contested within the scope of this appeal infringe upon
+Constitutionally protected rights and seek remedy through federal courts as per the
+allowances of this statute.
+1. Violation of Federal Rights
+The termination of parental rights, as adjudicated, in this case, has transgressed
+fundamental rights to due process and equal protection under the law. Such rights
+are not merely procedural but are substantive in nature, affecting life's most
+essential bond—between parent and child, as protected under the Fourteenth
+Amendment and underpinned by the legal narrative developed in Santosky v.
+Kramer.
+2. State Actions Under 42 U.S.C. § 1983
+When state actors, such as the juvenile office and its representatives, execute
+actions that lead to termination of parental rights, these actions become subject to
+scrutiny under 42 U.S.C. § 1983 if they contravene federal Constitutional rights.
+The Appellant avers that in the course of these proceedings, actions rising to the
+level of Constitutional violations have indeed occurred.
+3. Relevance of Green v. Mansour, 474 U.S. 64, 106 S. Ct. 423 (1985) and
+Pennsylvania v. Finley, 481 U.S. 551, 107 S. Ct. 1990 (1987)
+The principles established in Green v. Mansour and Pennsylvania v. Finley
+illuminate the considerations of this Court under 42 U.S.C. § 1983. While Green v.
+Mansour details the limits of declaratory relief where no ongoing violation of
+federal law exists, the intensive involvement and interference by state actors in this
+case mandate federal intervention for the continued breach. Similarly,
+Pennsylvania v. Finley reinforces the idea that the right to appointed counsel
+extends beyond the criminal courtroom, especially in proceedings that place a
+heavy burden on an individual's rights — a stark similarity to the circumstances
+faced by the appellant.
+4. Missouri Precedents and Federal Rights
+Missouri case law notably recognizes the gravity of terminating parental rights,
+with the Supreme Court of Missouri in cases like In re S.M.H., No.
+07-18-00148-CV (Tex. App. Nov. 6, 2019) requiring clear and convincing
+evidence. When federal rights are compromised, as claimed here, an immediate
+and federal judicial purview becomes necessary, invoking 42 U.S.C. § 1983 as a
+defensive bulwark.
+5. Conclusion
+It is presented to this Honorable Court that the totality of actions culminating in the
+termination of the appellant's parental rights not merely infringe upon state law but
+elevate the dispute to a federal forum under the auspices of 42 U.S.C. § 1983. The
+appellant invokes this statute to correct the injustices born out of state action,
+rectify ongoing violations of federal law, and restore the appellant’s rights as a
+parent that have been inappropriately severed.
+In light of the above, the appellant respectfully requests this Court to grant an
+injunction to halt the enforcement of the termination order under the weight of 42
+U.S.C. § 1983 and to interpret the facts in light of the Constitutional guarantees
+that frame the canvas of this nation's legal ethos.
+In light of the above, the appellant respectfully requests this Court to grant an
+injunction to halt the enforcement of the termination order under the weight of 42
+U.S.C. § 1983 and to interpret the facts in light of the Constitutional guarantees
+that frame the canvas of this nation's legal ethos.
+F. Equitable Relief and Jurisdiction
+In light of the new evidence and significant rehabilitation efforts of the appellant,
+there is a compelling case for the issuance of equitable relief to prevent ongoing
+violations of constitutional rights. Accordingly, the appellant invokes the court’s
+jurisdiction to issue such relief, as is consistent with the principles established in
+Ex parte Young and supported by a thread of precedential authorities which afford
+this honorable court the power to act justly in the face of potential miscarriages of
+justice.
+1. The Necessity of Injunctive Relief
+The appellant has demonstrated a substantive change in circumstances that directly
+affect the welfare of K.C.G. In accordance with the federal oversight afforded by
+42 U.S.C. § 1983, and as illuminated through the lens of the Ex parte Young
+doctrine, there is critical jurisdiction for a federal remedy against ongoing state
+action perceived to violate the appellant's federal rights. The provision of
+injunctive relief becomes not merely a provision of equity but a necessity to
+prevent the ongoing deprivation of rights assured under the Fourteenth
+Amendment.
+2. Applicable Federal and State Authorities
+The authority under Ex parte Young enables the court to issue injunctions when
+constitutional rights are at stake, effectively halting state enforcement actions that
+are against federal law. Furthermore, consistent with Missouri’s judicial
+observations — as seen in State ex rel. State ex Rel. J. D. S. v. Edwards, 574
+S.W.2d 405 (Mo. 1978) and In re P.D., No. 11-1698 (W. Va. Jun. 25, 2012) —
+this call for suspension of the state's decision is rooted in the need to preserve the
+appellant's rights pending a closer examination of the adverse effects that such
+statutory actions may impose on him.
+3. Supported by the Guidelines in Ex parte Young
+Ex parte Young provides a clear basis for the federal court to enjoin state officials
+from enforcing state laws that are in violation of the federal Constitution. In this
+context, the termination of the appellant’s parental rights without due regard for his
+recent improvements and compelling evidence not only challenges the doctrines
+established in cases like Lassiter v. Department of Social Services and Santosky v.
+Kramer but also suggests a departure from the rigors of procedural due process.
+---
+VI. CONCLUSION AND PRAYER FOR RELIEF
+In conclusion, the appellant respectfully requests a reevaluation of the decision by
+this Honorable Court based on the principles of fairness, the presentation of new
+evidence, and relevant federal and state law considerations.
+Prayers for relief include:
+1. Reassessment of the decision terminating parental rights based on updated
+evidence and due process considerations.
+2. The convening of an en banc court to review significant legal questions
+presented in this case.
+3. Issuance of an injunction to halt the enforcement of the termination order
+pending a reevaluation of this case under the proper application of the law.
+4. Any other relief that this Court deems just and proper
+Based on the above-mentioned authorities, alongside compelling facts and
+circumstances apparent in the record, Petitioner respectfully requests that this
+Honorable Court grant the Motion to Reconsider. Petitioner seeks the opportunity
+to address the deficiencies noted herein and achieve an outcome that embodies the
+just, equitable principles that underpin our legal system. For the reasons stated, I
+respectfully request that the court grants this motion for reconsideration. I appeal to
+the Court's equitable conscience to deliberate on the augments herein with the
+urgency and gravity they warrant. It is not merely the father's right that rests in the
+balance but the unfolding future of Kody Goodman, over whose welfare I remain
+steadfastly vigilant. Ergo, I beseech the Court to sanction this motion, to initiate an
+en banc review with alacrity, and should it be deemed essential, to endorse a
+transfer to a judicial forum equipped to extend this case the breadth of
+consideration it merits. We put our faith in the hope that the Court's wisdom will
+navigate us to a just and compassionate resolution. Failing to do so not only affect
+my parental rights but more importantly, impacts the well-being and welfare of my
+son, Kody Goodman. Embracing the intricacies of this case, the Court has the
+esteemed duty of delivering justice not only to an individual but potentially to the
+very structure of family law jurisprudence. The outcomes sought herein stand to
+thoroughly embody the noblest legal principles, offering sturdy protection for
+paternal rights and setting a precedent of considerable legal worth.
+. Respectfully submitted,
+Matthew Goodman
+8681 SE 71ST
+BAXTER SPRINGS KS 66713
+phone 417-388-0890
+             FILED
+     Melisa Holcomb - Clerk
+           2/2/2022
+JASPER COUNTY CIRCUIT CLERK
+   JOPLIN, MISSOURI
+
+
+                       IN THE CIRCUIT COURT OF JASPER COUNTY, MISSOURI
+                                       JUVENILE DIVISION
+
+
+      In the Interest of:                        )
+      TRACE ROYAL ALTON                          )
+      KODY GOODMAN                               )
+                                                 )
+                                                 )      Case Number: 21AO-JU00002/3
+
+
+
+      TO:    CLAY COLLINS
+             TRICIA ANN GOULD
+             BELINDA KADERLY
+             AMANDA COLLINS
+
+
+
+
+                                    NOTICE OF Motion to Modify Hearing
+
+
+              Motion to Modify Hearing in the above captioned case is set for 17-FEB-2022 02:30 PM
+      Jasper Co Juv Detention Center Courtroom, Jasper County Juvenile Justice Center, 530 South Pearl,
+      Joplin, Missouri.
+
+
+      *case reset from 10:00 a.m.
+
+                                                        Hon. COMMISSIONER ANGELA VORHEES
+
+                                                                  /s/ ANITA O'NEAL-FAIR
+      Date: 2ND DAY OF FEBRUARY, 2022                   by______________________________
+                                                                          Deputy Clerk
+
+
+      Cc:    Melissa Holcomb
+             Jasper County Circuit Clerk
+                 IN THE CIRCUIT COURT OF JASPER COUNTY, MISSOURI
+                                 JUVENILE DIVISION
+
+
+In the Interest of:                       )
+TRACE ALTON                               )
+KODY GOODMAN                              )
+                                          )
+                                          )      Case Number: 21AO-JU00002/3
+
+
+
+TO:    CLAY COLLINS
+       TRICIA ANN GOULD
+       BELINDA KADERLY
+       AMANDA COLLINS
+       KATHLEEN MILLER
+       DSS-CD – JENNIFER EMMONS
+       JACK SEITZ III
+       CASA
+
+
+
+                         NOTICE OF Motion to Modify Hearing RESET
+
+
+        Motion to Modify Hearing in the above captioned case is set for 07-APR-2022 09:00 AM,
+Jasper County Juvenile Justice Center, 530 South Pearl, Joplin, Missouri.
+
+
+
+
+                                                 Comm. ANGELA A VORHEES
+
+
+Date: 31ST DAY OF MARCH, 2022                    by______________________________
+                                                     /s/SUSAN NEAL D.C.
+                                                                   Deputy Clerk
+
+
+Cc:    Melissa Holcomb
+       Jasper County Circuit Clerk
+                      Missouri Court of Appeals
+                                         Southern District
+
+                                           No. SD38180
+
+IN THE INTEREST OF K.C.G.                         )
+                                                  )
+JASPER COUNTY JUVENILE OFFICE,                    )
+B.L.M., AND C.T.A.M.,                             )
+                                                  )                   FILED
+                       Respondents,               )                   APR 10 2024
+                                                  )
+                                                                   CRAIG A. STREET, CLERK
+vs.                                               )              MISSOURI COURT OF APPEALS
+                                                  )                  SOUTHERN DISTRICT
+M.P.G.,                                           )
+                                                  )
+                       Appellant.                 )
+
+                                              ORDER
+
+       Now on this day, the Court takes up appellant’s correspondence dated April 8, 2024, which
+the Court construes as a motion for an extension of time to file a motion for rehearing and/or
+application for transfer. Having fully considered the same, the Court grants leave to appellant,
+until April 30, 2024, to file a motion for rehearing and/or application for transfer. Any other relief
+requested in the motion is hereby denied.
+
+       Also, on this day, the Court takes up appellant’s second letter dated April 8, 2024. The
+Court denies any relief requested therein.
+
+
+
+
+cc:    Attorneys of Record – via the electronic filing system
+       Matthew Goodman – via email and U.S. mail
+                 IN THE CIRCUIT COURT OF JASPER COUNTY, MISSOURI
+                                 JUVENILE DIVISION
+
+
+In the Interest of:                      )
+TRACE ALTON                              )
+KODY GOODMAN                             )
+                                         )
+                                         )      Case Number: 21AO-JU00002/3
+
+
+
+TO:   CLAY COLLINS
+      TRICIA ANN GOULD
+      BELINDA KADERLY
+      AMANDA COLLINS
+      KATHLEEN MILLER
+      DSS-CD JENNIFER EMMONS
+      CASA
+      JACK SEITZ III
+
+
+
+                        NOTICE OF Motion to Modify Hearing RESET
+
+
+        Motion to Modify Hearing in the above captioned case is set for 31-MAR-2022 10:30 AM,
+Jasper County Juvenile Justice Center, 530 South Pearl, Joplin, Missouri.
+
+      *RESET FROM 10-MAR-2022
+
+
+                                                Comm. ANGELA A VORHEES
+
+
+Date: 8TH DAY OF MARCH, 2022                    by______________________________
+                                                                  Deputy Clerk
+
+
+Cc:   Melissa Holcomb
+      Jasper County Circuit Clerk
+

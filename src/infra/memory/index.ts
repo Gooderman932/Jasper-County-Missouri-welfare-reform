@@ -11,6 +11,8 @@ import {
   CaseRecord,
   CaseStatus,
   CoalitionOptIn,
+  ContentReport,
+  ContentReportStatus,
   DocumentRecord,
   IssueFlag,
   PatternMatch,
@@ -23,16 +25,20 @@ import {
   AuthRepository,
   BillingRepository,
   CaseRepository,
+  ContentReportRepository,
   CreateCaseInput,
+  CreateContentReportInput,
   CreateIssueFlagInput,
   DocumentRepository,
   EventRepository,
   ExportRepository,
   IssueReviewRepository,
+  ListPublicCasesOptions,
   NotificationRepository,
   OcrRepository,
   PartyRepository,
   PatternRepository,
+  PublishCaseInput,
   UpdateCaseInput,
   UploadDocumentInput,
 } from '@domain/repositories';
@@ -49,6 +55,7 @@ interface MemStore {
   documents: Map<string, DocumentRecord>;
   issues: Map<string, IssueFlag>;
   patterns: Map<string, PatternMatch>;
+  reports: Map<string, ContentReport>;
   entitlement: SubscriptionEntitlement | null;
 }
 
@@ -61,8 +68,25 @@ const store: MemStore = {
   documents: new Map(),
   issues: new Map(),
   patterns: new Map(),
+  reports: new Map(),
   entitlement: null,
 };
+
+/** Expose the raw store so the SD38180 seeder and migration scripts can
+ *  insert pre-built records directly without going through CRUD methods. */
+export function __getMemoryStore() {
+  return store;
+}
+
+function makeSlug(title: string): string {
+  return (
+    title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 64) || `case-${Date.now().toString(36)}`
+  );
+}
 
 // ---------------------------------------------------------------------------
 // Auth — auto-signs in a dummy local user. No password check.
@@ -147,6 +171,103 @@ export class CaseRepositoryMemory implements CaseRepository {
   async archiveCase(id: string): Promise<void> {
     const c = store.cases.get(id);
     if (c) store.cases.set(id, { ...c, status: 'archived' as CaseStatus });
+  }
+  async publishCase(input: PublishCaseInput): Promise<CaseRecord> {
+    const c = store.cases.get(input.caseId);
+    if (!c) throw new Error('case not found');
+    if (c.ownerUserId !== input.publishedByUserId) {
+      throw new Error('only the case owner may publish');
+    }
+    const slug = c.publicSlug ?? makeSlug(input.publicTitle ?? c.title);
+    const next: CaseRecord = {
+      ...c,
+      visibility: 'public',
+      publicSlug: slug,
+      publishedAt: new Date().toISOString(),
+      publishedBy: input.publishedByUserId,
+      unpublishedAt: undefined,
+      publicTitle: input.publicTitle ?? c.publicTitle,
+      publicSummary: input.publicSummary ?? c.publicSummary,
+      redactionPolicy: input.redactionPolicy,
+      isReferenceCase: input.isReferenceCase ?? c.isReferenceCase,
+      updatedAt: new Date().toISOString(),
+    };
+    store.cases.set(c.id, next);
+    return next;
+  }
+  async unpublishCase(caseId: string, requestingUserId: string): Promise<CaseRecord> {
+    const c = store.cases.get(caseId);
+    if (!c) throw new Error('case not found');
+    if (c.ownerUserId !== requestingUserId) {
+      throw new Error('only the case owner may unpublish');
+    }
+    const next: CaseRecord = {
+      ...c,
+      visibility: 'private',
+      unpublishedAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    store.cases.set(c.id, next);
+    return next;
+  }
+  async listPublicCases(options: ListPublicCasesOptions = {}): Promise<CaseRecord[]> {
+    let cases = Array.from(store.cases.values()).filter((c) => c.visibility === 'public');
+    if (options.referenceOnly) cases = cases.filter((c) => c.isReferenceCase);
+    cases.sort((a, b) => (b.publishedAt ?? '').localeCompare(a.publishedAt ?? ''));
+    if (options.limit) cases = cases.slice(0, options.limit);
+    return cases;
+  }
+  async getPublicCaseBySlug(slug: string): Promise<CaseRecord | null> {
+    for (const c of store.cases.values()) {
+      if (c.visibility === 'public' && c.publicSlug === slug) return c;
+    }
+    return null;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Content reports (Play UGC moderation requirement)
+// ---------------------------------------------------------------------------
+export class ContentReportRepositoryMemory implements ContentReportRepository {
+  async createReport(input: CreateContentReportInput): Promise<ContentReport> {
+    const r: ContentReport = {
+      id: uuid(),
+      caseId: input.caseId,
+      reporterUserId: input.reporterUserId,
+      reason: input.reason,
+      details: input.details,
+      status: 'open',
+      createdAt: new Date().toISOString(),
+    };
+    store.reports.set(r.id, r);
+    return r;
+  }
+  async listReportsForCase(caseId: string): Promise<ContentReport[]> {
+    return Array.from(store.reports.values()).filter((r) => r.caseId === caseId);
+  }
+  async listAllReports(status?: ContentReportStatus): Promise<ContentReport[]> {
+    let all = Array.from(store.reports.values());
+    if (status) all = all.filter((r) => r.status === status);
+    return all.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  }
+  async updateReportStatus(
+    id: string,
+    status: ContentReportStatus,
+    resolutionNote?: string,
+  ): Promise<ContentReport> {
+    const r = store.reports.get(id);
+    if (!r) throw new Error('report not found');
+    const next: ContentReport = {
+      ...r,
+      status,
+      resolutionNote: resolutionNote ?? r.resolutionNote,
+      resolvedAt:
+        status === 'resolved' || status === 'dismissed'
+          ? new Date().toISOString()
+          : r.resolvedAt,
+    };
+    store.reports.set(id, next);
+    return next;
   }
 }
 
@@ -403,5 +524,6 @@ export function makeMemoryRepos() {
     ocr: new OcrRepositoryMemory(),
     exports: new ExportRepositoryMemory(),
     notifications: new NotificationRepositoryMemory(),
+    reports: new ContentReportRepositoryMemory(),
   };
 }

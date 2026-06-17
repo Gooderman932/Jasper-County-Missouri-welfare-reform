@@ -17,6 +17,7 @@ import { GooglePlayBillingRepository } from '@infra/billing/GooglePlayBillingRep
 import { OcrRepositoryFunction } from '@infra/ocr/OcrRepositoryFunction';
 import { ExportRepositoryLocalPdf } from '@infra/exports/ExportRepositoryLocalPdf';
 import { NotificationRepositoryExpo } from '@infra/notifications/NotificationRepositoryExpo';
+import { ContentReportRepositoryAppwrite } from '@infra/appwrite/repositories/ContentReportRepositoryAppwrite';
 import { makeMemoryRepos } from '@infra/memory';
 import { makeUseCases } from '@domain/usecases';
 
@@ -51,6 +52,7 @@ export function useContainer() {
     const ocr = new OcrRepositoryFunction();
     const exports = new ExportRepositoryLocalPdf();
     const notifications = new NotificationRepositoryExpo();
+    const reports = new ContentReportRepositoryAppwrite();
     const usecases = makeUseCases({
       auth,
       cases,
@@ -74,6 +76,7 @@ export function useContainer() {
       ocr,
       exports,
       notifications,
+      reports,
       usecases,
     };
   }, []);

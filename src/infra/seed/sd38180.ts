@@ -9,6 +9,8 @@ import { Asset } from 'expo-asset';
 import * as FileSystem from 'expo-file-system';
 import { v4 as uuid } from 'uuid';
 import { SD38180_EVENTS, SD38180_FLAGS } from './sd38180-data';
+import { runSd38180PrejudicialScan } from './sd38180-prejudicial-scan';
+import { publishSd38180AsReference } from './publishSd38180AsReference';
 
 import {
   AuthRepository,
@@ -712,6 +714,31 @@ export async function seedSD38180IfFirstRun(deps: SeedDeps): Promise<boolean> {
       sourceRefs: f.sourceRefs,
       status: 'system_generated',
     });
+  }
+
+  // 6) Run prejudicial-language / subliminal-priming scanner across every
+  //    seeded document and email body. Emits additional IssueFlags.
+  try {
+    const summary = await runSd38180PrejudicialScan(created.id, deps.issues);
+    // eslint-disable-next-line no-console
+    console.log(
+      `[seed] prejudicial scan: ${summary.documentsWithFindings}/${summary.documentsScanned} docs flagged — ` +
+        `${summary.flagsCreated} flags (serious=${summary.bySeverity.serious}, watch=${summary.bySeverity.watch}, info=${summary.bySeverity.info})`,
+    );
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.warn('[seed] prejudicial scan failed', err);
+  }
+
+  // 7) Auto-publish as production reference case so the seeded user's
+  //    SD38180 case is visible in the public reference library by default.
+  try {
+    const published = await publishSd38180AsReference(deps.cases, created.id, user.id);
+    // eslint-disable-next-line no-console
+    console.log(`[seed] SD38180 published as reference: /${published.publicSlug}`);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.warn('[seed] SD38180 auto-publish failed', err);
   }
 
   return true;

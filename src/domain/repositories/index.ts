@@ -9,6 +9,9 @@ import {
   CaseStatus,
   CaseType,
   CoalitionOptIn,
+  ContentReport,
+  ContentReportReason,
+  ContentReportStatus,
   DocumentCategory,
   DocumentRecord,
   EventType,
@@ -16,6 +19,7 @@ import {
   IssueSeverity,
   IssueType,
   PatternMatch,
+  RedactionPolicy,
   SubscriptionEntitlement,
   SubscriptionPlan,
   User,
@@ -75,12 +79,40 @@ export interface AuthRepository {
   updateProfile(input: Partial<User>): Promise<User>;
 }
 
+export interface PublishCaseInput {
+  caseId: string;
+  publishedByUserId: string;
+  redactionPolicy: RedactionPolicy;
+  publicTitle?: string;
+  publicSummary?: string;
+  isReferenceCase?: boolean;
+}
+
+export interface ListPublicCasesOptions {
+  limit?: number;
+  cursor?: string;
+  referenceOnly?: boolean;
+}
+
+export interface CreateContentReportInput {
+  caseId: string;
+  reporterUserId?: string;
+  reason: ContentReportReason;
+  details?: string;
+}
+
 export interface CaseRepository {
   createCase(input: CreateCaseInput): Promise<CaseRecord>;
   updateCase(id: string, input: UpdateCaseInput): Promise<CaseRecord>;
   listCases(userId: string): Promise<CaseRecord[]>;
   getCaseById(id: string): Promise<CaseRecord | null>;
   archiveCase(id: string): Promise<void>;
+  // Public-case methods. Implementations must enforce: only the case owner
+  // may publish/unpublish. Public-read methods do NOT require auth.
+  publishCase(input: PublishCaseInput): Promise<CaseRecord>;
+  unpublishCase(caseId: string, requestingUserId: string): Promise<CaseRecord>;
+  listPublicCases(options?: ListPublicCasesOptions): Promise<CaseRecord[]>;
+  getPublicCaseBySlug(slug: string): Promise<CaseRecord | null>;
 }
 
 export interface PartyRepository {
@@ -140,4 +172,15 @@ export interface NotificationRepository {
   scheduleReminder(input: { caseId?: string; title: string; body: string; whenISO: string }): Promise<string>;
   cancelReminder(id: string): Promise<void>;
   listReminders(): Promise<Array<{ id: string; title: string; whenISO: string }>>;
+}
+
+export interface ContentReportRepository {
+  createReport(input: CreateContentReportInput): Promise<ContentReport>;
+  listReportsForCase(caseId: string): Promise<ContentReport[]>;
+  listAllReports(status?: ContentReportStatus): Promise<ContentReport[]>;
+  updateReportStatus(
+    id: string,
+    status: ContentReportStatus,
+    resolutionNote?: string,
+  ): Promise<ContentReport>;
 }
