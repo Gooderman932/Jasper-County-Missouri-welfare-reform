@@ -85,7 +85,7 @@ cp .env.example .env
 # GOOGLE_CLOUD_VISION_API_KEY, etc.
 ```
 
-Edit `app.json` → `expo.extra.appwriteEndpoint` and `appwriteProjectId` to match your Appwrite project. Leave the `databaseId` as `family_rights_main` unless you have a reason to change it.
+App configuration lives in **`app.config.ts`** (not `app.json`). It reads values from environment variables at evaluation time — your `.env` for local dev, and EAS-managed env vars for cloud builds. No secrets in source control.
 
 ### 3. Provision Appwrite
 
@@ -146,10 +146,36 @@ See [docs/PLAY_CONSOLE.md](docs/PLAY_CONSOLE.md) for the full submission walk-th
 - Internal-testing track via `eas submit --platform android`
 - Required disclosures (data safety, account deletion URL)
 
+### One-time setup
+
 ```bash
-npm run build:android       # production .aab
-npm run submit:android      # uploads to internal track
+npm install -g eas-cli
+eas login                                    # gooderman932 account
+eas init                                     # links the project; writes EAS_PROJECT_ID
 ```
+
+### Set production env vars (replaces the placeholders in eas.json)
+
+Values created with `eas env:create` override anything in `eas.json` `env` blocks.
+
+```bash
+eas env:create --environment production --name APPWRITE_ENDPOINT   --value "https://cloud.appwrite.io/v1"
+eas env:create --environment production --name APPWRITE_PROJECT_ID --value "<your-project-id>"
+# optional overrides:
+eas env:create --environment production --name APPWRITE_DATABASE_ID    --value "family_rights_main"
+eas env:create --environment production --name APPWRITE_ADMIN_TEAM_ID  --value "admin"
+```
+
+List them anytime with `eas env:list --environment production`.
+
+### Build the AAB
+
+```bash
+npm run build:android       # production .aab on EAS cloud
+npm run submit:android      # uploads to internal track (needs secrets/play-service-account.json)
+```
+
+First `build` invocation will offer to generate an upload keystore — say yes and EAS stores it. Subsequent builds reuse it automatically. `versionCode` auto-increments per build because `autoIncrement: true` is set in `eas.json`.
 
 ---
 

@@ -26,6 +26,7 @@ android/app/build/
 .env
 .env.local
 .env.*.local
+secrets/
 google-services.json
 GoogleService-Info.plist
 *.keystore

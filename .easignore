@@ -1,0 +1,33 @@
+# Files excluded from the tarball EAS uploads to its build workers.
+# Keep this list minimal — most exclusions belong in .gitignore.
+# .easignore exists for things we DO commit but DO NOT want shipped to the
+# EAS worker (e.g. operational secrets, dev databases, large test assets).
+
+# Operational secrets that should never leave the developer machine.
+secrets/
+*.keystore
+service-account*.json
+google-services.json
+GoogleService-Info.plist
+
+# Local Appwrite/Supabase dumps if any.
+*.sqlite
+*.db
+
+# Dev-only artifacts.
+.env
+.env.local
+.env.*.local
+admin-portal/node_modules/
+admin-portal/dist/
+admin-portal/.env
+
+# Large dev assets we don't ship.
+exports/
+current_session_context/
+memory/
+
+# Editor/OS files.
+.vscode/
+.idea/
+.DS_Store
