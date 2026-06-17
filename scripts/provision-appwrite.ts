@@ -64,6 +64,15 @@ async function ok<T>(label: string, fn: () => Promise<T>): Promise<T | undefined
       console.log(`• ${label} (already exists or at plan limit — assuming present)`);
       return undefined;
     }
+    // Free tier caps total attribute size per collection. Log a warning and
+    // continue so the rest of the schema can provision.
+    if (
+      e?.code === 400 &&
+      /maximum number or size of attributes/i.test(e?.message || '')
+    ) {
+      console.warn(`! ${label} skipped (collection at attribute-size cap)`);
+      return undefined;
+    }
     console.error(`✗ ${label}: ${e.message}`);
     throw e;
   }
@@ -191,7 +200,9 @@ async function collection(id: string, name: string) {
   await str('case_events', 'caseId', 64, true);
   await str('case_events', 'ownerId', 64, true);
   await str('case_events', 'title', 240, true);
-  await str('case_events', 'description', 8000);
+  // Free-tier-friendly: trimmed from 8000 to 2000. Longer notes should attach
+  // a Document instead of inlining text in the event row.
+  await str('case_events', 'description', 2000);
   await dt('case_events', 'occurredAt', true);
   await arr('case_events', 'tags', 40);
   await arr('case_events', 'documentIds', 64);
@@ -205,8 +216,11 @@ async function collection(id: string, name: string) {
   await str('documents', 'fileId', 64, true);
   await str('documents', 'mimeType', 80);
   await int('documents', 'sizeBytes');
-  await str('documents', 'ocrText', 1_000_000);
-  await str('documents', 'ocrPagesJson', 1_000_000);
+  // Free-tier-friendly: OCR text/pages stored in a Storage bucket instead of
+  // inline String columns. Reference the file IDs here; fetch contents from
+  // the case-documents bucket on demand.
+  await str('documents', 'ocrTextFileId', 64);
+  await str('documents', 'ocrPagesFileId', 64);
   await str('documents', 'ocrStatus', 24, false, 'pending'); // pending|in_progress|completed|failed
   await str('documents', 'ocrError', 1000);
   await dt('documents', 'ocrCompletedAt');
@@ -277,7 +291,8 @@ async function collection(id: string, name: string) {
   await str('purchase_records', 'purchaseToken', 512);
   await str('purchase_records', 'orderId', 80);
   await str('purchase_records', 'state', 20);   // verified | failed | refunded
-  await str('purchase_records', 'rawJson', 60_000);
+  // Free-tier-friendly: trimmed from 60_000 to 8000.
+  await str('purchase_records', 'rawJson', 8000);
   await dt('purchase_records', 'createdAt');
   await idx('purchase_records', 'idx_owner', ['ownerId']);
 
