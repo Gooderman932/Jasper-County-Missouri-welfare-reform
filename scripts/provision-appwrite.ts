@@ -94,10 +94,47 @@ async function arr(col: string, key: string, size: number) {
     databases.createStringAttribute(APPWRITE_DATABASE_ID, col, key, size, false, undefined, true),
   );
 }
+async function waitForAttribute(col: string, key: string, timeoutMs = 30_000) {
+  const start = Date.now();
+  // Strip array marker if present (e.g. 'tags[]' -> 'tags')
+  const cleanKey = key.replace(/\[\]$/, '');
+  while (Date.now() - start < timeoutMs) {
+    try {
+      const attr: any = await databases.getAttribute(APPWRITE_DATABASE_ID, col, cleanKey);
+      if (attr.status === 'available') return;
+    } catch {
+      // attribute may not exist yet from a different code path; ignore
+    }
+    await new Promise((r) => setTimeout(r, 500));
+  }
+  console.warn(`! attribute ${col}.${cleanKey} did not reach 'available' within ${timeoutMs}ms`);
+}
+
 async function idx(col: string, name: string, keys: string[], type: 'key' | 'unique' = 'key') {
-  await ok(`index ${col}.${name}`, () =>
-    databases.createIndex(APPWRITE_DATABASE_ID, col, name, type, keys),
-  );
+  // Ensure all referenced attributes are materialized before creating the index.
+  for (const k of keys) {
+    await waitForAttribute(col, k);
+  }
+  // Retry the index creation a few times in case Appwrite's internal state
+  // is still catching up after attributes report 'available'.
+  const maxRetries = 5;
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      await ok(`index ${col}.${name}`, () =>
+        databases.createIndex(APPWRITE_DATABASE_ID, col, name, type, keys),
+      );
+      return;
+    } catch (e: any) {
+      if (
+        /not yet available/i.test(e?.message || '') &&
+        attempt < maxRetries - 1
+      ) {
+        await new Promise((r) => setTimeout(r, 1500));
+        continue;
+      }
+      throw e;
+    }
+  }
 }
 async function collection(id: string, name: string) {
   await ok(`collection ${id}`, () =>
