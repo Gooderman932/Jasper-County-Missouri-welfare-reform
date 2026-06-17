@@ -53,3 +53,10 @@ eas.json.local
 exports/*
 !exports/case-summary-sd38180-DRAFT.md
 !exports/local-dev-home-screen.png
+.env.*
+!.env.example
+*.pem
+*.pfx
+*.db
+*.sqlite
+*.sqlite3

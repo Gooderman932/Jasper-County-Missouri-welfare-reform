@@ -1,0 +1,44 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    groups:
+      expo:
+        patterns:
+          - "expo"
+          - "expo-*"
+          - "react-native"
+          - "@react-native/*"
+      appwrite:
+        patterns:
+          - "appwrite"
+          - "node-appwrite"
+      types:
+        patterns:
+          - "@types/*"
+    labels:
+      - "dependencies"
+
+  - package-ecosystem: "npm"
+    directory: "/admin-portal"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "admin-portal"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
