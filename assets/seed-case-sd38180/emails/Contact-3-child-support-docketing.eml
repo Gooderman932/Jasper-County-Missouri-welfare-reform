@@ -1,0 +1,339 @@
+Delivered-To: mpgooderman@gmail.com
+Received: by 2002:a05:6f02:902:b0:4e:b24e:bb90 with SMTP id 2csp32172rcg;
+        Mon, 12 Jun 2023 10:02:37 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ4gi2xgOLn52Ika01wQt9lfpjyRsOwbt0vsEYtSG2ujvhvIZaPatAjz54abarprA3xoS8xh
+X-Received: by 2002:a05:6808:1a02:b0:39a:7830:f237 with SMTP id bk2-20020a0568081a0200b0039a7830f237mr5321547oib.7.1686589356834;
+        Mon, 12 Jun 2023 10:02:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1686589356; cv=none;
+        d=google.com; s=arc-20160816;
+        b=1Ft7BcjH1wXq3hrHX3Lt6C/KeAWVBNsL2RYUm3aaBultVj8dH7WN+Z8kTnKsQYCHkA
+         Un8m5BDgjR3Uf1ezV5OEOQX75lWZKT6oRylb4H9su/ZSHL3pkG00mshPTzE+KVLBgM4o
+         Fxbd1tLO+HJVzaqtdwdjThIRStFo/UmIwh9LJU9K9gWBwPfKxgEx86LESSh05spHAAGU
+         e3HEDOyVtWIocub4jV5opZvFEWlSViDpY81ZoZfLm3w9QDvMW8uJHL4XNDpcQbpOolJ7
+         UOEu/aALVY2RJb7SdWacm4u4eR7BPoErEqJXlSjLrgFF+w1s/iUA6dO94zdbUVgRLYe7
+         e/sQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:content-language:accept-language:message-id:date
+         :thread-index:thread-topic:subject:to:from:dkim-signature;
+        bh=kwpi7BygiEsLF6NyS/28P1rYqDSOrXz2ZXV0BKU4HyY=;
+        b=D71tUlnqly7NFtQ0Oz+fuOG0xuF2lVBQzXmUzK+jekigHWU6GffxXW9e2ho1nFmHpK
+         mSx6PG2DQy4JD74+wecTgGbVxy0g4PHey8i72bGSiNe1oDmurdjna2zTteD9glDQvRzB
+         R77gbzcB33P9+eXaqWgDjZDk89quFp8ELR7G1L6J0ayc1yyKD/tWX59ekvhI1vRSlkKP
+         qbrFPtbw7Ch800o7z+znBWee44Ow18F1D1p47sn353+xEy39igkk/zOPqo83s3nBBHN/
+         UW0TcdOIlD86dm8s7PmTCtsQhytvQ5Qg1yWMYnuYVhZpIqQZswUX+0+rSJyQqFHanVYO
+         lv9w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@dss.mo.gov header.s=20220921 header.b=kbFoe085;
+       spf=pass (google.com: domain of shania.riley@dss.mo.gov designates 168.166.72.17 as permitted sender) smtp.mailfrom=Shania.Riley@dss.mo.gov;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=dss.mo.gov
+Return-Path: <Shania.Riley@dss.mo.gov>
+Received: from oa.mo.gov (momail.mo.gov. [168.166.72.17])
+        by mx.google.com with ESMTPS id j5-20020acab905000000b0039ce70b6845si414156oif.251.2023.06.12.10.02.36
+        for <mpgooderman@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 12 Jun 2023 10:02:36 -0700 (PDT)
+Received-SPF: pass (google.com: domain of shania.riley@dss.mo.gov designates 168.166.72.17 as permitted sender) client-ip=168.166.72.17;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@dss.mo.gov header.s=20220921 header.b=kbFoe085;
+       spf=pass (google.com: domain of shania.riley@dss.mo.gov designates 168.166.72.17 as permitted sender) smtp.mailfrom=Shania.Riley@dss.mo.gov;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=dss.mo.gov
+Received: from pps.filterd (momail2.mo.gov [127.0.0.1])
+	by momail2.mo.gov (8.17.1.5/8.17.1.5) with ESMTP id 35CGnIvw021411
+	for <mpgooderman@gmail.com>; Mon, 12 Jun 2023 12:02:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dss.mo.gov; h=from : to : subject :
+ date : message-id : content-type : mime-version; s=20220921;
+ bh=kwpi7BygiEsLF6NyS/28P1rYqDSOrXz2ZXV0BKU4HyY=;
+ b=kbFoe085C9myl31TJl3j7CYlLbWaEzTk4Wp3tGnZcmfmolQBH/uB7WopLSI3o2Ji9PpA
+ uv6kr/MTY2nZRCtn1jNjwGBFiJ05Ft69QDnzLRlpiqBnnIze6GKgJIrnTP8/ByvPMC1H
+ DTPyDm6ceDqGFACtRDJ8J1Ual6jwB7t3nZ1doWR4VXhtXzQnQAD7HqF+BSzJR5CgbAeL
+ sfeO2YW1ldiSPRcBk5OhpmM5hxObNxEd7GjA21zLjA0UUW9OZ4VRi1Ajn4byowXOIajQ
+ xGQCzZUvrXkl3uklL27CicCVdx8cCqHVD2h+Te4hpa0AeWwNhZAJoqZjzzGtbpN1xIeJ Gw== 
+From: "Riley, Shania" <Shania.Riley@dss.mo.gov>
+To: "'mpgooderman@gmail.com'" <mpgooderman@gmail.com>
+Subject: Contact
+Thread-Topic: Contact
+Thread-Index: AdmdT5/hDVDbmzhSSkK/TkGlrAZlzA==
+Date: Mon, 12 Jun 2023 17:02:34 +0000
+Message-ID: <48578582f0fe4e679c5b23fa34e519a1@dss.mo.gov>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.241.53.6]
+x-tm-as-product-ver: SMEX-14.0.0.3031-9.0.1002-27556.007
+x-tm-as-result: No-10--23.786900-8.000000
+x-tmase-matchedrid: f7d9QjltLksNBW00na8JVO9VsdrlGzy3Q6/DFZugyt1bYv6Kt+uF2PU7
+	2nYVxvYN4D6lW82JZVEb8xI2OD3Z7eyDy8V8lTWUZBiPr4EU8TBRpObkR9DMwkekR3VSvOYV2jg
+	VmhKlDxiqH12uH+NHwvvZiwgq9df7+zli+H3Ox5JHKdPCX1liHqEetkTb5Lzr2Rj4ohvEzHN1dd
+	gIFJk9lkqQBTXuA1CeNPt4wl0YfCivxJaYc6X9S2wKW3BObMxTmRKFhwukYf0QuBjmMDZDSUv+G
+	v9gyZL/DlG9ITaFvitGwAjkbl/vjxWc4SAjw79c9DGkDtq4vAwEa8g1x8eqF6ZO+cNpkwvRDNEK
+	wYdREu4h9xj2xUWVwaPxx7XjyUh3jjCvOetwLqemtVrJRd2rkZ03C0fPk8xKfWQ10sxxRTdJWGM
+	GfcMJGxh//DcEObGDMcYLzQ2fEw6XSHSwb7LnPtr6sI+k4lzkMoS2PLq1B74OabErRKSRvSX+aL
+	b2rzmX0No1mkr2A1hF37kzro/XgmCffXhyRruD4vM1YF6AJbY96sxygIbFGMB5WbWedZl0hUfR2
+	rvBju6nw52XVXCkJK/2dACBKOXbRsb9nC8hXRWUBnSpSgILHWIxxINBmSFL1UPtr6w5b/4=
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
+x-tmase-result: 10--23.786900-8.000000
+x-tmase-version: SMEX-14.0.0.3031-9.0.1002-27556.007
+Content-Type: multipart/alternative;
+	boundary="_000_48578582f0fe4e679c5b23fa34e519a1dssmogov_"
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-12_06,2023-06-12_02,2023-05-22_02
+
+--_000_48578582f0fe4e679c5b23fa34e519a1dssmogov_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Matthew,
+
+I just want to be clear I have not missed things you have recently sent for=
+ docketing. I will list them below
+
+*         2022 Tax return
+
+*         Check on 5/30/2023 for 325
+
+*         Check on 5/16/2023 for 550
+
+*         Check on 5/12/2023 for somewhere around 80 I believe you did not =
+send the while check your finger covers a lot of it
+
+*         Check on 4/21/2023 for 195
+
+If you have any additional docketing please let me know.
+
+I would like to remind you of court on 6/27/2023 at 10AM at juvenile court =
+house located at: Address: 530 Pearl Ave, Joplin, MO 64801.
+
+Shania Riley
+Social Services Specialist
+Jasper Co Children's Division
+601 Commercial St
+Joplin, MO 64801
+Phone: 417-629-3904
+Fax: 417-629-3442
+Shania.riley@dss.mo.gov<mailto:Shania.riley@dss.mo.gov>
+
+Confidentiality Notice: This electronic communication is from the Missouri =
+Department of Social Services, Children's Division, and is only intended fo=
+r its addressee. This communication may contain information that is privile=
+ged, confidential or otherwise protected from disclosure by law and/or DSS =
+policy. If you are not the intended recipient, or the employee or agency re=
+sponsible for delivering this information to its recipient, do not copy, ci=
+rculate, forward or otherwise disclose this document. If you have received =
+this message in error, please notify the sender immediately by return email=
+.
+
+
+--_000_48578582f0fe4e679c5b23fa34e519a1dssmogov_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1973360086;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-565544170 67698689 67698691 67698693 67698689 67698=
+691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Matthew, <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I just want to be clear I have not missed things you=
+ have recently sent for docketing. I will list them below<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Symbol"><span style=
+=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roma=
+n&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>2022 Tax return<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Symbol"><span style=
+=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roma=
+n&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Check on 5/30/2023 for 325<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Symbol"><span style=
+=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roma=
+n&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Check on 5/16/2023 for 550<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Symbol"><span style=
+=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roma=
+n&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Check on 5/12/2023 for somewhere around 80 I=
+ believe you did not send the while check your finger covers a lot of it<o:=
+p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Symbol"><span style=
+=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roma=
+n&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Check on 4/21/2023 for 195<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">If you have any additional docketing please let me k=
+now. <o:p>
+</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I would like to remind you of court on 6/27/2023 at =
+10AM at juvenile court house located at: Address: 530 Pearl Ave, Joplin, MO=
+ 64801.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Shania Riley<o:p></o:p></p>
+<p class=3D"MsoNormal">Social Services Specialist<o:p></o:p></p>
+<p class=3D"MsoNormal">Jasper Co Children&#8217;s Division<o:p></o:p></p>
+<p class=3D"MsoNormal">601 Commercial St<o:p></o:p></p>
+<p class=3D"MsoNormal">Joplin, MO 64801<o:p></o:p></p>
+<p class=3D"MsoNormal">Phone: 417-629-3904<o:p></o:p></p>
+<p class=3D"MsoNormal">Fax: 417-629-3442<o:p></o:p></p>
+<p class=3D"MsoNormal"><a href=3D"mailto:Shania.riley@dss.mo.gov">Shania.ri=
+ley@dss.mo.gov</a>
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:10.0pt;color:#1F497D">Confidentiality Notice: This electronic communicat=
+ion is from the Missouri Department of Social Services, Children&#8217;s Di=
+vision, and is only intended for its addressee.
+ This communication may contain information that is privileged, confidentia=
+l or otherwise protected from disclosure by law and/or DSS policy. If you a=
+re not the intended recipient, or the employee or agency responsible for de=
+livering this information to its
+ recipient, do not copy, circulate, forward or otherwise disclose this docu=
+ment. If you have received this message in error, please notify the sender =
+immediately by return email.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_48578582f0fe4e679c5b23fa34e519a1dssmogov_--

@@ -1,0 +1,48 @@
+# Node
+node_modules/
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# Expo
+.expo/
+dist/
+web-build/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# Native
+ios/
+android/
+ios/Pods/
+android/.gradle/
+android/app/build/
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+google-services.json
+GoogleService-Info.plist
+*.keystore
+service-account*.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Logs / coverage
+*.log
+coverage/
+
+# EAS
+eas.json.local

@@ -1,0 +1,9 @@
+{
+  "name": "generate-export",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "node-appwrite": "^13.0.0",
+    "archiver": "^7.0.1"
+  }
+}

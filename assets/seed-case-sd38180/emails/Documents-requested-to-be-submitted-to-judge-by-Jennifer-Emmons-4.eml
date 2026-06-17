@@ -1,0 +1,245 @@
+Delivered-To: mpgooderman@gmail.com
+Received: by 2002:a0c:e0cc:0:0:0:0:0 with SMTP id x12csp6914721qvk;
+        Sat, 7 May 2022 13:53:38 -0700 (PDT)
+X-Received: by 2002:a05:6214:2301:b0:435:38af:2f87 with SMTP id gc1-20020a056214230100b0043538af2f87mr7951165qvb.83.1651956818477;
+        Sat, 07 May 2022 13:53:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1651956818; cv=none;
+        d=google.com; s=arc-20160816;
+        b=gdQrVKysKkOHZnnB9EduiuZpC10Iu5jfncVSNKRy+JSUDo59CqTKBOpyPSS5pNJvCY
+         Al+lqWntGt5ALTqll1YrDX85HhNoE8BpDUzhx7sxhtDT4hv1XpLur9WvC9ndtwG1B2YV
+         TrCvMSOWlG3NsOTU6W+bNaXlI+64RCkKz6idvcY6ObG/gXmA6T8V9wQAIGew6tOpPg9r
+         XwGo8qAIsMj6OGMrZfb6N7gGbvhYHyMbzFaWp4DjTiWY9AuIrmKCDUBV3WffdQfgi2SV
+         +9eZyGXcgfKtCw6tdOF7uPpI10x2JHZ7nAjH8uMXj1wSo905d8h3O605qJ3KobvGO8wP
+         V7Hw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=in-reply-to:references:subject:from:date:message-id:auto-submitted
+         :to:dkim-signature;
+        bh=/mKyVeIW9RCdhgn6Y/6LlxRKuPfdk6XB7Snb5s8hblc=;
+        b=k55qUKMRSjgXEWIgTAlvQLOsopGt5kOES33cr2H9V7iOYaRMxbkuZuagXp5125XpyJ
+         8y7YejbLDyz+zRQPoUttapTy5+wKml1E36ypLF3El1oW7FjdKdKCE5VcDvQ4JN+5jEAn
+         xwmXdM6Svj4+1Zd6ETmA0DjUdlozvThF+13aPa5Hk1R2RlnCW5BU4Fa44rw/0G3LtA1M
+         DfLp4zCeLQPD8VL7vEB2G5Y1V22yw0Ox6ybfiAM6+y0jdOX5JHGbw+luhkGH0QctLvzf
+         wyaFWU5GnX0Z2P051g4DbSulhJxElAsdNxPQM+eO7yff4hPkfxkFH2UeOdjedFLBxK5l
+         gUVQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@googlemail.com header.s=20210112 header.b=B1WARB08;
+       spf=pass (google.com: best guess record for domain of postmaster@mail-sor-f69.google.com designates 209.85.220.69 as permitted sender) smtp.helo=mail-sor-f69.google.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=googlemail.com
+Return-Path: <>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id cj8-20020a056214056800b0044443b8e10esor6053507qvb.46.2022.05.07.13.53.38
+        for <mpgooderman@gmail.com>
+        (Google Transport Security);
+        Sat, 07 May 2022 13:53:38 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of postmaster@mail-sor-f69.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@googlemail.com header.s=20210112 header.b=B1WARB08;
+       spf=pass (google.com: best guess record for domain of postmaster@mail-sor-f69.google.com designates 209.85.220.69 as permitted sender) smtp.helo=mail-sor-f69.google.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=googlemail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112;
+        h=to:auto-submitted:message-id:date:from:subject:references
+         :in-reply-to;
+        bh=/mKyVeIW9RCdhgn6Y/6LlxRKuPfdk6XB7Snb5s8hblc=;
+        b=B1WARB08f6dDTYKMF9TBAzaiQsF73IEK8SV8zp1hXAodgsAyIWlfeU1uaXkFR7jUHw
+         JUuXxIFfjI1APdojy/Z/nu8aXzMaJoT1wP1eqx3aEXVyjT3eWqhmt+US3rNM2gkN9//U
+         gJJD81JC9JbBxQ82PheHit7hk1nRmfjQzsh+Q96OEpBs5M6kUjGfiyJVBTtyHDgKD6bP
+         jpK1abLdJ0qrY5R364izNRaKnsY2mX+KnWMmzB5ernEs5avNv6AnWcAS1UpkzBa83bmh
+         MFy4KcRLTOe2LrSdHZVyWXH3OX3BosuAKC2s9T7IVRfer0CIEXOe+ttvjy4ilahd0GWR
+         OFpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:to:auto-submitted:message-id:date:from:subject
+         :references:in-reply-to;
+        bh=/mKyVeIW9RCdhgn6Y/6LlxRKuPfdk6XB7Snb5s8hblc=;
+        b=y2AOCCcYkPz1JBflVZ1CtAQ5sGQUCUVO0XXnSsw2mabzBkYquZnLRCUUSyFknzaTf4
+         mKh92c8VGAxisy/ggEYkkcex3Jd2+VIZv0JvhcoRONvBPp2yn6eJtRoQw9HNsjf3r5yB
+         DaQq45Z4xaHfo6hWZzKLsTKrH6CS2R65cr/CJGy26xOQUGgH6uFCwEKH2f5mp8cCZwzM
+         XPUqBF/k80KyyqEex7dBO+y29mzCwuZjeeAwuFsCqD09rW1dK1QPxq93NjFXc9ulrqsZ
+         dKMLeGEbUIly2FgT+edjVfWBHhQtAAs8UmwlDo6O6NwN+PUbD/YiM+I1IscVaE1y17y4
+         fHNw==
+X-Gm-Message-State: AOAM530WAs/L+okn83XM+qOLKG/ZGPnvoVqykJkSLmtSteYb4NR16C1L
+	GDeN8zRaALkbjqAFLMgez6UMO+xXC+qYqQXuDlB8XQ==
+X-Google-Smtp-Source: ABdhPJz71E5k+0pdZeCPzwRljSZI6JO8jsI2PLSORI9+LeDDwQ2DoVErgIm2Qe66iRwTJcfoOvqm0ajHWM4bJ24OXmfv2QsJAI+jdMI=
+X-Received: by 2002:ad4:5dc1:0:b0:45a:bf5a:8be4 with SMTP id m1-20020ad45dc1000000b0045abf5a8be4mr7830918qvh.102.1651956818379;
+        Sat, 07 May 2022 13:53:38 -0700 (PDT)
+Content-Type: multipart/report; boundary="00000000000057f77605de722b69"; report-type=delivery-status
+To: mpgooderman@gmail.com
+Received: by 2002:ad4:5dc1:0:b0:45a:bf5a:8be4 with SMTP id m1-20020ad45dc1000000b0045abf5a8be4mr7736335qvh.102;
+ Sat, 07 May 2022 13:53:38 -0700 (PDT)
+Return-Path: <>
+Auto-Submitted: auto-replied
+Message-ID: <6276dc52.1c69fb81.d3a8a.d099.GMR@mx.google.com>
+Date: Sat, 07 May 2022 13:53:38 -0700 (PDT)
+From: Mail Delivery Subsystem <mailer-daemon@googlemail.com>
+Subject: Delivery Status Notification (Failure)
+References: <abd65387fe2f41db9b874ef231255582@dss.mo.gov> <CAAbdB-x3V_u5Trgru_unezkcXjAo=4DFtKowutu1G_wjckx1=Q@mail.gmail.com>
+ <CAAbdB-wrXeC9teOfQ=AEKT+9aX402z3MLNgLY1=7SrjC9Px2zw@mail.gmail.com> <CAAbdB-wqx9cjNwDaGj7M4O-9_0K+TwLWpZmud1Bqs1XyMt_ZPw@mail.gmail.com>
+In-Reply-To: <CAAbdB-wqx9cjNwDaGj7M4O-9_0K+TwLWpZmud1Bqs1XyMt_ZPw@mail.gmail.com>
+X-Failed-Recipients: jennifer.emmons@dss.mo.gov
+
+--00000000000057f77605de722b69
+Content-Type: multipart/related; boundary="00000000000057ff4605de722b8c"
+
+--00000000000057ff4605de722b8c
+Content-Type: multipart/alternative; boundary="00000000000057ff5605de722b8d"
+
+--00000000000057ff5605de722b8d
+Content-Type: text/plain; charset="UTF-8"
+
+
+** Message too large **
+
+Your message couldn't be delivered to jennifer.emmons@dss.mo.gov because it exceeds the size limit. Try reducing the message size and resending.
+
+
+
+The response from the remote server was:
+550 5.7.0 Message Size Violation - The message you sent to shania.riley@dss.mo.gov, jennifer.emmons@dss.mo.gov is too large and cannot be delivered.
+
+--00000000000057ff5605de722b8d
+Content-Type: text/html; charset="UTF-8"
+
+
+<html>
+<head>
+<style>
+* {
+font-family:Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+</style>
+</head>
+<body>
+<table cellpadding="0" cellspacing="0" class="email-wrapper" style="padding-top:32px;background-color:#ffffff;"><tbody>
+<tr><td>
+<table cellpadding=0 cellspacing=0><tbody>
+<tr><td style="max-width:560px;padding:24px 24px 32px;background-color:#fafafa;border:1px solid #e0e0e0;border-radius:2px">
+<img style="padding:0 24px 16px 0;float:left" width=72 height=72 alt="Error Icon" src="cid:icon.png">
+<table style="min-width:272px;padding-top:8px"><tbody>
+<tr><td><h2 style="font-size:20px;color:#212121;font-weight:bold;margin:0">
+Message too large
+</h2></td></tr>
+<tr><td style="padding-top:20px;color:#757575;font-size:16px;font-weight:normal;text-align:left">
+Your message couldn't be delivered to <a style='color:#212121;text-decoration:none'><b>jennifer.emmons@dss.mo.gov</b></a> because it exceeds the size limit. Try reducing the message size and resending.
+</td></tr>
+</tbody></table>
+</td></tr>
+</tbody></table>
+</td></tr>
+<tr style="border:none;background-color:#fff;font-size:12.8px;width:90%">
+<td align="left" style="padding:48px 10px">
+The response from the remote server was:<br/>
+<p style="font-family:monospace">
+550 5.7.0 Message Size Violation - The message you sent to shania.riley@dss.mo.gov, jennifer.emmons@dss.mo.gov is too large and cannot be delivered.
+</p>
+</td>
+</tr>
+</tbody></table>
+</body>
+</html>
+
+--00000000000057ff5605de722b8d--
+--00000000000057ff4605de722b8c
+Content-Type: image/png; name="icon.png"
+Content-Disposition: attachment; filename="icon.png"
+Content-Transfer-Encoding: base64
+Content-ID: <icon.png>
+
+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
+AFCdVg4msK/6AAAAAElFTkSuQmCC
+--00000000000057ff4605de722b8c--
+--00000000000057f77605de722b69
+Content-Type: message/delivery-status
+
+Reporting-MTA: dns; googlemail.com
+Arrival-Date: Sat, 07 May 2022 13:53:30 -0700 (PDT)
+X-Original-Message-ID: <CAAbdB-wqx9cjNwDaGj7M4O-9_0K+TwLWpZmud1Bqs1XyMt_ZPw@mail.gmail.com>
+
+Final-Recipient: rfc822; jennifer.emmons@dss.mo.gov
+Action: failed
+Status: 5.7.0
+Remote-MTA: dns; momail4.mo.gov. (168.166.15.221, the server for the domain dss.mo.gov.)
+Diagnostic-Code: smtp; 550 5.7.0 Message Size Violation - The message you sent to shania.riley@dss.mo.gov, jennifer.emmons@dss.mo.gov is too large and cannot be delivered.
+Last-Attempt-Date: Sat, 07 May 2022 13:53:38 -0700 (PDT)
+
+--00000000000057f77605de722b69
+Content-Type: message/rfc822
+
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=owYxmP2eaMwgMrDtrot3QKkep7M1Dl8nwhyAxFt1rZo=;
+        b=QnGnQjKgrStNoCmUSIY/cKEUmgLL8ms+fFyL2E7myGXh/GDfjVQ0kKJVGr5m3TgRKn
+         dHzzBoF2C27tCm5tMxBYDjx9J1ltDh0N0Lkk8sqaGxXXqp3CtFr11TDmJ2Iy1Sh4fGFc
+         BFFnf+ipDdAmVtxImcIRXVn77HfQv5JpUEA8cChEbGmBqlAkMttzEoLq+fiCD4rtszXF
+         v0/VTuyzkXhJJENE3R/aK+UnVOjQZ9tZUF0oY/FSxbcPJn4oFG2potGh5/YBGnu7XHWY
+         B5HTpkjbF4idDfhy+auKmwaO9l5O89YZxT06WzRxrcJK7D/R7dgJwOk2/016/nkCfcTo
+         biCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=owYxmP2eaMwgMrDtrot3QKkep7M1Dl8nwhyAxFt1rZo=;
+        b=SgilhPNNbvRpbayK2pcfmYbwgjH2DXcFLe3ovyYMbvlOWK/7G7AlKHByEjRTwkVjFQ
+         iPvj3YLeSJNaCB4QbjesKcUQ4bQ4YKyI5zSWDjUx+WIfdEx6M5lLR1xMXmsn74vlaDL1
+         oxPdxa6O531NXZ15ZoxwojyAdzknO8A9g70/DFT/olIxKASFxdNKnPJwjH7eyCXqbEM7
+         aU/NwwW7ekwu72jX4xPbiAog1eGeY1XO7bmut6uMQOIiQLrOe35/e54uyw2ULyrFVNKL
+         ynSNfBRkNOYCzGSLHCIi8nSy6n4KxbzHZW6qBABTEo0sjQgt6rqwcBSFrKHwxykWMJFj
+         /qIA==
+X-Gm-Message-State: AOAM532xsRsfNQxcSIey5b84Q40b3R8CEk08i9YC+yi6M40oBguTYWUq
+	1Y6lpM4S1dzr7HqgmuiWi+4i4+U8V7I0JjVlypaAMod/0bk=
+X-Google-Smtp-Source: ABdhPJwZ5ZU8Qk9SP9+CMTWnGX/T7jWnZv0RQwdzf++1fDgUb0AZdZXYlr03wkGwkb3vrb8Mfp89pBqA2Tee//kVBcE=
+X-Received: by 2002:ad4:5dc1:0:b0:45a:bf5a:8be4 with SMTP id
+ m1-20020ad45dc1000000b0045abf5a8be4mr7830690qvh.102.1651956810445; Sat, 07
+ May 2022 13:53:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <abd65387fe2f41db9b874ef231255582@dss.mo.gov> <CAAbdB-x3V_u5Trgru_unezkcXjAo=4DFtKowutu1G_wjckx1=Q@mail.gmail.com>
+ <CAAbdB-wrXeC9teOfQ=AEKT+9aX402z3MLNgLY1=7SrjC9Px2zw@mail.gmail.com>
+In-Reply-To: <CAAbdB-wrXeC9teOfQ=AEKT+9aX402z3MLNgLY1=7SrjC9Px2zw@mail.gmail.com>
+From: Mark Goodman <mpgooderman@gmail.com>
+Date: Sat, 7 May 2022 15:53:19 -0500
+Message-ID: <CAAbdB-wqx9cjNwDaGj7M4O-9_0K+TwLWpZmud1Bqs1XyMt_ZPw@mail.gmail.com>
+Subject: Documents requested to be submitted to judge by Jennifer Emmons
+To: Shania <Shania.Riley@dss.mo.gov>, 
+	"Emmons, Jennifer" <jennifer.emmons@dss.mo.gov>
+Content-Type: multipart/mixed; boundary="000000000000e0f16f05de722a1f"
+
+----- Message truncated -----
+--00000000000057f77605de722b69--

@@ -1,0 +1,143 @@
+// Repository interfaces — the boundary between domain and infra.
+// Screens / use cases depend ONLY on these. No SDK imports here.
+
+import {
+  AttorneyReviewRequest,
+  CaseEvent,
+  CaseParty,
+  CaseRecord,
+  CaseStatus,
+  CaseType,
+  CoalitionOptIn,
+  DocumentCategory,
+  DocumentRecord,
+  EventType,
+  IssueFlag,
+  IssueSeverity,
+  IssueType,
+  PatternMatch,
+  SubscriptionEntitlement,
+  SubscriptionPlan,
+  User,
+} from '../entities';
+
+export interface CreateCaseInput {
+  ownerUserId: string;
+  title: string;
+  jurisdictionState: string;
+  jurisdictionCounty?: string;
+  caseType: CaseType;
+}
+
+export interface UpdateCaseInput {
+  title?: string;
+  jurisdictionState?: string;
+  jurisdictionCounty?: string;
+  caseType?: CaseType;
+  status?: CaseStatus;
+  openedAt?: string;
+}
+
+export interface UploadDocumentInput {
+  caseId: string;
+  ownerUserId: string;
+  title: string;
+  category: DocumentCategory;
+  fileUri: string;
+  mimeType: string;
+  tags?: string[];
+}
+
+export interface AddCaseEventInput {
+  caseId: string;
+  eventType: EventType;
+  occurredAt: string;
+  description: string;
+  sourceDocumentId?: string;
+  tags?: string[];
+}
+
+export interface CreateIssueFlagInput {
+  caseId: string;
+  type: IssueType;
+  severity: IssueSeverity;
+  summary: string;
+  explanation: string;
+  sourceRefs?: string[];
+  status?: 'system_generated' | 'user_marked' | 'reviewed';
+}
+
+export interface AuthRepository {
+  signUp(email: string, password: string, displayName?: string): Promise<User>;
+  signIn(email: string, password: string): Promise<User>;
+  signOut(): Promise<void>;
+  getCurrentUser(): Promise<User | null>;
+  updateProfile(input: Partial<User>): Promise<User>;
+}
+
+export interface CaseRepository {
+  createCase(input: CreateCaseInput): Promise<CaseRecord>;
+  updateCase(id: string, input: UpdateCaseInput): Promise<CaseRecord>;
+  listCases(userId: string): Promise<CaseRecord[]>;
+  getCaseById(id: string): Promise<CaseRecord | null>;
+  archiveCase(id: string): Promise<void>;
+}
+
+export interface PartyRepository {
+  addParty(caseId: string, party: Omit<CaseParty, 'id' | 'caseId'>): Promise<CaseParty>;
+  listParties(caseId: string): Promise<CaseParty[]>;
+  removeParty(partyId: string): Promise<void>;
+}
+
+export interface DocumentRepository {
+  uploadDocument(input: UploadDocumentInput): Promise<DocumentRecord>;
+  listDocuments(caseId: string): Promise<DocumentRecord[]>;
+  updateDocumentMetadata(id: string, input: Partial<DocumentRecord>): Promise<DocumentRecord>;
+  deleteDocument(id: string): Promise<void>;
+  getDownloadUrl(id: string): Promise<string>;
+}
+
+export interface EventRepository {
+  addEvent(input: AddCaseEventInput): Promise<CaseEvent>;
+  listEvents(caseId: string): Promise<CaseEvent[]>;
+  updateEvent(id: string, input: Partial<CaseEvent>): Promise<CaseEvent>;
+  deleteEvent(id: string): Promise<void>;
+}
+
+export interface IssueReviewRepository {
+  listIssueFlags(caseId: string): Promise<IssueFlag[]>;
+  createIssueFlag(input: CreateIssueFlagInput): Promise<IssueFlag>;
+  updateIssueFlag(id: string, input: Partial<IssueFlag>): Promise<IssueFlag>;
+}
+
+export interface PatternRepository {
+  getPatternMatches(caseId: string): Promise<PatternMatch[]>;
+  submitCoalitionOptIn(input: Omit<CoalitionOptIn, 'id'>): Promise<CoalitionOptIn>;
+  getCoalitionOptIn(caseId: string): Promise<CoalitionOptIn | null>;
+  requestAttorneyReview(caseId: string, exportId?: string): Promise<AttorneyReviewRequest>;
+}
+
+export interface BillingRepository {
+  getAvailablePlans(): Promise<SubscriptionPlan[]>;
+  purchasePremiumMonthly(): Promise<void>;
+  restorePurchases(): Promise<void>;
+  syncEntitlement(): Promise<SubscriptionEntitlement | null>;
+  getCurrentEntitlement(): Promise<SubscriptionEntitlement | null>;
+}
+
+export interface OcrRepository {
+  extractText(fileUri: string, mimeType: string): Promise<{ text: string; confidence: number }>;
+}
+
+export interface ExportRepository {
+  exportTimelinePdf(caseId: string): Promise<{ id: string; uri: string }>;
+  exportIssueSummaryPdf(caseId: string): Promise<{ id: string; uri: string }>;
+  exportAttorneyPacket(caseId: string): Promise<{ id: string; uri: string }>;
+  exportDocumentZip(caseId: string, documentIds: string[]): Promise<{ id: string; uri: string }>;
+}
+
+export interface NotificationRepository {
+  scheduleReminder(input: { caseId?: string; title: string; body: string; whenISO: string }): Promise<string>;
+  cancelReminder(id: string): Promise<void>;
+  listReminders(): Promise<Array<{ id: string; title: string; whenISO: string }>>;
+}

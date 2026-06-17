@@ -1,0 +1,186 @@
+Delivered-To: mpgooderman@gmail.com
+Received: by 2002:a0c:e34a:0:0:0:0:0 with SMTP id a10csp531722qvm;
+        Sat, 23 Jul 2022 06:43:32 -0700 (PDT)
+X-Google-Smtp-Source: AGRyM1ttlaK45OEvBySBbGaFmJM7JvuBp5rDDVBZq08egRfzvnD7oV/yIdgkiqJ/ZTr26Hg6GePK
+X-Received: by 2002:a05:6830:44a3:b0:61c:bcc5:f073 with SMTP id r35-20020a05683044a300b0061cbcc5f073mr1838260otv.335.1658583811973;
+        Sat, 23 Jul 2022 06:43:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1658583811; cv=none;
+        d=google.com; s=arc-20160816;
+        b=kutuOCy0vIWs4bBqzQ+8ft5SfxO+9HZENFR8UGR9I5Y6yhCnDCdxuwlvSs6eqNOJCg
+         J9Z9oCtH5rgqvdF8vA3D0AdHhZ2o81TrH5RieKFaWo8wcKki1/MC6ShjUPd8cHbVXEiL
+         GWRPxqOkal/F+EJv1CAYTzl5iAQksVTqw7mqwf9MWix+6HnAQrWO+Y3za6+dGPPJHXuA
+         DJrR/R3tQgotikNVBkGlagr50M4yN60f/VWYLj23Ln8+B8TUWkR48KiKFxBwPPY4LAWH
+         va5BMLaZzKGlCzyEGHlvQAjbmje5w+H4JU124v7/k3tu1rPut9jSGEF3RF4tTC3o4KuZ
+         T2rw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:auto-submitted:in-reply-to:references:message-id:date
+         :thread-index:thread-topic:subject:to:from:dkim-signature;
+        bh=PFC+gtXceyyjgRquYXzvxNhD4lNH4AfZDq2dPcAdHpU=;
+        b=oHrWOC2EFWrBWytVw9Ox/GlcUVCcJnbhgUdsC5fg8wAXxXyvRkWiK80KTZ+hD8pwnD
+         AN2j42pSzkJETgdFcwMkbFHrkvqhPhp1yWmY2bZINfQPZw9PoGcgCAOQiIkgUc7wDARY
+         WYdT1N55gGgKRQOZT5EK2dnzRIYbcuNhFsJG7Gyj1jfHDvlJhVKvgua+jzGBEiuAwwAE
+         EOviqUZ2i0M6En3C7ZjQsPxtwxs4lpe6pf2TyjRVV1vLsWRRHC6rXfUq8NA08f7OTmyi
+         ywTX2Kj6h/JKhfb2Wmm6cpCjFYQUdtjgN2cw0v5eEqaLFWbw8Zz5WtfMlEACb0DQcu5z
+         R51w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@dss.mo.gov header.s=20200302 header.b=ZdxHY8UM;
+       spf=pass (google.com: domain of postmaster@oa.mo.gov designates 168.166.15.220 as permitted sender) smtp.helo=oa.mo.gov;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=dss.mo.gov
+Return-Path: <>
+Received: from oa.mo.gov (momail.mo.gov. [168.166.15.220])
+        by mx.google.com with ESMTPS id 36-20020a9d0c27000000b0061cbdf4218bsi6307098otr.271.2022.07.23.06.43.31
+        for <mpgooderman@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 23 Jul 2022 06:43:31 -0700 (PDT)
+Received-SPF: pass (google.com: domain of postmaster@oa.mo.gov designates 168.166.15.220 as permitted sender) client-ip=168.166.15.220;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@dss.mo.gov header.s=20200302 header.b=ZdxHY8UM;
+       spf=pass (google.com: domain of postmaster@oa.mo.gov designates 168.166.15.220 as permitted sender) smtp.helo=oa.mo.gov;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=dss.mo.gov
+Received: from pps.filterd (momail3.mo.gov [127.0.0.1])
+	by momail3.mo.gov (8.16.1.2/8.16.1.2) with SMTP id 26NDLjm8007633
+	for <mpgooderman@gmail.com>; Sat, 23 Jul 2022 08:43:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dss.mo.gov; h=from : to : subject :
+ date : message-id : references : in-reply-to : content-type :
+ mime-version; s=20200302; bh=PFC+gtXceyyjgRquYXzvxNhD4lNH4AfZDq2dPcAdHpU=;
+ b=ZdxHY8UMfXdVxtra+xlAcm3TA+wTz8hGnxUuHEXBFHXgWnOrQKnuFJUWn3pc8Bqt4YSk
+ pSojwVrdTUTOLR1liWLunrwEcD3O0K0TJSus9FqATu9AYl1kbWsGXgUdKj4H0+R8Upuz
+ gZ3DR+SirxhGldFxiqYEkuivCNZLYqgYxl3AmBMS+g4bziBX9RgPANwgZQXyYyxszT6k
+ i61P2goodLXvlDJIid23fypf8VLh59q6QsGR6H+YwlZNdHvsMrHmWMucZlMZfQJbGSD6
+ JSupguzn+2dxEU22tNTQk3NOVmFU/Id64RlAyY09DrK8n1PeWa7zvYi0NDJF0s+vBQiF Dw== 
+From: "Emmons, Jennifer" <Jennifer.Emmons@dss.mo.gov>
+To: Mark Goodman <mpgooderman@gmail.com>
+Subject: Automatic reply: Re: Drug Alcohol Evaluation and mental health
+ evaluation
+Thread-Topic: Re: Drug Alcohol Evaluation and mental health evaluation
+Thread-Index: AQHYnpoxFFbbRzYNq06lZGLLXiLGtq2L9y/R
+Date: Sat, 23 Jul 2022 13:43:30 +0000
+Message-ID: <664a2099123141e6a3903dfe7f6cde16@SDEXMBXP04.state.mo.us>
+References: <CAAbdB-wXtpLwWwywhKcObsJJAWVMWqc3F6NsVb63ETCbogkuJQ@mail.gmail.com>
+ <CAAbdB-y5GshVaDUBwiaxvvn3g1UyyAbGwV5Mhoic42v3EhHVtg@mail.gmail.com>
+ <CAAbdB-zRKAE2dh1jfiHpTaNMOn-xMtwqvDLW2JysTDgG=DWmrA@mail.gmail.com>
+ <72616c12b88f4b0e967dd07490310809@dss.mo.gov>,<CAAbdB-zLyO4fpfzJL0HrEXQiDbsb07ttkF+tBB5h96EP-UoBCg@mail.gmail.com>
+In-Reply-To: <CAAbdB-zLyO4fpfzJL0HrEXQiDbsb07ttkF+tBB5h96EP-UoBCg@mail.gmail.com>
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: All
+X-MS-Exchange-Inbox-Rules-Loop: jennifer.emmons@dss.mo.gov
+X-MS-TNEF-Correlator: 
+x-ms-exchange-parent-message-id: <CAAbdB-zLyO4fpfzJL0HrEXQiDbsb07ttkF+tBB5h96EP-UoBCg@mail.gmail.com>
+auto-submitted: auto-generated
+x-ms-exchange-generated-message-source: Mailbox Rules Agent
+x-tm-as-product-ver: SMEX-14.0.0.3031-9.0.1002-27032.007
+x-tm-as-result: No-10--15.924300-8.000000
+x-tmase-matchedrid: JEYZb7JUSdvvTN8vEvt6gO9VsdrlGzy3Q6/DFZugyt1bYv6Kt+uF2IzS
+	8a3MSlYlrBSXh5yB2YuldcynBeAPrEtHpMdfrXMKZBiPr4EU8TBRpObkR9DMwkekR3VSvOYV2jg
+	VmhKlDxiqH12uH+NHwvvZiwgq9df7z7SJf0EvgnUc9jA4mLo8uan/3nyhTdZwhUyuigqZPgxUhU
+	alBKMOG3uGsmbTwGDyU9IBYcMFyd0eXXMVDkaRePQxpA7auLwMKQNhMboqZlqxPXYIh1l6dmKvh
+	VjBiuLDzjKA8eD8J4Hbadue/WoHmemwi3JJ5cS1LTHwnYOikQ2bOwnwKxlhTk9rE2pR1rD0ngIg
+	pj8eDcBbCjvvWZW+SQMl3UADb0Ah9zw4lzv7RUmLuZaMbewKBnMWHla34v1C2S6pbJ/KGmNx5ky
+	1V4/AUuepdE1aaq69PxLIkU8SkZh+3BndfXUhXQ==
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
+x-tmase-result: 10--15.924300-8.000000
+x-tmase-version: SMEX-14.0.0.3031-9.0.1002-27032.007
+Content-Type: multipart/alternative;
+	boundary="_000_664a2099123141e6a3903dfe7f6cde16SDEXMBXP04statemous_"
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.517,18.0.883
+ definitions=2022-07-22_06:2022-07-21,2022-07-22 signatures=0
+
+--_000_664a2099123141e6a3903dfe7f6cde16SDEXMBXP04statemous_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+1)       I will be out of the office from 12:00pm on 7/22/22 until 8:00am o=
+n 8/1/22. If you need immediate assistance, you can contact my supervisor B=
+rian Garrity at brian.garrity@dss.mo.gov or 417-629-3211, or you can call 4=
+17-629-3065 and request to speak with another available supervisor.
+
+
+--_000_664a2099123141e6a3903dfe7f6cde16SDEXMBXP04statemous_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:988095127;
+	mso-list-type:simple;
+	mso-list-template-ids:2145258956;}
+@list l0:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:0in;
+	mso-level-legacy-space:0in;
+	margin-left:0in;
+	text-indent:0in;
+	font-family:"Calibri",sans-serif;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style>
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal" style=3D"margin-left:19.0pt;text-indent:-19.0pt;mso-=
+list:l0 level1 lfo1;text-autospace:none">
+<![if !supportLists]><span style=3D"mso-list:Ignore">1)<span style=3D"font:=
+7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>I will be out of the office from 12:00pm on 7/22/22=
+ until 8:00am on 8/1/22. If you need immediate assistance, you can contact =
+my supervisor Brian Garrity at brian.garrity@dss.mo.gov or 417-629-3211, or=
+ you can call 417-629-3065 and request
+ to speak with another available supervisor.<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:8.5pt;font-family:&quot;Segoe UI&quot;,sans-serif"><o:p>&nbsp;</o:p></sp=
+an></p>
+</div>
+</body>
+</html>
+
+--_000_664a2099123141e6a3903dfe7f6cde16SDEXMBXP04statemous_--

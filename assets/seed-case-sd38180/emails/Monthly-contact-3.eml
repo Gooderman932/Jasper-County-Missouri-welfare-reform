@@ -1,0 +1,484 @@
+Delivered-To: mpgooderman@gmail.com
+Received: by 2002:a05:6f02:122:b0:4c:f9b8:8d55 with SMTP id 34csp617652rcm;
+        Thu, 27 Apr 2023 12:37:57 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ6/bCygiu1vJKlTBXxcgn6otVmtpoMLTNJ4bjZ89a64yutAvEG98DVk0nHYP7dIWjAdHqbZ
+X-Received: by 2002:a05:6830:1501:b0:6a6:814:609c with SMTP id k1-20020a056830150100b006a60814609cmr1427691otp.5.1682624276858;
+        Thu, 27 Apr 2023 12:37:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1682624276; cv=none;
+        d=google.com; s=arc-20160816;
+        b=WNqnMNjt9BlrGJnLoWU/db0hQZ6/EZLeYqM48IoPmpStd1BBEJbPV+fuK9Ssl3AJ2+
+         wEMjYSRCoJQivDSnEMkR7H/uBWJMn1SIIkoT6AKuX8F27ZYRR+KsjfSMCmdlNEnJRAjy
+         tKOaiB7meQHKWe+giD8kimoL8aVuBGgRZ643+jl/UydA7PimY2rb515gNyzBeot33TBB
+         99Zr+5KFH1UPH1HEih1/Gj2/PTjnA0MoYL/3dfxXBUPnK7LE+0mxsycUNoEuVh8I9KnE
+         89YfwZrfgGWnp3p89mIuEIvi46pdqGvQ98aEBwlJ/3XOJaJFkP77KI+BWv8DQTl9PWuy
+         Mq/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:content-language:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:to
+         :from:dkim-signature;
+        bh=Q/0X5alsAqjwCdV1x9NWePsOyzsGRdD0w/lGyMZOsAk=;
+        b=LqnN1de0yopPimU48GC7I+PRRl1Ij/a2Ot3hJj8D5usRqLjMXhPwhJQNasdtIy5//Y
+         v3Na0+RjNK4+fbAptzy4gUaPNrV3lMItl2g4gUbOuV8XGMvhd+UhAWowtb4c9QfeAvBD
+         aTOTpGnaC2QKySvsU13jqOh1FDtmUdDSnoGGL9243yUPCQ5LqZbL6vO9vRHuSS8OCzF2
+         R5CDh5MoqNzgF0JjLArQR1NNQaUp3R9P0nP+bcqe0WDMCcx/vgtdwwVE7g16mfFT2hM9
+         yAS/fxUGs0pABHhl33KHHN42m60KKjqN3fB4CIO8i1IdabDX5OZc2aFKqydb32yrVOtV
+         qzbA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@dss.mo.gov header.s=20220921 header.b=YLbX+NAZ;
+       spf=pass (google.com: domain of shania.riley@dss.mo.gov designates 168.166.15.220 as permitted sender) smtp.mailfrom=Shania.Riley@dss.mo.gov;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=dss.mo.gov
+Return-Path: <Shania.Riley@dss.mo.gov>
+Received: from oa.mo.gov (momail.mo.gov. [168.166.15.220])
+        by mx.google.com with ESMTPS id br23-20020a056830391700b0069fa3448d45si17974270otb.18.2023.04.27.12.37.56
+        for <mpgooderman@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 27 Apr 2023 12:37:56 -0700 (PDT)
+Received-SPF: pass (google.com: domain of shania.riley@dss.mo.gov designates 168.166.15.220 as permitted sender) client-ip=168.166.15.220;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@dss.mo.gov header.s=20220921 header.b=YLbX+NAZ;
+       spf=pass (google.com: domain of shania.riley@dss.mo.gov designates 168.166.15.220 as permitted sender) smtp.mailfrom=Shania.Riley@dss.mo.gov;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=dss.mo.gov
+Received: from pps.filterd (momail3.mo.gov [127.0.0.1])
+	by momail3.mo.gov (8.17.1.5/8.17.1.5) with ESMTP id 33RJVbuu014453
+	for <mpgooderman@gmail.com>; Thu, 27 Apr 2023 14:37:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dss.mo.gov; h=from : to : subject :
+ date : message-id : references : in-reply-to : content-type :
+ mime-version; s=20220921; bh=Q/0X5alsAqjwCdV1x9NWePsOyzsGRdD0w/lGyMZOsAk=;
+ b=YLbX+NAZ3IeLN9FTKbB5zChK738Bdgfb/RnezRhF+HkIdLcsJSZ6cTfpqpmVDSB2dtn8
+ mHxkTFEjj6GNLhU6FUxKSa6TL6abmw0Yru2GbJ7G7hvkcNzVQnfn3f6HJQ++laQMSBSt
+ cvT8S+eP0t1W93rbGvr6X+hefUexIeMkNTBZEXfndwDkCvkVxTVBDl+g5ejZiq2mIMUc
+ fuc8+oY6uZAs2aBM+EePKC3Oq0hOsTUiUunnoeSDdxThjDtLLTwWLP/uCyeCtKdeOUtx
+ WyjTsh6oNFMWt/N9FSXmAmx8lpFWcZ8n1ry9QEhFI2fP/Gf4pDmRBNcNCBnNdQuVsayx gw== 
+From: "Riley, Shania" <Shania.Riley@dss.mo.gov>
+To: 'Mark Goodman' <mpgooderman@gmail.com>
+Subject: RE: Monthly contact
+Thread-Topic: Monthly contact
+Thread-Index: Adl3hR1E7qz3r808TMCMWaHNJULf4wBUoJo1ABmeYeA=
+Date: Thu, 27 Apr 2023 19:37:55 +0000
+Message-ID: <35fb6e88d2b34d6bb5e84c2c02bb7b12@dss.mo.gov>
+References: <24067c13948d4354bbb991503b718b18@dss.mo.gov>
+ <BN9PR03MB6057E83ABA83E2F1AB46EC56F66A9@BN9PR03MB6057.namprd03.prod.outlook.com>
+In-Reply-To: <BN9PR03MB6057E83ABA83E2F1AB46EC56F66A9@BN9PR03MB6057.namprd03.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.241.53.6]
+x-tm-as-product-ver: SMEX-14.0.0.3031-9.0.1002-27556.005
+x-tm-as-result: No-10--42.236200-8.000000
+x-tmase-matchedrid: hBMWfJKIqhmv1JdYqDisLWC3HeLAtQOwPneWxUi7g0OAwG2maXQMIEml
+	X2scVfePszCdMqCRuw7BtFDYGmaWKjeXamXCCu1YubKpNccbEsjfztE5MKQZQ8XJBPk4NtLtNJy
+	KOQ1yJJsS5lm5mQJTQWQYj6+BFPEwUaTm5EfQzMJHpEd1UrzmFf0Rilt9eNz0A/oe4NwFf2r72Y
+	sIKvXX+/s5Yvh9zseSRynTwl9ZYh7GhlMdn5cIUc2JeYM8GzTZ9+doeRMj31Bw6IvlmsNskhUl2
+	sGcM2xyqiDILf5ga2gX6pCkJZNSOcot0tGMsqGn1YzbHoRn9L0zJOs2oMTNjovNXQ14U48xgvTc
+	UJtQGPbIRZRfI7CCoeMobH1h01ziMoS2PLq1B77e6dEbvIyrxTdC9U2EuTnrg4friG22CzcLOLN
+	fiyaustmMG+o6Hz1ZZjQijgrFvzolJy85NfiMc31kNdLMcUU3SVhjBn3DCRsYf/w3BDmxgzHGC8
+	0NnxMOl0h0sG+y5z7a+rCPpOJc5FmirzmgRbYUF37G3EfwWzGYpmB4zAaUDuD5CIcLwXN6wA3/S
+	yuTbyG2tlYdo0NnhDCIlN/eSPB9e6pYwozL4gQli8Y5a0svL/fTQhcdpCV1fug3Nsgj6NylAk78
+	c+ySvSD/BQjE9pLwXmFVlObh0Px955Y1Xr69wzFLXllDxJZTHvBwgJp97mrDoao1eoIHWUJJ5bg
+	VzYsnQ9tg+p38Zokvz6alF1rVgxoMTb73iC7BsstO9qYbwEmjxYyRBa/qJR8AKgKWeNGhuxAhzZ
+	H2GrOyUQZy4sY6KvJT+hf62k2YIbZSWXZZ520=
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
+x-tmase-result: 10--42.236200-8.000000
+x-tmase-version: SMEX-14.0.0.3031-9.0.1002-27556.005
+Content-Type: multipart/alternative;
+	boundary="_000_35fb6e88d2b34d6bb5e84c2c02bb7b12dssmogov_"
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-27_09,2023-04-27_01,2023-02-09_01
+
+--_000_35fb6e88d2b34d6bb5e84c2c02bb7b12dssmogov_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+I can understand that hearing that is hard.
+
+Regardless what Jennifer said about her not recommending to change the case=
+ goal back at the end of the day these decisions are based on a judge. It i=
+s up to you if you want to complete the hair follicle but it is court order=
+ed and I will continue to request you complete them.
+
+I know last time we spoke you were around St. Louis and had been in Louisia=
+na but where are you at now? Would you like to provide a copy of your 2022 =
+tax return for me to docket as verification of employment?
+
+Shania Riley
+Social Services Specialist
+Jasper Co Children's Division
+601 Commercial St
+Joplin, MO 64801
+Phone: 417-629-3904
+Fax: 417-629-3442
+Shania.riley@dss.mo.gov<mailto:Shania.riley@dss.mo.gov>
+
+Confidentiality Notice: This electronic communication is from the Missouri =
+Department of Social Services, Children's Division, and is only intended fo=
+r its addressee. This communication may contain information that is privile=
+ged, confidential or otherwise protected from disclosure by law and/or DSS =
+policy. If you are not the intended recipient, or the employee or agency re=
+sponsible for delivering this information to its recipient, do not copy, ci=
+rculate, forward or otherwise disclose this document. If you have received =
+this message in error, please notify the sender immediately by return email=
+.
+
+From: Mark Goodman <mpgooderman@gmail.com>
+Sent: Thursday, April 27, 2023 10:54 AM
+To: Riley, Shania <Shania.Riley@dss.mo.gov>
+Subject: Re: Monthly contact
+
+Yes the visits are going well as usual bubba keeps asking to come to my hou=
+se which breaks my heart every time. And as the hair follicle it is impossi=
+ble for me to make these appointments and I know it's court ordered but it =
+is not very convenient for me and at the time it was ordered I did not have=
+ an attorney and at the last deposition I offered to go take a hair follicl=
+e and Jennifer Emmons said on record that it wouldn't matter and she would =
+not change the case goal back to reunification also jurisdiction is an issu=
+e being that the only reason or ties to Missouri is my kiddo personal juris=
+diction is not possible is it and it makes it very hard for me since I'm st=
+ates away .
+
+Get Outlook for iOS<https://urldefense.com/v3/__https:/aka.ms/o0ukef__;!!EE=
+rPFA7f--AJOw!HWoPYSRTAQz5Fz88JfgTJEJtnGBH42-a5LUGZA_CR00x-8iyc2S0GgB-eNfuOl=
+KvJh-8YRF06lzvV_AhtpIelAGjCg$>
+________________________________
+From: Riley, Shania <Shania.Riley@dss.mo.gov<mailto:Shania.Riley@dss.mo.gov=
+>>
+Sent: Tuesday, April 25, 2023 9:55:50 AM
+To: 'Mark Goodman' <mpgooderman@gmail.com<mailto:mpgooderman@gmail.com>>
+Subject: Monthly contact
+
+
+Hi Matthew,
+
+
+
+Do you have anything you would like docketed with the court?
+
+
+
+We have TPR hearing scheduled for May 23rd at 10AM.
+
+
+
+How are your visits going with the boys? Have you been able to make these i=
+n person?
+
+
+
+Also I am requesting you to provide a court ordered hair follicle by the en=
+d of business day tomorrow 4/25/23. I am sending authorization of payment t=
+o hassle free and you have between  8:30-11:30 and 1-4:30. This is located =
+at 510 E 32nd St, Joplin, MO 64804. If you go to hassle free this will be f=
+ree for you. If you choose to do this elsewhere it will be a cost you will =
+have to cover. Please let me know if you have any questions.
+
+
+
+Thank you,
+
+
+
+Shania Riley
+
+Social Services Specialist
+
+Jasper Co Children's Division
+
+601 Commercial St
+
+Joplin, MO 64801
+
+Phone: 417-629-3904
+
+Fax: 417-629-3442
+
+Shania.riley@dss.mo.gov<mailto:Shania.riley@dss.mo.gov>
+
+
+
+Confidentiality Notice: This electronic communication is from the Missouri =
+Department of Social Services, Children's Division, and is only intended fo=
+r its addressee. This communication may contain information that is privile=
+ged, confidential or otherwise protected from disclosure by law and/or DSS =
+policy. If you are not the intended recipient, or the employee or agency re=
+sponsible for delivering this information to its recipient, do not copy, ci=
+rculate, forward or otherwise disclose this document. If you have received =
+this message in error, please notify the sender immediately by return email=
+.
+
+
+
+--_000_35fb6e88d2b34d6bb5e84c2c02bb7b12dssmogov_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.xmsonormal, li.xmsonormal, div.xmsonormal
+	{mso-style-name:x_msonormal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.xmsochpdefault, li.xmsochpdefault, div.xmsochpdefault
+	{mso-style-name:x_msochpdefault;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;}
+span.xmsohyperlink
+	{mso-style-name:x_msohyperlink;
+	color:#0563C1;
+	text-decoration:underline;}
+span.xmsohyperlinkfollowed
+	{mso-style-name:x_msohyperlinkfollowed;
+	color:#954F72;
+	text-decoration:underline;}
+span.xemailstyle17
+	{mso-style-name:x_emailstyle17;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle23
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D">I can understand that hearing that is=
+ hard.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D">Regardless what Jennifer said about h=
+er not recommending to change the case goal back at the end of the day thes=
+e decisions are based on a judge. It is up to
+ you if you want to complete the hair follicle but it is court ordered and =
+I will continue to request you complete them.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D">I know last time we spoke you were ar=
+ound St. Louis and had been in Louisiana but where are you at now? Would yo=
+u like to provide a copy of your 2022 tax return
+ for me to docket as verification of employment?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D"><o:p>&nbsp;</o:p></span></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D">Shania Riley<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D">Social Services Specialist<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D">Jasper Co Children&#8217;s Division<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D">601 Commercial St<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D">Joplin, MO 64801<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D">Phone: 417-629-3904<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D">Fax: 417-629-3442<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D"><a href=3D"mailto:Shania.riley@dss.mo=
+.gov"><span style=3D"color:#0563C1">Shania.riley@dss.mo.gov</span></a>
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:10.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">Confide=
+ntiality Notice: This electronic communication is from the Missouri Departm=
+ent of Social Services, Children&#8217;s Division, and
+ is only intended for its addressee. This communication may contain informa=
+tion that is privileged, confidential or otherwise protected from disclosur=
+e by law and/or DSS policy. If you are not the intended recipient, or the e=
+mployee or agency responsible for
+ delivering this information to its recipient, do not copy, circulate, forw=
+ard or otherwise disclose this document. If you have received this message =
+in error, please notify the sender immediately by return email.
+<o:p></o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D"><o:p>&nbsp;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:11.0pt;=
+font-family:&quot;Calibri&quot;,sans-serif"> Mark Goodman &lt;mpgooderman@g=
+mail.com&gt;
+<br>
+<b>Sent:</b> Thursday, April 27, 2023 10:54 AM<br>
+<b>To:</b> Riley, Shania &lt;Shania.Riley@dss.mo.gov&gt;<br>
+<b>Subject:</b> Re: Monthly contact<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Yes the visits are going well as usual bubba keeps a=
+sking to come to my house which breaks my heart every time. And as the hair=
+ follicle it is impossible for me to make these appointments and I know it&=
+#8217;s court ordered but it is not very
+ convenient for me and at the time it was ordered I did not have an attorne=
+y and at the last deposition I offered to go take a hair follicle and Jenni=
+fer Emmons said on record that it wouldn&#8217;t matter and she would not c=
+hange the case goal back to reunification
+ also jurisdiction is an issue being that the only reason or ties to Missou=
+ri is my kiddo personal jurisdiction is not possible is it and it makes it =
+very hard for me since I&#8217;m states away .&nbsp;<o:p></o:p></p>
+</div>
+</div>
+<div id=3D"ms-outlook-mobile-signature">
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<p class=3D"MsoNormal">Get <a href=3D"https://urldefense.com/v3/__https:/ak=
+a.ms/o0ukef__;!!EErPFA7f--AJOw!HWoPYSRTAQz5Fz88JfgTJEJtnGBH42-a5LUGZA_CR00x=
+-8iyc2S0GgB-eNfuOlKvJh-8YRF06lzvV_AhtpIelAGjCg$">
+Outlook for iOS</a><o:p></o:p></p>
+</div>
+</div>
+</div>
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+<hr size=3D"2" width=3D"98%" align=3D"center">
+</div>
+<div id=3D"divRplyFwdMsg">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black">From:</span></b><span style=3D"font-=
+size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:black"> Riley,=
+ Shania &lt;<a href=3D"mailto:Shania.Riley@dss.mo.gov">Shania.Riley@dss.mo.=
+gov</a>&gt;<br>
+<b>Sent:</b> Tuesday, April 25, 2023 9:55:50 AM<br>
+<b>To:</b> 'Mark Goodman' &lt;<a href=3D"mailto:mpgooderman@gmail.com">mpgo=
+oderman@gmail.com</a>&gt;<br>
+<b>Subject:</b> Monthly contact</span> <o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"xmsonormal">Hi Matthew, <o:p></o:p></p>
+<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
+<p class=3D"xmsonormal">Do you have anything you would like docketed with t=
+he court?<o:p></o:p></p>
+<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
+<p class=3D"xmsonormal">We have TPR hearing scheduled for May 23<sup>rd</su=
+p> at 10AM.
+<o:p></o:p></p>
+<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
+<p class=3D"xmsonormal">How are your visits going with the boys? Have you b=
+een able to make these in person?<o:p></o:p></p>
+<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
+<p class=3D"xmsonormal"><b><span style=3D"background:yellow">Also I am requ=
+esting you to provide a court ordered hair follicle by the end of business =
+day tomorrow 4/25/23.</span></b> I am sending authorization of payment to h=
+assle free and you have between &nbsp;8:30-11:30
+ and 1-4:30. This is located at 510 E 32nd St, Joplin, MO 64804. If you go =
+to hassle free this will be free for you. If you choose to do this elsewher=
+e it will be a cost you will have to cover. Please let me know if you have =
+any questions.<o:p></o:p></p>
+<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
+<p class=3D"xmsonormal">Thank you, <o:p></o:p></p>
+<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
+<p class=3D"xmsonormal">Shania Riley<o:p></o:p></p>
+<p class=3D"xmsonormal">Social Services Specialist<o:p></o:p></p>
+<p class=3D"xmsonormal">Jasper Co Children&#8217;s Division<o:p></o:p></p>
+<p class=3D"xmsonormal">601 Commercial St<o:p></o:p></p>
+<p class=3D"xmsonormal">Joplin, MO 64801<o:p></o:p></p>
+<p class=3D"xmsonormal">Phone: 417-629-3904<o:p></o:p></p>
+<p class=3D"xmsonormal">Fax: 417-629-3442<o:p></o:p></p>
+<p class=3D"xmsonormal"><a href=3D"mailto:Shania.riley@dss.mo.gov">Shania.r=
+iley@dss.mo.gov</a>
+<o:p></o:p></p>
+<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
+<p class=3D"xmsonormal" style=3D"text-autospace:none"><span style=3D"font-s=
+ize:10.0pt;color:#1F497D">Confidentiality Notice: This electronic communica=
+tion is from the Missouri Department of Social Services, Children&#8217;s D=
+ivision, and is only intended for its addressee.
+ This communication may contain information that is privileged, confidentia=
+l or otherwise protected from disclosure by law and/or DSS policy. If you a=
+re not the intended recipient, or the employee or agency responsible for de=
+livering this information to its
+ recipient, do not copy, circulate, forward or otherwise disclose this docu=
+ment. If you have received this message in error, please notify the sender =
+immediately by return email.
+</span><o:p></o:p></p>
+<p class=3D"xmsonormal">&nbsp;<o:p></o:p></p>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_35fb6e88d2b34d6bb5e84c2c02bb7b12dssmogov_--

@@ -1,0 +1,208 @@
+Delivered-To: mpgooderman@gmail.com
+Received: by 2002:a59:bf8b:0:b0:228:f742:95ab with SMTP id dl11csp268694vqb;
+        Thu, 9 Sep 2021 07:05:07 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwzAEL24ijcY7C51Ikrbk/7HArBRMCWyXbLIWLwdDxBm/mSUdb/gHlPLYAubZVIYEiy6FwL
+X-Received: by 2002:a05:6808:2114:: with SMTP id r20mr17238oiw.110.1631196307244;
+        Thu, 09 Sep 2021 07:05:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1631196307; cv=none;
+        d=google.com; s=arc-20160816;
+        b=zzNXPYTmXHyE3uWfA5YnEiOIcB7ng62dgc5AfGKJDhprcVWg+UViLf+KFVSbE/T6zD
+         Yzmd2h700JECn0dQFjnuBVL0oiQZfNorqI+TbX1uhJDHI4johawrcJ28sVD0VFTD9aOl
+         YdtADIx6xTKk3gdYp54QdmBtpRBAjm1YI7GbR7hA028V0eMg0vAYCL3qtyXGYDjW9NFO
+         /bfjC17fEB2/ecbo4LwI9/dsA2f9jGKDy7ebkxjG871h9D6SL19dm16pLMpsYE2ARZ3j
+         +oM3wBLssGMG8yIUAKtJGa0dhk+U8tmCauYGOfMnc0OPlewKVohbiatw+a2+7KoLI4of
+         DDkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:content-language:accept-language:message-id:date
+         :thread-index:thread-topic:subject:to:from:dkim-signature;
+        bh=pqlgeH/2R1FSBgW3xdbaVp6szmuq9CSic5C6jqi7UFU=;
+        b=zbjqdOhb+Q/BtoyiGI20cSaC/b40jisU9L8k66VuwE3Bt82ySNZIZ74mxXvoGTECCt
+         4lUvdQPHCVHbTMeykXsgQkce0GBfzYoWHSgwUHNAiObrmVoszKTkOa5mfAy0jCEro3LK
+         PgYrU4rBjrRJqNr9E1SBagbvTVh/6phy/9LRdboS8hZjgAf/0+//G1O08g5vcacSV/Wo
+         bmg8ZBgjzwdmThMU2OYOyMUDPQWLFdo5jfwJGD95o1Xn0IMXX7F2S2VLQbuH6G0vK/Uq
+         902eyooeoHZ0d793div1E6XGPo1ApqAUyoCApFL9zHAUr8Rz5uPyZ5YsQirQRtNT6YNy
+         jzrQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@dss.mo.gov header.s=20200302 header.b="M7bD/m7Y";
+       spf=pass (google.com: domain of jennifer.emmons@dss.mo.gov designates 168.166.72.17 as permitted sender) smtp.mailfrom=Jennifer.Emmons@dss.mo.gov;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=dss.mo.gov
+Return-Path: <Jennifer.Emmons@dss.mo.gov>
+Received: from oa.mo.gov (momail2.mo.gov. [168.166.72.17])
+        by mx.google.com with ESMTPS id d3si1490518ooj.63.2021.09.09.07.05.07
+        for <mpgooderman@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 09 Sep 2021 07:05:07 -0700 (PDT)
+Received-SPF: pass (google.com: domain of jennifer.emmons@dss.mo.gov designates 168.166.72.17 as permitted sender) client-ip=168.166.72.17;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@dss.mo.gov header.s=20200302 header.b="M7bD/m7Y";
+       spf=pass (google.com: domain of jennifer.emmons@dss.mo.gov designates 168.166.72.17 as permitted sender) smtp.mailfrom=Jennifer.Emmons@dss.mo.gov;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=dss.mo.gov
+Received: from pps.filterd (momail2.mo.gov [127.0.0.1])
+	by momail2.mo.gov (8.16.1.2/8.16.1.2) with SMTP id 189E02uD010533
+	for <mpgooderman@gmail.com>; Thu, 9 Sep 2021 09:05:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dss.mo.gov; h=from : to : subject :
+ date : message-id : content-type : mime-version; s=20200302;
+ bh=pqlgeH/2R1FSBgW3xdbaVp6szmuq9CSic5C6jqi7UFU=;
+ b=M7bD/m7YSwTOFj4DGVwXadOMIsD8PRvpFkmRQMt9CaVf3G+vSRLIX//ZtYH4zNwa7EUr
+ MtUz+KtM+Edb16TwTnaX5SYywMct6ngGfiZxB/ekoTQ3EyRC/TRaXsX1pqg1POe212gW
+ TbzjtXsMxz/bLr2r9g6mEQoSGv7V7pWv8dxVI4gHJvK5M/2wJA/gLzOPkimMpCfoznP9
+ QQ2eC2ILxF4LDR4di1BTEMcHn/fSu02lNDi98w/rRVGzDk1hBB1lNyZV/hvZpFRoJuII
+ fsV/nsxMh/S/qY5s87ahG6xhGgGeBzBX+sRlw9S2M+9YsPZohyBUKZgFavkWTUAyMZe+ hw== 
+From: "Emmons, Jennifer" <Jennifer.Emmons@dss.mo.gov>
+To: 'Mark Goodman' <mpgooderman@gmail.com>
+Subject: Following Up
+Thread-Topic: Following Up
+Thread-Index: Adelg5n4xkNTQo7bTd+dJ96DrJh8pQ==
+Date: Thu, 9 Sep 2021 14:05:03 +0000
+Message-ID: <cf2c6a82bbd24d17b1cc5c7e2dc26fc5@dss.mo.gov>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.241.53.6]
+x-tm-as-product-ver: SMEX-14.0.0.3031-8.6.1018-26396.007
+x-tm-as-result: No-10--21.797800-8.000000
+x-tmase-matchedrid: g7NuIbXgE59HW+94FA8JFysIuzCLc2mNrogFtKd/P7cLBZEuqIL9Sp9x
+	0tmzvpK2wn76N1IBRSR+yM+F359LkdSxXbZonmxOgNylVbI/EAyoCf7IdvPAJ5bI+L60qto8yDU
+	h5i5cbI4/+RSNQ9LGXlDQ43dkW3a5RS5eRZNKL9GL6bUMM+bbIv98fIf4wIXl41oVfA0jhQwU9M
+	J31toZLMrBVd2up7dCiP/aHMHeyu5Kzl0OLwrWWMzSKGx9g8xhp2Uv2mII6863CLdtdG1oCNDYa
+	Cb9XCwykJKCWOlUXjO3sJwmFbXMt6IQgtvzgKVfbFnnYKyTEP4eeJICutnjZFUPHvwdQbxoaOgz
+	kRvqFo/4okNLoAgG2MIokfMTeIj5vjR71y1kIdMgRdds68ezIDKEtjy6tQe+Hcne4QF7iqbrja4
+	I50UbbvA83zEtEjXtgJx7HG4xAFpjDV//SvkH3vrNPkGWAHDfgYhUsGge+PKXBXaJoB9JZ/7E6G
+	Nqs6ceAaUQk5EZOUmhG6+lR+E7mRoxTJ4LSy1onAOnU4i/fOMFdJzDhkBlYxvYALg63EIg0COea
+	l5QZSh5frebJrp1gZ1VeVaROxX3
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
+x-tmase-result: 10--21.797800-8.000000
+x-tmase-version: SMEX-14.0.0.3031-8.6.1018-26396.007
+x-tm-snts-smtp: FFAFB494919B7DDF3E0766C84B72E54DD97C48C4AB7532B319CAE6E8F202ED122000:1
+Content-Type: multipart/alternative;
+	boundary="_000_cf2c6a82bbd24d17b1cc5c7e2dc26fc5dssmogov_"
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-09-09_04:2021-09-09,2021-09-09 signatures=0
+
+--_000_cf2c6a82bbd24d17b1cc5c7e2dc26fc5dssmogov_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Matt,
+
+I just wanted to follow up and let you know that I attempted to contact you=
+r attorney this morning and left a voicemail for her to call me back to dis=
+cuss the case plan and see if she wants to write something up or have me pu=
+t something on letterhead for her.
+
+Thanks,
+
+Jennifer Emmons
+Senior Social Services Specialist
+(417)629-3896
+
+
+*******************************************************************
+Confidentiality Notice: This electronic communication is from the Missouri =
+Department of Social Services, Children's Division, and is only intended fo=
+r its addressee. This communication may contain information that is privile=
+ged, confidential or otherwise protected from disclosure by law and/or DSS =
+policy. If you are not the intended recipient, or the employee or agency re=
+sponsible for delivering this information to its recipient, do not copy, ci=
+rculate, forward or otherwise disclose this document. If you have received =
+this message in error, please notify the sender immediately by return email=
+.
+*******************************************************************
+
+
+--_000_cf2c6a82bbd24d17b1cc5c7e2dc26fc5dssmogov_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi Matt,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I just wanted to follow up and let you know that I a=
+ttempted to contact your attorney this morning and left a voicemail for her=
+ to call me back to discuss the case plan and see if she wants to write som=
+ething up or have me put something
+ on letterhead for her. <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Jennifer Emmons<o:p></o:p></p>
+<p class=3D"MsoNormal">Senior Social Services Specialist<o:p></o:p></p>
+<p class=3D"MsoNormal">(417)629-3896<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">****************************************************=
+***************<o:p></o:p></p>
+<p class=3D"MsoNormal">Confidentiality Notice: This electronic communicatio=
+n is from the Missouri Department of Social Services, Children&#8217;s Divi=
+sion, and is only intended for its addressee. This communication may contai=
+n information that is privileged, confidential
+ or otherwise protected from disclosure by law and/or DSS policy. If you ar=
+e not the intended recipient, or the employee or agency responsible for del=
+ivering this information to its recipient, do not copy, circulate, forward =
+or otherwise disclose this document.
+ If you have received this message in error, please notify the sender immed=
+iately by return email.<o:p></o:p></p>
+<p class=3D"MsoNormal">****************************************************=
+***************<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_cf2c6a82bbd24d17b1cc5c7e2dc26fc5dssmogov_--
