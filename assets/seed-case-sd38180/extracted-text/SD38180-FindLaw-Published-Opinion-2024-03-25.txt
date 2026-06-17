@@ -1,0 +1,138 @@
+SOURCE: FindLaw — Missouri Court of Appeals, Southern District
+CASE: In the INTEREST OF: K.C.G., a child under seventeen years of age. B.L.M., and C.T.A.M., and Jasper County Juvenile Office, Petitioners-Respondents, v. M.P.G., Respondent-Appellant.
+DOCKET: No. SD 38180
+DECIDED: March 25, 2024
+PANEL: JENNIFER R. GROWCOCK, J. (auth.); MARY W. SHEFFIELD, J. (concur); BECKY J.W. BORTHWICK, J. (concur)
+COUNSEL: Kristoffer R. Barefield (Springfield, MO) for Appellant; Lindsey R. Drake (Neosho, MO) for Respondents.
+
+================================================================================
+FULL TEXT OF PUBLISHED OPINION
+================================================================================
+
+M.P.G. ("Father") appeals the judgment of the Circuit Court of Jasper County
+("trial court") terminating his parental rights with respect to a minor child,
+K.C.G. ("Child"). In one point on appeal, Father argues the trial court erred
+by entering its judgment because there is no evidence in the record he was
+properly served with a summons in compliance with sections 211.453.2 and
+211.462.2. Father failed to preserve his claim on appeal, and we decline to
+review it under plain error review.
+
+FACTUAL BACKGROUND AND PROCEDURAL HISTORY
+
+On March 9, 2021, the Juvenile Division of the Circuit Court of Jasper County
+("juvenile court") found Child to be without proper care, custody, and support
+after Child, being two years old at the time, tested positive for
+methamphetamine. The juvenile court ordered Child to remain in foster care,
+with the case goal being reunification of the family. As the Children's
+Division (the "Division") attempted to reunify the family, Father refused to
+work on a case plan or cooperate with the Division, and he further refused to
+take two separate drug tests in January and April of 2021. Father also
+reported that he was self-employed but provided no documentation of income,
+did not provide documentation of attending or completing a drug treatment
+program, and he had a pending felony charge for possession of a controlled
+substance. On April 11, 2022, the juvenile court issued a judgment modifying
+the case goal to termination of parental rights and adoption.
+
+B.L.M. and C.T.A.M. (collectively, "Adoptive Parents") filed their petition
+to terminate Father's parental rights over Child and to adopt Child on
+September 26, 2022. The trial court appointed a special process server to
+serve Father with the Adoptive Parents' petition, and a Juvenile Summons for
+Personal Service Outside the State of Missouri was issued for Father at an
+address in Baxter Springs, Kansas. The special process server served the
+summons on Father by personal service at a Joplin, Missouri address on
+October 7, 2022, as evidenced by the returned summons. The summons included
+the following notice:
+
+    You have the right to have an attorney present to assist you at all court
+    hearings, or you may waive your right to an attorney. If you do desire to
+    be represented by an attorney, you should begin now to obtain legal
+    counsel. If you cannot afford to pay an attorney and you wish to have an
+    attorney to represent you, the court has the power to appoint an attorney
+    to represent you, without charge. However, in the event the court does
+    appoint a public defender or other appointed counsel for the juvenile,
+    the court may, after notice and hearing, order the custodian to make
+    reimbursement for all or part of the cost of representation of the
+    juvenile. You should make known to the court your desire to have an
+    attorney appointed for you.
+
+On October 25, 2022, Father filed a self-styled "Motion to Intervene[,]" a
+pro se answer to Adoptive Parents' petition, and an application for a
+court-appointed attorney. Father's pro se answer stated he "acknowledge[d]
+receipt of summons and [Adoptive Parents'] Petition for Parental Rights" and
+that he was requesting counsel. Also on October 25, 2022, the trial court
+held a counsel status hearing pursuant to section 211.455. The trial court
+determined that service of process had not been obtained upon Mother and
+extended the time for service, making no mention of whether service was
+obtained on Father. The trial court appointed counsel for Father the next
+day, October 26, 2022.
+
+The termination of Father's parental rights proceeded to a bench trial on
+June 27, 2023, where Father appeared in person and with appointed counsel.
+Father testified at trial, and, when his counsel asked whether he had ever
+been served in the case, he said, "I did get served I think through – well,
+I got served on the TPR." After considering the evidence presented, the
+trial court issued its amended judgment terminating Father's parental rights
+on August 1, 2023.
+
+The trial court terminated Father's parental rights on the bases of abuse or
+neglect, failure to rectify harmful conditions, and parental unfitness under
+subdivisions (2), (3), and (5) of section 211.447.5, respectively; and it
+found termination of Father's parental rights was in Child's best interests.
+In its judgment, the trial court recounted the evidence of Father's chemical
+dependency which prevented him from consistently providing the necessary
+care for Child, failure to provide Child with adequate care despite being
+physically and financially able to do so, and refusal to participate in
+services offered by the Division. It also noted Father was "served on
+October 7, 2022, by personal service at [a Joplin, MO address]." Neither
+Father nor Adoptive Parents filed a post-trial motion for a new trial
+following the trial court's judgment, and Father's timely appeal followed.
+
+PRESERVATION OF ERROR
+
+[See FindLaw page for full preservation-of-error discussion.]
+
+CONCLUSION
+
+Because Father failed to preserve his claimed error and we decline plain
+error review, the trial court's judgment terminating Father's parental
+rights with respect to Child is affirmed.
+
+================================================================================
+KEY FACTUAL ASSERTIONS IN OPINION (FOR CROSS-REFERENCE)
+================================================================================
+
+A. Initial removal — "March 9, 2021 ... Child, being two years old at the
+   time, tested positive for methamphetamine."
+B. Case goal — "the case goal being reunification of the family."
+C. Father's cooperation — "Father refused to work on a case plan or
+   cooperate with the Division."
+D. Drug tests — "he further refused to take two separate drug tests in
+   January and April of 2021."
+E. Self-employment — "Father also reported that he was self-employed but
+   provided no documentation of income."
+F. Drug treatment — "did not provide documentation of attending or
+   completing a drug treatment program."
+G. Criminal charge — "he had a pending felony charge for possession of a
+   controlled substance."
+H. Case-goal change — "On April 11, 2022, the juvenile court issued a
+   judgment modifying the case goal to termination of parental rights and
+   adoption."
+I. Service — "special process server served the summons on Father by
+   personal service at a Joplin, Missouri address on October 7, 2022, as
+   evidenced by the returned summons" (issued for Baxter Springs, KS).
+J. Filing of returned summons — "Though the returned summons reflected
+   service on Father on October 7, 2022, ... it was not filed with the
+   trial court until December 18, 2023, after Father filed his notice of
+   appeal." [n.3]
+K. Adoptive Parents' attempted filing — "Adoptive Parents attempted to
+   file the returned summons on October 18, 2022, but they instead
+   mistakenly filed a service return for an unrelated juvenile case. A
+   clerk for the juvenile court deleted the mistaken filing." [n.3]
+L. Counsel status hearing — "On October 25, 2022 ... The trial court
+   determined that service of process had not been obtained upon Mother
+   and extended the time for service, making no mention of whether
+   service was obtained on Father."
+M. TPR ruling — "subdivisions (2), (3), and (5) of section 211.447.5"
+   (abuse/neglect, failure to rectify, parental unfitness).
+
+[END]

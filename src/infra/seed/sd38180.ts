@@ -144,6 +144,21 @@ export async function seedSD38180IfFirstRun(deps: SeedDeps): Promise<boolean> {
         mimeType: 'application/pdf',
         tags: ['order', 'rule-83.04', 'denied'],
       },
+      // ---- Published appellate opinion (controlling) and the cross-reference memo ----
+      {
+        title: 'Published Opinion: In re K.C.G., No. SD 38180 (Mo. Ct. App. S.D., Mar. 25, 2024) \u2014 affirming TPR (controlling authority; source: FindLaw)',
+        category: 'court_order' as const,
+        module: require('../../../assets/seed-case-sd38180/SD38180-FindLaw-Published-Opinion-2024-03-25.pdf'),
+        mimeType: 'application/pdf',
+        tags: ['published-opinion', 'appellate', 'mo-ct-app-southern', 'affirmed', 'controlling', 'findlaw-source'],
+      },
+      {
+        title: 'Cross-Reference Memo: Possible Inconsistencies to Review \u2014 SD38180 Opinion vs. Source Evidence (analytical memo, not legal advice)',
+        category: 'other' as const,
+        module: require('../../../assets/seed-case-sd38180/SD38180-Opinion-vs-Evidence-Cross-Reference-Memo.pdf'),
+        mimeType: 'application/pdf',
+        tags: ['analytical-memo', 'cross-reference', 'possible-issues-to-review', 'not-legal-advice'],
+      },
       {
         title: 'NOTICE Rule 83.04 Application for Transfer to Mo. Sup. Ct. (sent 5/17/2024)',
         category: 'correspondence' as const,
