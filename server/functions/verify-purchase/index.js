@@ -122,8 +122,10 @@ module.exports = async function (context) {
     const db = new sdk.Databases(client);
     const DATABASE = process.env.APPWRITE_DATABASE_ID;
 
+    // Schema uses ownerId (see scripts/provision-appwrite.ts). Keep userId as a
+    // fallback for backward-compatibility with any legacy rows in dev.
     const records = await db.listDocuments(DATABASE, COLLECTIONS.purchase_records, [
-      sdk.Query.equal('userId', userId),
+      sdk.Query.equal('ownerId', userId),
       sdk.Query.orderDesc('receivedAt'),
       sdk.Query.limit(5),
     ]);
@@ -142,15 +144,18 @@ module.exports = async function (context) {
         ? g.startTime
         : null;
       const currentPeriodEndsAt = g.lineItems?.[0]?.expiryTime ?? null;
+      const isPremiumStatuses = new Set(['trial', 'active', 'grace_period']);
       const item = {
-        userId,
-        platform: 'google_play',
+        ownerId: userId,
         productId: pr.productId,
         basePlanId: g.lineItems?.[0]?.offerDetails?.basePlanId ?? 'monthly-autorenew',
         offerId: g.lineItems?.[0]?.offerDetails?.offerId ?? null,
+        isPremium: isPremiumStatuses.has(status),
+        // status kept for debugging / future fields; provision script will need a
+        // matching schema entry. Safe to drop if the attribute is rejected.
         status,
         trialEndsAt,
-        currentPeriodEndsAt,
+        expiresAt: currentPeriodEndsAt,
         lastVerifiedAt: new Date().toISOString(),
       };
       if (!best || new Date(item.lastVerifiedAt) >= new Date(best.lastVerifiedAt)) best = item;
@@ -158,10 +163,10 @@ module.exports = async function (context) {
 
     if (!best) {
       best = {
-        userId,
-        platform: 'google_play',
+        ownerId: userId,
         productId: 'premium_monthly_599',
         basePlanId: 'monthly-autorenew',
+        isPremium: false,
         status: 'expired',
         lastVerifiedAt: new Date().toISOString(),
       };
@@ -169,7 +174,7 @@ module.exports = async function (context) {
 
     // Upsert: list existing then update or create
     const existing = await db.listDocuments(DATABASE, COLLECTIONS.entitlements, [
-      sdk.Query.equal('userId', userId),
+      sdk.Query.equal('ownerId', userId),
       sdk.Query.limit(1),
     ]);
     if (existing.documents.length > 0) {
