@@ -15,6 +15,9 @@
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest",
     "provision:appwrite": "ts-node scripts/provision-appwrite.ts",
+    "provision:appwrite:verify": "ts-node scripts/provision-appwrite.ts --verify-only",
+    "provision:appwrite:heal": "ts-node scripts/provision-appwrite.ts --reset-collections=case_events",
+    "provision:appwrite:reset-all": "ts-node scripts/provision-appwrite.ts --reset-all",
     "build:android": "eas build --platform android --profile production",
     "submit:android": "eas submit --platform android"
   },

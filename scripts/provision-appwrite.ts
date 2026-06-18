@@ -30,10 +30,54 @@ const {
   APPWRITE_DATABASE_ID = 'family_rights_main',
 } = process.env;
 
+// CLI flags:
+//   --reset-collections=name1,name2   Drop these collections before provisioning.
+//                                     Use to heal partial builds without Console access.
+//   --reset-all                       Drop every known collection (DESTRUCTIVE).
+//   --verify-only                     Skip create calls; only print the diff report.
+const argv = process.argv.slice(2);
+function flag(name: string): string | undefined {
+  const hit = argv.find((a) => a === `--${name}` || a.startsWith(`--${name}=`));
+  if (!hit) return undefined;
+  const eq = hit.indexOf('=');
+  return eq === -1 ? '' : hit.slice(eq + 1);
+}
+const RESET_COLLECTIONS = (flag('reset-collections') ?? '')
+  .split(',')
+  .map((s) => s.trim())
+  .filter(Boolean);
+const RESET_ALL = flag('reset-all') !== undefined;
+const VERIFY_ONLY = flag('verify-only') !== undefined;
+
 if (!APPWRITE_ENDPOINT || !APPWRITE_PROJECT_ID || !APPWRITE_API_KEY) {
   console.error('Missing required env: APPWRITE_ENDPOINT, APPWRITE_PROJECT_ID, APPWRITE_API_KEY');
   process.exit(1);
 }
+
+// The 13 expected collection IDs in provision order. Used by --reset-all and
+// the final verification report.
+const EXPECTED_COLLECTIONS = [
+  'users_profile',
+  'cases',
+  'case_parties',
+  'case_events',
+  'documents',
+  'issue_flags',
+  'pattern_matches',
+  'coalition_opt_ins',
+  'entitlements',
+  'purchase_records',
+  'exports',
+  'attorney_review_requests',
+  'content_reports',
+] as const;
+const EXPECTED_BUCKETS = [
+  'raw-documents',
+  'redacted-documents',
+  'audio-notes',
+  'generated-exports',
+  'temp-ocr',
+] as const;
 
 const client = new Client()
   .setEndpoint(APPWRITE_ENDPOINT)
@@ -155,9 +199,80 @@ async function collection(id: string, name: string) {
   );
 }
 
+// -------- reset helper --------
+async function resetCollection(id: string): Promise<void> {
+  try {
+    await databases.deleteCollection(APPWRITE_DATABASE_ID, id);
+    console.log(`✗ reset: dropped collection ${id}`);
+    // Appwrite needs a beat for the drop to fully clear before recreate.
+    await new Promise((r) => setTimeout(r, 1500));
+  } catch (e: any) {
+    if (e?.code === 404) {
+      console.log(`• reset: ${id} not present (already clean)`);
+      return;
+    }
+    console.warn(`! reset: ${id} delete failed: ${e?.message}`);
+  }
+}
+
+// -------- verification report --------
+async function verify(): Promise<{ ok: boolean; report: string[] }> {
+  const report: string[] = [];
+  let allOk = true;
+  for (const cid of EXPECTED_COLLECTIONS) {
+    try {
+      const col: any = await databases.getCollection(APPWRITE_DATABASE_ID, cid);
+      const attrCount = Array.isArray(col.attributes) ? col.attributes.length : 0;
+      const idxCount = Array.isArray(col.indexes) ? col.indexes.length : 0;
+      const stuck = (col.attributes ?? []).filter((a: any) => a.status !== 'available').length;
+      const marker = stuck > 0 ? '⚠' : '✓';
+      if (stuck > 0) allOk = false;
+      report.push(
+        `  ${marker} ${cid}: ${attrCount} attrs, ${idxCount} idx${stuck > 0 ? ` (${stuck} not yet available)` : ''}`,
+      );
+    } catch {
+      report.push(`  ✗ ${cid}: MISSING`);
+      allOk = false;
+    }
+  }
+  for (const bid of EXPECTED_BUCKETS) {
+    try {
+      await storage.getBucket(bid);
+      report.push(`  ✓ bucket ${bid}`);
+    } catch {
+      report.push(`  ✗ bucket ${bid}: MISSING`);
+      allOk = false;
+    }
+  }
+  return { ok: allOk, report };
+}
+
 // -------- run --------
 (async () => {
   console.log(`Provisioning Appwrite project ${APPWRITE_PROJECT_ID} at ${APPWRITE_ENDPOINT}\n`);
+
+  if (VERIFY_ONLY) {
+    const { ok: pass, report } = await verify();
+    console.log('Verification:');
+    report.forEach((l) => console.log(l));
+    console.log(pass ? '\nAll resources present.' : '\nIncomplete — re-run without --verify-only.');
+    process.exit(pass ? 0 : 2);
+  }
+
+  // -------- optional reset phase --------
+  if (RESET_ALL) {
+    console.log('--reset-all: dropping all known collections (DESTRUCTIVE)...');
+    for (const cid of [...EXPECTED_COLLECTIONS].reverse()) {
+      await resetCollection(cid);
+    }
+    console.log('');
+  } else if (RESET_COLLECTIONS.length > 0) {
+    console.log(`--reset-collections: dropping ${RESET_COLLECTIONS.join(', ')}...`);
+    for (const cid of RESET_COLLECTIONS) {
+      await resetCollection(cid);
+    }
+    console.log('');
+  }
 
   await ok(`database ${APPWRITE_DATABASE_ID}`, () =>
     databases.create(APPWRITE_DATABASE_ID, 'Family Rights Main'),
@@ -426,7 +541,19 @@ async function collection(id: string, name: string) {
     );
   }
 
-  console.log('\nAll done. Idempotent — safe to re-run.');
+  console.log('\n--- Verification report ---');
+  const { ok: allOk, report } = await verify();
+  report.forEach((l) => console.log(l));
+  if (allOk) {
+    console.log('\nAll done. Idempotent — safe to re-run.');
+  } else {
+    console.warn(
+      '\nSome resources are missing or still materializing.\n' +
+        '  - If status is ⚠ "not yet available": wait 10s and re-run.\n' +
+        '  - If status is ✗ MISSING: re-run with --reset-collections=<id> to heal.',
+    );
+    process.exit(2);
+  }
 })().catch((e) => {
   console.error('Fatal:', e);
   process.exit(1);
