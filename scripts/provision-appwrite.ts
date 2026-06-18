@@ -72,13 +72,19 @@ const EXPECTED_COLLECTIONS = [
   'content_reports',
   'audit_log',
 ] as const;
-const EXPECTED_BUCKETS = [
-  'raw-documents',
-  'redacted-documents',
-  'audio-notes',
-  'generated-exports',
-  'temp-ocr',
-] as const;
+// On free-tier Appwrite Cloud only 1 bucket is allowed per project. The app
+// (src/infra/appwrite/client) collapses all 5 logical bucket types onto this
+// single physical bucket. Paid plans should restore the full 5.
+const FREE_TIER_BUCKETS = process.env.APPWRITE_FREE_TIER !== 'false';
+const EXPECTED_BUCKETS = FREE_TIER_BUCKETS
+  ? (['raw-documents'] as const)
+  : ([
+      'raw-documents',
+      'redacted-documents',
+      'audio-notes',
+      'generated-exports',
+      'temp-ocr',
+    ] as const);
 
 const client = new Client()
   .setEndpoint(APPWRITE_ENDPOINT)
@@ -222,18 +228,40 @@ async function verify(): Promise<{ ok: boolean; report: string[] }> {
   let allOk = true;
   for (const cid of EXPECTED_COLLECTIONS) {
     try {
+      // getCollection returns attributes inline on the same response
       const col: any = await databases.getCollection(APPWRITE_DATABASE_ID, cid);
-      const attrCount = Array.isArray(col.attributes) ? col.attributes.length : 0;
-      const idxCount = Array.isArray(col.indexes) ? col.indexes.length : 0;
-      const stuck = (col.attributes ?? []).filter((a: any) => a.status !== 'available').length;
+      // Some SDK versions don't include attributes/indexes inline — fall back to the
+      // dedicated list endpoints when missing.
+      let attributes: any[] = Array.isArray(col.attributes) ? col.attributes : [];
+      let indexes: any[] = Array.isArray(col.indexes) ? col.indexes : [];
+      if (attributes.length === 0) {
+        try {
+          const ar: any = await databases.listAttributes(APPWRITE_DATABASE_ID, cid);
+          attributes = ar?.attributes ?? [];
+        } catch {/* tolerate */}
+      }
+      if (indexes.length === 0) {
+        try {
+          const ir: any = await databases.listIndexes(APPWRITE_DATABASE_ID, cid);
+          indexes = ir?.indexes ?? [];
+        } catch {/* tolerate */}
+      }
+      const attrCount = attributes.length;
+      const idxCount = indexes.length;
+      const stuck = attributes.filter((a: any) => a.status && a.status !== 'available').length;
       const marker = stuck > 0 ? '⚠' : '✓';
       if (stuck > 0) allOk = false;
       report.push(
         `  ${marker} ${cid}: ${attrCount} attrs, ${idxCount} idx${stuck > 0 ? ` (${stuck} not yet available)` : ''}`,
       );
-    } catch {
-      report.push(`  ✗ ${cid}: MISSING`);
-      allOk = false;
+    } catch (e: any) {
+      // 404 = truly missing. Any other error = transient / permission — don't flag as missing.
+      if (e?.code === 404) {
+        report.push(`  ✗ ${cid}: MISSING`);
+        allOk = false;
+      } else {
+        report.push(`  ? ${cid}: unable to verify (${e?.code ?? '?'}: ${e?.message ?? e})`);
+      }
     }
   }
   for (const bid of EXPECTED_BUCKETS) {

@@ -40,12 +40,20 @@ export const COLLECTIONS = {
 /** Admin team id for moderation grants (must match the team in Appwrite). */
 export const ADMIN_TEAM_ID = extra.appwriteAdminTeamId ?? 'admin';
 
+// Bucket routing.
+//
+// Free-tier Appwrite Cloud caps storage at exactly 1 bucket per project. To stay
+// portable, every logical bucket id below can be overridden via expo extra; on
+// free tier they all resolve to the single `raw-documents` bucket. Documents
+// already store their bucketId per-row, so a later migration to paid Appwrite
+// (where these become 5 physical buckets) is just a config flip + a copy job.
+const BUCKET_RAW = extra.appwriteBucketRaw ?? 'raw-documents';
 export const BUCKETS = {
-  raw: 'raw-documents',
-  redacted: 'redacted-documents',
-  audio: 'audio-notes',
-  exports: 'generated-exports',
-  tempOcr: 'temp-ocr',
+  raw: BUCKET_RAW,
+  redacted: extra.appwriteBucketRedacted ?? BUCKET_RAW,
+  audio: extra.appwriteBucketAudio ?? BUCKET_RAW,
+  exports: extra.appwriteBucketExports ?? BUCKET_RAW,
+  tempOcr: extra.appwriteBucketTempOcr ?? BUCKET_RAW,
 } as const;
 
 export const DATABASE = DATABASE_ID;
