@@ -2,16 +2,19 @@
 
 **Effective date:** 2026-06-17
 **Operator:** Poor Dude Holdings LLC (Wyoming), through its operating subsidiaries.
+**Application:** Family Rights App — case-record keeping for parents navigating child-welfare and termination-of-parental-rights (TPR) proceedings.
 
-This is a template privacy policy. Customize the highlighted sections (`<<...>>`) for the specific application.
+> Operator note: this document describes the data practices of the shipped
+> application. It must still be reviewed and approved by counsel before
+> publication. Items requiring operator/legal confirmation are marked **[verify]**.
 
 ## 1. Data we collect
 
 - **Account data:** name, email, hashed password, account creation timestamp.
-- **Application data:** <<list app-specific collected fields>> (e.g., meal preferences, case records, estimates, market-data queries).
-- **Payment data:** processed by Stripe / RevenueCat / Google Play / Apple. We never store full card numbers; we store only Stripe customer IDs and last-4 digits where displayed.
-- **Telemetry:** request logs, error traces, device identifiers (used for fraud prevention and performance debugging).
-- **Sensitive categories** (where applicable): <<PHI, financial, government CUI — listed per app>>.
+- **Application data:** case records (case title, jurisdiction, stage), parties (names and roles of family members, caseworkers, attorneys, judges), case timeline events, documents you upload (court filings, correspondence, evaluations) and the text extracted from them via OCR, issue flags generated from your documents, and your coalition-matching opt-in choice.
+- **Payment data:** subscriptions are processed by Google Play Billing. We never receive or store card numbers; we store only the Google Play purchase token and the resulting entitlement status used to unlock premium features.
+- **Telemetry:** error traces and crash reports (PII is stripped on-device before transmission — see `src/lib/crashReporter.ts`), plus server-side request logs used for fraud prevention and performance debugging.
+- **Sensitive categories:** case material in this app can include protected health information (PHI) such as medical, mental-health, and drug-test records. We treat this data as PHI and apply the HIPAA-aligned controls described in Section 8 and `docs/HIPAA_RUNBOOK.md`.
 
 ## 2. Why we collect it
 
@@ -27,18 +30,23 @@ This is a template privacy policy. Customize the highlighted sections (`<<...>>`
 | Account data | While account is active + 30 days after deletion request |
 | Payment records | 7 years (IRS / Stripe requirements) |
 | Audit logs | 7 years (regulatory minimum) |
-| Application data | <<per-app, default 2 years inactivity>> |
+| Application data (cases, documents, OCR text, flags) | While account is active; deleted within 30 days of an account-deletion request, subject to the PHI minimum below |
+| Generated export bundles | 7 days, then automatically expired |
 | PHI (if applicable) | 6 years minimum (HIPAA), deleted on lawful request thereafter |
 | Telemetry | 90 days |
 
 ## 4. Who we share with
 
-- **Payment processors** — Stripe, RevenueCat, Google Play, Apple.
-- **Cloud / hosting** — AWS, Vercel, Supabase, Appwrite, Convex, Cloudflare.
-- **Communication** — Resend, Twilio (where applicable).
-- **AI / ML** — Google Gemini, OpenAI (only where the user opts in and only with redacted inputs).
+This application uses the following subprocessors. A Business Associate
+Agreement (BAA) is required for any subprocessor that may handle PHI and must
+be on file before production launch — see `docs/HIPAA_RUNBOOK.md`.
 
-We do **not** sell personal data to advertisers or data brokers.
+- **Payment processing** — Google Play Billing (subscription purchases). Google does not share card data with us.
+- **Cloud / hosting / storage** — Appwrite (database, file storage, and serverless functions). **[verify]** region and BAA.
+- **OCR** — Google Cloud Vision API, used to extract text from documents you upload so the app can analyze them. Document bytes are sent to Google Cloud Vision only to perform this extraction. **[verify]** BAA where PHI is involved.
+
+We do **not** sell personal data to advertisers or data brokers, and we do
+not use your case data to train third-party AI models.
 
 ## 5. Your rights
 

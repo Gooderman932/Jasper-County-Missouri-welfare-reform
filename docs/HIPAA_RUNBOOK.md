@@ -8,14 +8,14 @@ Operational checklist for HIPAA / state-equivalent compliance.
 - [ ] Sign Business Associate Agreement (BAA) with Appwrite Cloud (or self-host).
 - [ ] Sign BAA with any subprocessors (Resend / Twilio if used).
 - [ ] Set `APPWRITE_ENCRYPTION_KEY` to a 32-byte random secret in Appwrite Console → Settings.
-- [ ] Provision the `audit_log` collection per `server/schemas/audit_log.sql` permissions table.
+- [x] Provision the `audit_log` collection — now created automatically by `scripts/provision-appwrite.ts` (server-write only, append-only). `server/schemas/audit_log.sql` documents the field mapping. `generate-export` writes an audit row on every export attempt (success + denied). **Still required:** extend `logAudit()` coverage to read endpoints before launch.
 - [ ] Enable forced HTTPS on every domain serving the app.
 - [ ] Verify Resend DMARC/SPF on the sending domain.
 
 ## Every release
 
-- [ ] Run `npm test` — must pass, no `--passWithNoTests` reliance in security-critical modules.
-- [ ] Run `npm audit --production` and triage any high/critical.
+- [ ] Run `npm test` — must pass. CI no longer uses `--passWithNoTests`; the security-critical modules (redaction, authz, pii, session timeout, audit) have unit coverage.
+- [ ] Run `npm audit --omit=dev` and triage any high/critical. CI fails on critical and reports high+ informationally.
 - [ ] Review `audit_log` write coverage: any new PHI-touching endpoint must call `logAudit()`.
 
 ## Quarterly

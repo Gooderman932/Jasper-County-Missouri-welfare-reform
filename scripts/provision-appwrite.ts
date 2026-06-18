@@ -8,7 +8,7 @@
  * repositories, mirror that change here.
  *
  *   - Database: family_rights_main
- *   - 13 collections with attributes + indexes + permissions
+ *   - 14 collections with attributes + indexes + permissions
  *   - 5 storage buckets
  *
  * Usage:
@@ -70,6 +70,7 @@ const EXPECTED_COLLECTIONS = [
   'exports',
   'attorney_review_requests',
   'content_reports',
+  'audit_log',
 ] as const;
 const EXPECTED_BUCKETS = [
   'raw-documents',
@@ -518,6 +519,36 @@ async function verify(): Promise<{ ok: boolean; report: string[] }> {
   await str('content_reports', 'resolutionNote', 2000);
   await idx('content_reports', 'idx_case', ['caseId']);
   await idx('content_reports', 'idx_status', ['status']);
+
+  // 14. audit_log (HIPAA §164.312(b) Audit Controls) ----------------------
+  //     Append-only. Written ONLY from server context (Appwrite Functions use
+  //     an API key that bypasses collection permissions), so we grant NO role
+  //     permissions here: regular users can neither read nor write it. Admins
+  //     investigate via server tooling / the console. See server/schemas/
+  //     audit_log.sql and src/lib/audit.ts. generate-export writes here on
+  //     every export attempt (success + denied).
+  await ok('collection audit_log', () =>
+    databases.createCollection(
+      APPWRITE_DATABASE_ID,
+      'audit_log',
+      'Audit Log',
+      [], // no role permissions — server-key writes only; append-only
+      true,
+    ),
+  );
+  await dt('audit_log', 'occurredAt', true);
+  await str('audit_log', 'actor', 128);
+  await str('audit_log', 'action', 64, true);
+  await str('audit_log', 'resourceType', 64);
+  await str('audit_log', 'resourceId', 64);
+  // outcome: 'success' | 'denied' | 'error'
+  await str('audit_log', 'outcome', 16);
+  await str('audit_log', 'requestId', 64);
+  // Serialized oldValue / newValue / extra, if a writer supplies them.
+  await str('audit_log', 'detailJson', 8000);
+  await idx('audit_log', 'idx_action', ['action']);
+  await idx('audit_log', 'idx_resource', ['resourceType', 'resourceId']);
+  await idx('audit_log', 'idx_actor', ['actor']);
 
   // -------- Storage buckets --------
   const buckets: Array<[string, string, number]> = [

@@ -32,6 +32,34 @@ const sdk = require('node-appwrite');
 
 const MAX_INLINE_BYTES = 20 * 1024 * 1024;
 
+/** Parse a request body without ever throwing. Returns null on malformed input. */
+function safeJsonParse(raw) {
+  if (raw == null) return {};
+  if (typeof raw === 'object') return raw;
+  try {
+    return JSON.parse(raw || '{}');
+  } catch (_) {
+    return null;
+  }
+}
+
+// Best-effort per-instance burst limiter (see verify-purchase for caveats).
+const RATE_BUCKET = new Map();
+function rateLimited(key, max, windowMs) {
+  const now = Date.now();
+  // Prune expired entries so the map can't grow unbounded in a warm instance.
+  for (const [k, slot] of RATE_BUCKET) {
+    if (now - slot.windowStart >= windowMs) RATE_BUCKET.delete(k);
+  }
+  const slot = RATE_BUCKET.get(key);
+  if (!slot) {
+    RATE_BUCKET.set(key, { count: 1, windowStart: now });
+    return false;
+  }
+  slot.count += 1;
+  return slot.count > max;
+}
+
 module.exports = async ({ req, res, log, error }) => {
   try {
     const {
@@ -60,17 +88,24 @@ module.exports = async ({ req, res, log, error }) => {
 
     if (eventHeader.includes('storage.') && eventHeader.includes('.files.create')) {
       // Storage event payload is the file resource
-      const evt = typeof bodyRaw === 'string' ? JSON.parse(bodyRaw) : bodyRaw;
+      const evt = safeJsonParse(bodyRaw);
+      if (evt === null) return res.json({ ok: false, error: 'Malformed event payload' }, 400);
       fileId = evt.$id;
       documentId = evt.$id; // app should set storage fileId == document row's fileId
     } else {
-      const parsed = typeof bodyRaw === 'string' ? JSON.parse(bodyRaw || '{}') : (bodyRaw || {});
+      const parsed = safeJsonParse(bodyRaw);
+      if (parsed === null) return res.json({ ok: false, error: 'Malformed JSON body' }, 400);
       documentId = parsed.documentId;
       fileId = parsed.fileId;
     }
 
     if (!documentId || !fileId) {
       return res.json({ ok: false, error: 'documentId and fileId are required' }, 400);
+    }
+
+    // Throttle repeated OCR requests for the same document.
+    if (rateLimited(`ocr:${documentId}`, 5, 60_000)) {
+      return res.json({ ok: false, error: 'Too many OCR requests for this document. Try again shortly.' }, 429);
     }
 
     // ----- Initialise Appwrite -----
@@ -121,7 +156,9 @@ module.exports = async ({ req, res, log, error }) => {
     const base64 = buf.toString('base64');
 
     // ----- Call Google Vision -----
-    const visionUrl = `https://vision.googleapis.com/v1/images:annotate?key=${encodeURIComponent(GOOGLE_CLOUD_VISION_API_KEY)}`;
+    // The API key goes in the X-Goog-Api-Key header rather than the query
+    // string so it is not captured in proxy / CDN / access logs.
+    const visionUrl = 'https://vision.googleapis.com/v1/images:annotate';
 
     const visionPayload = {
       requests: [
@@ -135,7 +172,10 @@ module.exports = async ({ req, res, log, error }) => {
 
     const visionResp = await fetch(visionUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Goog-Api-Key': GOOGLE_CLOUD_VISION_API_KEY,
+      },
       body: JSON.stringify(visionPayload),
     });
 
@@ -185,9 +225,7 @@ module.exports = async ({ req, res, log, error }) => {
         .setProject(process.env.APPWRITE_PROJECT_ID)
         .setKey(process.env.APPWRITE_API_KEY);
       const db = new sdk2.Databases(c);
-      const parsed = typeof req?.bodyRaw === 'string'
-        ? JSON.parse(req.bodyRaw || '{}')
-        : (req?.body || {});
+      const parsed = safeJsonParse(req?.bodyRaw ?? req?.body) || {};
       if (parsed.documentId) {
         await db.updateDocument(
           process.env.APPWRITE_DATABASE_ID || 'family_rights_main',
@@ -196,7 +234,12 @@ module.exports = async ({ req, res, log, error }) => {
           { ocrStatus: 'failed', ocrError: e.message.slice(0, 1000) },
         );
       }
-    } catch (_) {/* swallow */}
-    return res.json({ ok: false, error: e.message }, 500);
+    } catch (markErr) {
+      // Don't lose this failure silently — it hides OCR outages.
+      error(`ocr-process: failed to record failure state: ${markErr.message}`);
+    }
+    // Full detail already logged at the top of this catch; return a generic
+    // message to the client so internal paths / stack traces don't leak.
+    return res.json({ ok: false, error: 'OCR processing failed. Please try again later.' }, 500);
   }
 };
