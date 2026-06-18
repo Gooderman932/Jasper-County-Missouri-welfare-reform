@@ -23,6 +23,48 @@ const COLLECTIONS = {
   entitlements: 'entitlements',
 };
 
+// ---------------------------------------------------------------------------
+// Hardening helpers (inlined — Appwrite bundles each function folder alone).
+// ---------------------------------------------------------------------------
+
+/** Parse a request body without ever throwing. Returns {} on malformed input. */
+function safeJsonParse(raw) {
+  if (raw == null) return {};
+  if (typeof raw === 'object') return raw;
+  try {
+    return JSON.parse(raw || '{}');
+  } catch (_) {
+    return null; // signal malformed so the caller can return 400
+  }
+}
+
+/**
+ * Best-effort per-instance rate limiter. NOTE: serverless instances are
+ * ephemeral and horizontally scaled, so this only throttles bursts hitting a
+ * single warm container. A durable store (Redis or a rate_limits collection)
+ * is the production-grade upgrade; this is a cheap first line of defence.
+ */
+const RATE_BUCKET = new Map(); // key -> { count, windowStart }
+function rateLimited(key, max, windowMs) {
+  const now = Date.now();
+  const slot = RATE_BUCKET.get(key);
+  if (!slot || now - slot.windowStart >= windowMs) {
+    RATE_BUCKET.set(key, { count: 1, windowStart: now });
+    return false;
+  }
+  slot.count += 1;
+  return slot.count > max;
+}
+
+/** Log the full error server-side; return a generic message to the client. */
+function fail(res, error, e, status = 500) {
+  try { error(`${e && e.stack ? e.stack : e}`); } catch (_) { /* noop */ }
+  return res.json(
+    { ok: false, error: status >= 500 ? 'Internal error. Please try again later.' : (e && e.clientMessage) || 'Bad request' },
+    status,
+  );
+}
+
 function getGoogleAccessToken(serviceAccount) {
   return new Promise((resolve, reject) => {
     const jwt = require('jsonwebtoken');
@@ -112,8 +154,17 @@ function mapState(g) {
 module.exports = async function (context) {
   const { req, res, log, error } = context;
   try {
-    const { userId } = JSON.parse(req.payload || req.body || '{}');
-    if (!userId) return res.json({ ok: false, error: 'userId required' }, 400);
+    const body = safeJsonParse(req.payload || req.body || '{}');
+    if (body === null) return res.json({ ok: false, error: 'Malformed JSON body' }, 400);
+    const { userId } = body;
+    if (!userId || typeof userId !== 'string') {
+      return res.json({ ok: false, error: 'userId required' }, 400);
+    }
+
+    // Throttle re-verification per user (Play API quota + abuse guard).
+    if (rateLimited(`verify:${userId}`, 10, 60_000)) {
+      return res.json({ ok: false, error: 'Too many verification attempts. Try again shortly.' }, 429);
+    }
 
     const client = new sdk.Client()
       .setEndpoint(process.env.APPWRITE_FUNCTION_API_ENDPOINT)
@@ -192,7 +243,6 @@ module.exports = async function (context) {
     }
     return res.json({ ok: true, entitlement: best });
   } catch (err) {
-    error(err.message);
-    return res.json({ ok: false, error: err.message }, 500);
+    return fail(res, error, err, 500);
   }
 };

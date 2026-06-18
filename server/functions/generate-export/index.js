@@ -29,6 +29,37 @@ const { InputFile } = require('node-appwrite/file');
 const archiver = require('archiver');
 const { PassThrough } = require('stream');
 
+/** Parse a request body without ever throwing. Returns null on malformed input. */
+function safeJsonParse(raw) {
+  if (raw == null) return {};
+  if (typeof raw === 'object') return raw;
+  try {
+    return JSON.parse(raw || '{}');
+  } catch (_) {
+    return null;
+  }
+}
+
+/**
+ * Best-effort HIPAA §164.312(b) audit write. Records who exported which case.
+ * Never throws — a failed audit write must not abort the export, but it is
+ * logged so the gap is visible.
+ */
+async function writeAudit(databases, dbId, entry, log) {
+  try {
+    await databases.createDocument(dbId, 'audit_log', sdk.ID.unique(), {
+      actor: entry.actor,
+      action: entry.action,
+      resourceType: entry.resourceType,
+      resourceId: entry.resourceId,
+      outcome: entry.outcome,
+      occurredAt: new Date().toISOString(),
+    });
+  } catch (e) {
+    log(`[audit] write failed (action=${entry.action}): ${e.message}`);
+  }
+}
+
 const DISCLAIMER = `
 DISCLAIMER
 ==========
@@ -54,7 +85,8 @@ module.exports = async ({ req, res, log, error }) => {
       throw new Error('Missing Appwrite environment configuration');
     }
 
-    const body = typeof req.bodyRaw === 'string' ? JSON.parse(req.bodyRaw || '{}') : (req.body || {});
+    const body = safeJsonParse(req.bodyRaw ?? req.body);
+    if (body === null) return res.json({ ok: false, error: 'Malformed JSON body' }, 400);
     const { caseId, userId } = body;
     if (!caseId || !userId) {
       return res.json({ ok: false, error: 'caseId and userId required' }, 400);
@@ -94,6 +126,9 @@ module.exports = async ({ req, res, log, error }) => {
     // ----- Load case data -----
     const caseRow = await databases.getDocument(APPWRITE_DATABASE_ID, 'cases', caseId);
     if (caseRow.ownerUserId !== userId) {
+      await writeAudit(databases, APPWRITE_DATABASE_ID, {
+        actor: userId, action: 'export.create', resourceType: 'case', resourceId: caseId, outcome: 'denied',
+      }, log);
       return res.json({ ok: false, error: 'Forbidden' }, 403);
     }
 
@@ -176,6 +211,10 @@ module.exports = async ({ req, res, log, error }) => {
       ],
     );
 
+    await writeAudit(databases, APPWRITE_DATABASE_ID, {
+      actor: userId, action: 'export.create', resourceType: 'case', resourceId: caseId, outcome: 'success',
+    }, log);
+
     const downloadUrl = `${APPWRITE_ENDPOINT}/storage/buckets/${APPWRITE_EXPORTS_BUCKET}/files/${uploaded.$id}/download?project=${APPWRITE_PROJECT_ID}`;
 
     return res.json({
@@ -189,7 +228,7 @@ module.exports = async ({ req, res, log, error }) => {
     });
   } catch (e) {
     error(`generate-export failed: ${e.message}\n${e.stack}`);
-    return res.json({ ok: false, error: e.message }, 500);
+    return res.json({ ok: false, error: 'Export generation failed. Please try again later.' }, 500);
   }
 };
 

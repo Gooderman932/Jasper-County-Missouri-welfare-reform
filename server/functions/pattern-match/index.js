@@ -33,6 +33,19 @@
 
 const sdk = require('node-appwrite');
 
+// Best-effort per-instance burst limiter (see verify-purchase for caveats).
+const RATE_BUCKET = new Map();
+function rateLimited(key, max, windowMs) {
+  const now = Date.now();
+  const slot = RATE_BUCKET.get(key);
+  if (!slot || now - slot.windowStart >= windowMs) {
+    RATE_BUCKET.set(key, { count: 1, windowStart: now });
+    return false;
+  }
+  slot.count += 1;
+  return slot.count > max;
+}
+
 const ISSUE_LABELS = {
   NO_COUNSEL_AT_HEARING: 'right-to-counsel timing',
   WRONG_ADDRESS_NOTICE: 'service / notice to wrong address',
@@ -64,6 +77,14 @@ module.exports = async ({ req, res, log, error }) => {
 
     if (!APPWRITE_ENDPOINT || !APPWRITE_PROJECT_ID || !APPWRITE_API_KEY) {
       throw new Error('Missing Appwrite environment configuration');
+    }
+
+    // This is an expensive cross-case aggregation. The nightly cron sets
+    // x-appwrite-trigger: schedule; only throttle ad-hoc HTTP invocations so a
+    // client can't repeatedly trigger full re-aggregation.
+    const trigger = req?.headers?.['x-appwrite-trigger'] || 'http';
+    if (trigger !== 'schedule' && rateLimited('pattern-match:http', 3, 5 * 60_000)) {
+      return res.json({ ok: false, error: 'Pattern matching was run recently. Try again later.' }, 429);
     }
 
     const minCases = parseInt(MIN_CASES_FOR_PATTERN, 10);
@@ -180,7 +201,7 @@ module.exports = async ({ req, res, log, error }) => {
     });
   } catch (e) {
     error(`pattern-match failed: ${e.message}\n${e.stack}`);
-    return res.json({ ok: false, error: e.message }, 500);
+    return res.json({ ok: false, error: 'Pattern matching failed. Please try again later.' }, 500);
   }
 };
 

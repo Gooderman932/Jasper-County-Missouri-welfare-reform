@@ -78,7 +78,27 @@ jobs:
         env:
           CI: true
       - name: Run jest
-        run: npm test --silent -- --ci --passWithNoTests
+        # No --passWithNoTests: an empty suite must fail so the security-
+        # critical modules (redaction, authz, pii, session timeout) stay tested.
+        run: npm test --silent -- --ci
+
+  audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci --no-audit --no-fund
+        env:
+          CI: true
+      - name: Audit production dependencies (fail on critical)
+        run: npm audit --omit=dev --audit-level=critical
+      - name: Audit report (high+, informational)
+        if: always()
+        run: npm audit --omit=dev --audit-level=high || true
 
   secret-scan:
     name: Secret scan
