@@ -37,8 +37,12 @@ const sdk = require('node-appwrite');
 const RATE_BUCKET = new Map();
 function rateLimited(key, max, windowMs) {
   const now = Date.now();
+  // Prune expired entries so the map can't grow unbounded in a warm instance.
+  for (const [k, slot] of RATE_BUCKET) {
+    if (now - slot.windowStart >= windowMs) RATE_BUCKET.delete(k);
+  }
   const slot = RATE_BUCKET.get(key);
-  if (!slot || now - slot.windowStart >= windowMs) {
+  if (!slot) {
     RATE_BUCKET.set(key, { count: 1, windowStart: now });
     return false;
   }

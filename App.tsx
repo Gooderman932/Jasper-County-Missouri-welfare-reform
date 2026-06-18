@@ -5,6 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ActivityIndicator, View } from 'react-native';
+import type { GestureResponderEvent } from 'react-native';
 import { RootNavigator } from '@app/navigation/RootNavigator';
 import { useContainer, Container } from '@app/hooks/useContainer';
 import { AppContextProvider, useApp } from '@app/hooks/useApp';
@@ -14,15 +15,24 @@ import { seedSD38180IfFirstRun } from '@infra/seed/sd38180';
 
 const USE_MEMORY = process.env.EXPO_PUBLIC_USE_MEMORY_REPOS === 'true';
 
-// Lives inside AppContextProvider so it can feed navigation activity into the
-// inactivity timer that powers automatic logoff.
+// Lives inside AppContextProvider so it can feed user activity into the
+// inactivity timer that powers automatic logoff. We capture activity from any
+// touch (not just navigation) so a user working on a single screen for a long
+// time isn't logged out mid-task. onStartShouldSetResponderCapture returns
+// false so the gesture still reaches child components — we only observe it.
 function NavigationRoot() {
   const { recordActivity } = useApp();
+  const onTouchCapture = (_e: GestureResponderEvent) => {
+    recordActivity();
+    return false;
+  };
   return (
-    <NavigationContainer onStateChange={recordActivity}>
-      <StatusBar style="dark" />
-      <RootNavigator />
-    </NavigationContainer>
+    <View style={{ flex: 1 }} onStartShouldSetResponderCapture={onTouchCapture}>
+      <NavigationContainer onStateChange={recordActivity}>
+        <StatusBar style="dark" />
+        <RootNavigator />
+      </NavigationContainer>
+    </View>
   );
 }
 

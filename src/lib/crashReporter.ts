@@ -51,11 +51,24 @@ export function captureMessage(message: string, context?: Record<string, unknown
   }
 }
 
-/** Shallow-redact string values in a context object before it leaves the device. */
+/**
+ * Deep-redact string values anywhere in a context object before it leaves the
+ * device. Nested objects/arrays are walked recursively so PII/PHI buried in a
+ * sub-object (e.g. { user: { email } }) is not shipped to a third-party service.
+ */
 function scrub(context: Record<string, unknown>): Record<string, unknown> {
-  const out: Record<string, unknown> = {};
-  for (const [k, v] of Object.entries(context)) {
-    out[k] = typeof v === "string" ? redactForLogs(v) : v;
+  return deepScrub(context) as Record<string, unknown>;
+}
+
+function deepScrub(val: unknown): unknown {
+  if (typeof val === "string") return redactForLogs(val);
+  if (Array.isArray(val)) return val.map(deepScrub);
+  if (val !== null && typeof val === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(val as Record<string, unknown>)) {
+      out[k] = deepScrub(v);
+    }
+    return out;
   }
-  return out;
+  return val;
 }
