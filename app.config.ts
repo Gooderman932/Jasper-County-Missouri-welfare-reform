@@ -39,8 +39,8 @@ const PREMIUM_OFFER_ID = process.env.PREMIUM_OFFER_ID ?? 'freetrial-1m';
 const isEasBuild = ['production', 'preview'].includes(process.env.EAS_BUILD_PROFILE ?? '');
 if (isEasBuild) {
   const missing: string[] = [];
-  if (APPWRITE_PROJECT_ID === 'REPLACE_ME') missing.push('APPWRITE_PROJECT_ID');
-  if (APPWRITE_ENDPOINT.includes('example.com')) missing.push('APPWRITE_ENDPOINT');
+  if (!APPWRITE_PROJECT_ID || APPWRITE_PROJECT_ID === 'REPLACE_ME') missing.push('APPWRITE_PROJECT_ID');
+  if (!APPWRITE_ENDPOINT || APPWRITE_ENDPOINT.includes('example.com')) missing.push('APPWRITE_ENDPOINT');
   if (missing.length > 0) {
     throw new Error(
       `[app.config] Production/preview build is missing required env vars: ${missing.join(', ')}. ` +
