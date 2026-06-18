@@ -144,9 +144,13 @@ module.exports = async function (context) {
         ? g.startTime
         : null;
       const currentPeriodEndsAt = g.lineItems?.[0]?.expiryTime ?? null;
-      const isPremiumStatuses = new Set(['trial', 'active', 'grace_period']);
+      // SubscriptionStatus 'trialing' (NOT 'trial') is the value emitted by
+      // mapState above and is the canonical entity contract in
+      // src/domain/entities :: SubscriptionStatus. The old set used 'trial'
+      // which meant trial users never had isPremium flipped on.
+      const isPremiumStatuses = new Set(['trialing', 'active', 'grace_period']);
       const item = {
-        ownerId: userId,
+        userId,
         productId: pr.productId,
         basePlanId: g.lineItems?.[0]?.offerDetails?.basePlanId ?? 'monthly-autorenew',
         offerId: g.lineItems?.[0]?.offerDetails?.offerId ?? null,
@@ -163,7 +167,7 @@ module.exports = async function (context) {
 
     if (!best) {
       best = {
-        ownerId: userId,
+        userId,
         productId: 'premium_monthly_599',
         basePlanId: 'monthly-autorenew',
         isPremium: false,
@@ -172,9 +176,11 @@ module.exports = async function (context) {
       };
     }
 
-    // Upsert: list existing then update or create
+    // Upsert: list existing then update or create. Entitlements are keyed
+    // by userId per the SubscriptionEntitlement domain contract and the
+    // unique idx_user index in scripts/provision-appwrite.ts.
     const existing = await db.listDocuments(DATABASE, COLLECTIONS.entitlements, [
-      sdk.Query.equal('ownerId', userId),
+      sdk.Query.equal('userId', userId),
       sdk.Query.limit(1),
     ]);
     if (existing.documents.length > 0) {

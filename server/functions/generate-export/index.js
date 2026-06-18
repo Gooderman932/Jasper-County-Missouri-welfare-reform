@@ -22,6 +22,10 @@
  */
 
 const sdk = require('node-appwrite');
+// node-appwrite >=14 moved InputFile out of the root export and into a
+// dedicated entrypoint at 'node-appwrite/file'. v13 also exposes it there.
+// Importing the new path keeps the function working across both versions.
+const { InputFile } = require('node-appwrite/file');
 const archiver = require('archiver');
 const { PassThrough } = require('stream');
 
@@ -64,29 +68,32 @@ module.exports = async ({ req, res, log, error }) => {
     const storage = new sdk.Storage(client);
 
     // ----- Entitlement check -----
-    // Entitlements are keyed by ownerId (not document id) - see
-    // scripts/provision-appwrite.ts and server/functions/verify-purchase.
+    // Entitlements are keyed by userId — see scripts/provision-appwrite.ts
+    // (idx_user unique on userId) and the SubscriptionEntitlement contract in
+    // src/domain/entities/index.ts.
     let entitlement;
     try {
       const ents = await databases.listDocuments(
         APPWRITE_DATABASE_ID,
         'entitlements',
-        [sdk.Query.equal('ownerId', userId), sdk.Query.limit(1)],
+        [sdk.Query.equal('userId', userId), sdk.Query.limit(1)],
       );
       entitlement = ents.documents[0];
     } catch (_) {
       return res.json({ ok: false, error: 'No active entitlement. Export is a premium feature.' }, 402);
     }
+    // SubscriptionStatus 'trialing' (NOT 'trial') is the canonical value
+    // emitted by mapState in verify-purchase and consumed by the mobile app.
     const isPremium =
       entitlement?.isPremium === true ||
-      ['trial', 'active', 'grace_period'].includes(entitlement?.status);
+      ['trialing', 'active', 'grace_period'].includes(entitlement?.status);
     if (!isPremium) {
       return res.json({ ok: false, error: 'Premium subscription required to export.' }, 402);
     }
 
     // ----- Load case data -----
     const caseRow = await databases.getDocument(APPWRITE_DATABASE_ID, 'cases', caseId);
-    if (caseRow.ownerId !== userId) {
+    if (caseRow.ownerUserId !== userId) {
       return res.json({ ok: false, error: 'Forbidden' }, 403);
     }
 
@@ -136,7 +143,10 @@ module.exports = async ({ req, res, log, error }) => {
 
     // ----- Upload to storage -----
     const fileName = `case-${caseId}-${Date.now()}.zip`;
-    const inputFile = sdk.InputFile.fromBuffer(zipBuffer, fileName);
+    // InputFile lives at 'node-appwrite/file' in v13+; the previous
+    // `sdk.InputFile.fromBuffer(...)` resolved to undefined and threw at
+    // runtime.
+    const inputFile = InputFile.fromBuffer(zipBuffer, fileName);
     const uploaded = await storage.createFile(APPWRITE_EXPORTS_BUCKET, sdk.ID.unique(), inputFile, [
       sdk.Permission.read(sdk.Role.user(userId)),
       sdk.Permission.delete(sdk.Role.user(userId)),

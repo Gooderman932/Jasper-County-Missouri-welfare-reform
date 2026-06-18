@@ -2,9 +2,13 @@
  * provision-appwrite.ts
  *
  * One-time / idempotent script that creates the entire Appwrite backend for
- * the Family Rights App:
+ * the Family Rights App. The schema here MUST match the vocabulary used by
+ * the mobile app (src/infra/appwrite/**) — that is the production entrypoint
+ * the script services. If a field is added/removed in the app's mappers or
+ * repositories, mirror that change here.
+ *
  *   - Database: family_rights_main
- *   - 12 collections with attributes + indexes + permissions
+ *   - 13 collections with attributes + indexes + permissions
  *   - 5 storage buckets
  *
  * Usage:
@@ -160,86 +164,124 @@ async function collection(id: string, name: string) {
   );
 
   // 1. users_profile -------------------------------------------------------
+  //    Mirrors mappers.mapUser + AuthRepositoryAppwrite.
   await collection('users_profile', 'User Profiles');
   await str('users_profile', 'displayName', 120);
   await str('users_profile', 'email', 320);
-  await str('users_profile', 'jurisdiction', 80);
+  await str('users_profile', 'region', 120);
+  // 'free' | 'trialing' | 'active' | 'grace_period' | 'billing_issue' |
+  // 'expired' | 'canceled' — see domain/entities :: SubscriptionStatus.
+  await str('users_profile', 'subscriptionStatus', 20, false, 'free');
+  await bool('users_profile', 'onboardingComplete', false, false);
   await bool('users_profile', 'acceptedDisclaimerV1', false, false);
   await bool('users_profile', 'acceptedPrivacyV1', false, false);
-  await dt('users_profile', 'createdAt');
   await idx('users_profile', 'idx_email', ['email']);
 
   // 2. cases ---------------------------------------------------------------
+  //    Mirrors CaseRepositoryAppwrite.createCase + publishCase + mapCase.
   await collection('cases', 'Cases');
-  await str('cases', 'ownerId', 64, true);
+  await str('cases', 'ownerUserId', 64, true);
   await str('cases', 'title', 200, true);
-  await str('cases', 'courtCaseNumber', 80);
-  await str('cases', 'lowerCourtCaseNumber', 80);
-  await str('cases', 'jurisdiction', 120);
-  await str('cases', 'stage', 60);
-  await str('cases', 'summary', 5000);
+  await str('cases', 'jurisdictionState', 80, true);
+  await str('cases', 'jurisdictionCounty', 120);
+  // CaseType union — see domain/entities.
+  await str('cases', 'caseType', 40, true);
+  // CaseStatus: 'open' | 'closed' | 'appeal' | 'archived'.
+  await str('cases', 'status', 24, false, 'open');
   await dt('cases', 'openedAt');
-  await dt('cases', 'lastEventAt');
-  await arr('cases', 'tags', 40);
-  await idx('cases', 'idx_owner', ['ownerId']);
-  await idx('cases', 'idx_owner_stage', ['ownerId', 'stage']);
+  // Public-case fields (publishCase / unpublishCase / listPublicCases).
+  // 'private' | 'public'.
+  await str('cases', 'visibility', 16, false, 'private');
+  await str('cases', 'publicSlug', 80);
+  await dt('cases', 'publishedAt');
+  await str('cases', 'publishedBy', 64);
+  await dt('cases', 'unpublishedAt');
+  await str('cases', 'publicTitle', 240);
+  // Free-tier-friendly. The publish flow can chunk longer summaries into a
+  // Document if needed.
+  await str('cases', 'publicSummary', 5000);
+  // RedactionPolicy is a small JSON blob — stored stringified.
+  await str('cases', 'redactionPolicy', 1000);
+  await bool('cases', 'isReferenceCase', false, false);
+  await idx('cases', 'idx_owner', ['ownerUserId']);
+  await idx('cases', 'idx_owner_status', ['ownerUserId', 'status']);
+  await idx('cases', 'idx_visibility_published', ['visibility', 'publishedAt']);
+  await idx('cases', 'idx_public_slug', ['publicSlug']);
 
   // 3. case_parties --------------------------------------------------------
+  //    Mirrors PartyRepositoryAppwrite + mapParty.
   await collection('case_parties', 'Case Parties');
   await str('case_parties', 'caseId', 64, true);
-  await str('case_parties', 'ownerId', 64, true);
-  await str('case_parties', 'role', 40, true);           // judge | attorney | caseworker | parent | child | foster | opposing_attorney | gal
-  await str('case_parties', 'name', 200, true);
-  await str('case_parties', 'organization', 200);
-  await str('case_parties', 'notes', 2000);
+  // PartyRole union.
+  await str('case_parties', 'role', 40, true);
+  await str('case_parties', 'displayLabel', 200, true);
+  await str('case_parties', 'legalName', 200);
+  await str('case_parties', 'anonymizedLabel', 200);
+  await bool('case_parties', 'isMinor', false, false);
   await idx('case_parties', 'idx_case', ['caseId']);
   await idx('case_parties', 'idx_case_role', ['caseId', 'role']);
 
   // 4. case_events --------------------------------------------------------
+  //    Mirrors EventRepositoryAppwrite + mapEvent.
   await collection('case_events', 'Case Events');
   await str('case_events', 'caseId', 64, true);
-  await str('case_events', 'ownerId', 64, true);
-  await str('case_events', 'title', 240, true);
-  // Free-tier-friendly: trimmed from 8000 to 2000. Longer notes should attach
-  // a Document instead of inlining text in the event row.
-  await str('case_events', 'description', 2000);
+  // EventType union.
+  await str('case_events', 'eventType', 40, true);
   await dt('case_events', 'occurredAt', true);
+  // Free-tier-friendly: trimmed from 8000 to 2000.
+  await str('case_events', 'description', 2000);
+  await str('case_events', 'sourceDocumentId', 64);
   await arr('case_events', 'tags', 40);
-  await arr('case_events', 'documentIds', 64);
+  // Per-event visibility override for public cases: 'inherit'|'private'|'public'.
+  await str('case_events', 'visibility', 16, false, 'inherit');
   await idx('case_events', 'idx_case_time', ['caseId', 'occurredAt']);
 
   // 5. documents ----------------------------------------------------------
+  //    Mirrors DocumentRepositoryAppwrite + mapDocument + the ocr-process
+  //    server function (ocrText / ocrPagesJson / ocrStatus / ocrError /
+  //    ocrCompletedAt). 'ownerUserId' (NOT 'ownerId') is the canonical key
+  //    used by mappers.mapDocument.
   await collection('documents', 'Documents');
   await str('documents', 'caseId', 64, true);
-  await str('documents', 'ownerId', 64, true);
+  await str('documents', 'ownerUserId', 64, true);
   await str('documents', 'title', 240);
+  // DocumentCategory union.
+  await str('documents', 'category', 40);
+  await str('documents', 'bucketId', 64);
   await str('documents', 'fileId', 64, true);
   await str('documents', 'mimeType', 80);
-  await int('documents', 'sizeBytes');
-  // Free-tier-friendly: OCR text/pages stored in a Storage bucket instead of
-  // inline String columns. Reference the file IDs here; fetch contents from
-  // the case-documents bucket on demand.
-  await str('documents', 'ocrTextFileId', 64);
-  await str('documents', 'ocrPagesFileId', 64);
-  await str('documents', 'ocrStatus', 24, false, 'pending'); // pending|in_progress|completed|failed
+  await dt('documents', 'uploadedAt');
+  // OCR. Inline up to 1 MB per node-appwrite max; ocr-process truncates.
+  await str('documents', 'extractedText', 1_000_000);
+  await str('documents', 'ocrText', 1_000_000);
+  await str('documents', 'ocrPagesJson', 1_000_000);
+  // 'pending'|'in_progress'|'completed'|'failed'.
+  await str('documents', 'ocrStatus', 24, false, 'pending');
   await str('documents', 'ocrError', 1000);
   await dt('documents', 'ocrCompletedAt');
-  await dt('documents', 'capturedAt');
+  // RedactionStatus: 'raw'|'redacted'|'needs_review'.
+  await str('documents', 'redactionStatus', 24, false, 'raw');
+  await arr('documents', 'tags', 40);
+  await str('documents', 'visibility', 16, false, 'inherit');
   await idx('documents', 'idx_case', ['caseId']);
-  await idx('documents', 'idx_owner_status', ['ownerId', 'ocrStatus']);
+  await idx('documents', 'idx_owner_status', ['ownerUserId', 'ocrStatus']);
 
   // 6. issue_flags --------------------------------------------------------
+  //    Mirrors mappers.mapIssue.
   await collection('issue_flags', 'Issue Flags');
   await str('issue_flags', 'caseId', 64, true);
-  await str('issue_flags', 'ownerId', 64, true);
-  await str('issue_flags', 'code', 64, true);
+  // IssueType union.
+  await str('issue_flags', 'type', 40, true);
+  // IssueSeverity: 'info'|'watch'|'serious'.
+  await str('issue_flags', 'severity', 20, false, 'watch');
+  // IssueStatus: 'system_generated'|'user_marked'|'reviewed'.
+  await str('issue_flags', 'status', 24, false, 'system_generated');
   await str('issue_flags', 'summary', 500);
-  await str('issue_flags', 'detail', 4000);
-  await str('issue_flags', 'severity', 20, false, 'review'); // review|elevated|critical
-  await arr('issue_flags', 'eventIds', 64);
-  await dt('issue_flags', 'createdAt');
+  await str('issue_flags', 'explanation', 4000);
+  await arr('issue_flags', 'sourceRefs', 64);
+  await str('issue_flags', 'visibility', 16, false, 'inherit');
   await idx('issue_flags', 'idx_case', ['caseId']);
-  await idx('issue_flags', 'idx_code', ['code']);
+  await idx('issue_flags', 'idx_type', ['type']);
 
   // 7. pattern_matches (public-read aggregates) ---------------------------
   await ok('collection pattern_matches', () =>
@@ -251,44 +293,51 @@ async function collection(id: string, name: string) {
       true,
     ),
   );
-  await str('pattern_matches', 'code', 64, true);
-  await str('pattern_matches', 'label', 200);
-  await int('pattern_matches', 'caseCount', false, 0);
-  await arr('pattern_matches', 'jurisdictions', 120);
-  await arr('pattern_matches', 'judges', 200);
-  await arr('pattern_matches', 'caseworkers', 200);
-  await arr('pattern_matches', 'attorneys', 200);
-  await str('pattern_matches', 'displayText', 2000);
-  await dt('pattern_matches', 'lastUpdated');
-  await idx('pattern_matches', 'idx_code', ['code']);
+  await str('pattern_matches', 'caseId', 64);
+  // PatternMatchType union.
+  await str('pattern_matches', 'matchType', 40);
+  await int('pattern_matches', 'score', false, 0);
+  await str('pattern_matches', 'explanation', 2000);
+  await arr('pattern_matches', 'matchedIssueTypes', 40);
+  await int('pattern_matches', 'visibleCount', false, 0);
+  await idx('pattern_matches', 'idx_match_type', ['matchType']);
 
   // 8. coalition_opt_ins --------------------------------------------------
+  //    Mirrors mappers.mapCoalition.
   await collection('coalition_opt_ins', 'Coalition Opt-Ins');
+  await str('coalition_opt_ins', 'userId', 64, true);
   await str('coalition_opt_ins', 'caseId', 64, true);
-  await str('coalition_opt_ins', 'ownerId', 64, true);
-  await bool('coalition_opt_ins', 'optIn', true, false);
-  await dt('coalition_opt_ins', 'consentedAt');
-  await str('coalition_opt_ins', 'consentVersion', 16);
-  await idx('coalition_opt_ins', 'idx_case', ['caseId'], 'unique');
+  await bool('coalition_opt_ins', 'consentToPatternMatching', false, false);
+  await bool('coalition_opt_ins', 'consentToAnonymizedCohortStats', false, false);
+  await bool('coalition_opt_ins', 'consentToAttorneyReview', false, false);
+  await bool('coalition_opt_ins', 'consentToAdvocateReview', false, false);
+  await dt('coalition_opt_ins', 'consentTimestamp');
+  await idx('coalition_opt_ins', 'idx_user_case', ['userId', 'caseId'], 'unique');
 
   // 9. entitlements -------------------------------------------------------
+  //    Mirrors mappers.mapEntitlement + server/functions/verify-purchase
+  //    (which writes ownerId historically). The canonical key per the domain
+  //    contract (entities :: SubscriptionEntitlement.userId) is 'userId';
+  //    verify-purchase is being migrated to write 'userId' in this same fix.
   await collection('entitlements', 'Entitlements');
-  await str('entitlements', 'ownerId', 64, true);
+  await str('entitlements', 'userId', 64, true);
   await bool('entitlements', 'isPremium', false, false);
-  // status mirrors the Google Play state machine: trial | active |
-  // grace_period | billing_issue | expired | canceled. verify-purchase writes
-  // both isPremium (derived) and status (raw) so consumers can pick.
+  // EntitlementPlatform: 'google_play'.
+  await str('entitlements', 'platform', 20, false, 'google_play');
+  // SubscriptionStatus union (see entities.ts). NOTE: 'trialing' (not 'trial')
+  // is the canonical value emitted by mapState in verify-purchase.
   await str('entitlements', 'status', 20);
   await str('entitlements', 'productId', 80);
   await str('entitlements', 'basePlanId', 80);
   await str('entitlements', 'offerId', 80);
-  await dt('entitlements', 'expiresAt');
+  await dt('entitlements', 'currentPeriodEndsAt');
   await dt('entitlements', 'trialEndsAt');
   await str('entitlements', 'lastVerifiedToken', 256);
   await dt('entitlements', 'lastVerifiedAt');
-  await idx('entitlements', 'idx_owner', ['ownerId'], 'unique');
+  await idx('entitlements', 'idx_user', ['userId'], 'unique');
 
   // 10. purchase_records --------------------------------------------------
+  //     verify-purchase reads ownerId; keep that name here for the producer.
   await collection('purchase_records', 'Purchase Records');
   await str('purchase_records', 'ownerId', 64, true);
   await str('purchase_records', 'productId', 80);
@@ -297,10 +346,11 @@ async function collection(id: string, name: string) {
   await str('purchase_records', 'state', 20);   // verified | failed | refunded
   // Free-tier-friendly: trimmed from 60_000 to 8000.
   await str('purchase_records', 'rawJson', 8000);
-  await dt('purchase_records', 'createdAt');
+  await dt('purchase_records', 'receivedAt');
   await idx('purchase_records', 'idx_owner', ['ownerId']);
 
   // 11. exports -----------------------------------------------------------
+  //     Written by server/functions/generate-export.
   await collection('exports', 'Exports');
   await str('exports', 'ownerId', 64, true);
   await str('exports', 'caseId', 64, true);
@@ -315,14 +365,44 @@ async function collection(id: string, name: string) {
   await idx('exports', 'idx_owner', ['ownerId']);
 
   // 12. attorney_review_requests -----------------------------------------
+  //     Mirrors AttorneyReviewRequest in entities.ts.
   await collection('attorney_review_requests', 'Attorney Review Requests');
-  await str('attorney_review_requests', 'ownerId', 64, true);
+  await str('attorney_review_requests', 'userId', 64, true);
   await str('attorney_review_requests', 'caseId', 64, true);
-  await str('attorney_review_requests', 'status', 24, false, 'pending'); // pending|matched|declined|completed
-  await str('attorney_review_requests', 'notes', 2000);
-  await bool('attorney_review_requests', 'consented', true, false);
-  await dt('attorney_review_requests', 'createdAt');
+  // 'pending'|'received'|'declined'|'matched'.
+  await str('attorney_review_requests', 'status', 24, false, 'pending');
+  await str('attorney_review_requests', 'packetExportId', 64);
+  await dt('attorney_review_requests', 'submittedAt');
   await idx('attorney_review_requests', 'idx_status', ['status']);
+  await idx('attorney_review_requests', 'idx_user', ['userId']);
+
+  // 13. content_reports ---------------------------------------------------
+  //     UGC moderation queue. Used by ContentReportRepositoryAppwrite and
+  //     was previously NEVER provisioned, so every report-submit was 404'ing
+  //     against real Appwrite. Mirrors mappers.mapContentReport.
+  //     Authenticated users (including the reporter) may create; admin team
+  //     reads/updates. Doc-level permissions can refine read to reporter+admin
+  //     in the repository on create.
+  await ok('collection content_reports', () =>
+    databases.createCollection(
+      APPWRITE_DATABASE_ID,
+      'content_reports',
+      'Content Reports',
+      [Permission.create(Role.users())],
+      true,
+    ),
+  );
+  await str('content_reports', 'caseId', 64, true);
+  await str('content_reports', 'reporterUserId', 64);
+  // ContentReportReason union.
+  await str('content_reports', 'reason', 40, true);
+  await str('content_reports', 'details', 4000);
+  // ContentReportStatus: 'open'|'reviewing'|'resolved'|'dismissed'.
+  await str('content_reports', 'status', 24, false, 'open');
+  await dt('content_reports', 'resolvedAt');
+  await str('content_reports', 'resolutionNote', 2000);
+  await idx('content_reports', 'idx_case', ['caseId']);
+  await idx('content_reports', 'idx_status', ['status']);
 
   // -------- Storage buckets --------
   const buckets: Array<[string, string, number]> = [
