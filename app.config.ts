@@ -108,6 +108,7 @@ const config: ExpoConfig = {
     'expo-document-picker',
     'expo-notifications',
     'expo-updates',
+    './plugins/with-iap-play-flavor.js',
   ],
   extra: {
     appwriteEndpoint: APPWRITE_ENDPOINT,
