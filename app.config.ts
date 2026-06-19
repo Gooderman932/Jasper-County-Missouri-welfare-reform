@@ -77,7 +77,6 @@ const config: ExpoConfig = {
       backgroundColor: '#0E1A2B',
     },
     package: 'com.poordudeholdings.familyrights',
-    versionCode: 1,
     permissions: [
       'CAMERA',
       'READ_EXTERNAL_STORAGE',
@@ -89,12 +88,26 @@ const config: ExpoConfig = {
   web: {
     bundler: 'metro',
   },
+  // Pin a runtimeVersion so OTA updates only ship to compatible native builds.
+  // Tied to the native binary — must change whenever native deps change.
+  runtimeVersion: {
+    policy: 'appVersion',
+  },
+  updates: {
+    // EAS Update endpoint for this project. Required by expo-updates so the
+    // Android manifest merger has a value for the EXPO_UPDATE_URL placeholder.
+    url: 'https://u.expo.dev/da23cbf7-9e65-48a5-9b6b-2e9fd0dcf9a8',
+    enabled: true,
+    checkAutomatically: 'ON_LOAD',
+    fallbackToCacheTimeout: 0,
+  },
   plugins: [
     'expo-secure-store',
     'expo-camera',
     'expo-image-picker',
     'expo-document-picker',
     'expo-notifications',
+    'expo-updates',
   ],
   extra: {
     appwriteEndpoint: APPWRITE_ENDPOINT,
