@@ -166,6 +166,7 @@ export interface ExportRepository {
   exportIssueSummaryPdf(caseId: string): Promise<{ id: string; uri: string }>;
   exportAttorneyPacket(caseId: string): Promise<{ id: string; uri: string }>;
   exportDocumentZip(caseId: string, documentIds: string[]): Promise<{ id: string; uri: string }>;
+  exportCalendarIcs(caseId: string): Promise<{ id: string; uri: string }>;
 }
 
 export interface NotificationRepository {
