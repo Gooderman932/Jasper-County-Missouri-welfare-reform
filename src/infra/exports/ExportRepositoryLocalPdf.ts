@@ -189,7 +189,7 @@ export class ExportRepositoryLocalPdf implements ExportRepository {
     const escIcs = (s: string) =>
       (s ?? '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
 
-    const toIcsDate = (iso: string) => format(new Date(iso), "yyyyMMdd'T'HHmmss'Z'");
+    const toIcsDate = (iso: string) => new Date(iso).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
 
     const vevent = (e: CaseEvent) =>
       [
@@ -224,7 +224,7 @@ export class ExportRepositoryLocalPdf implements ExportRepository {
         { uri: localUri, name: fileName, type: 'text/calendar' } as any,
         ownerOnly(me.$id)
       );
-      await databases.createDocument(
+      const exp = await databases.createDocument(
         DATABASE,
         COLLECTIONS.exports,
         ID.unique(),
@@ -238,11 +238,11 @@ export class ExportRepositoryLocalPdf implements ExportRepository {
         },
         ownerOnly(me.$id)
       );
+      return { id: (exp as any).$id, uri: localUri };
     } catch (err) {
       console.warn('[export] calendar cloud upload failed, returning local uri', err);
+      return { id: 'local-only', uri: localUri };
     }
-
-    return { id: 'local-only', uri: localUri };
   }
 
   async exportDocumentZip(): Promise<{ id: string; uri: string }> {
