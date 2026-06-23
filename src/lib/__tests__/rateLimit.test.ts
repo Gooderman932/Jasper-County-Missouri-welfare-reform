@@ -99,6 +99,26 @@ describe('RateLimiter', () => {
     // u2 is unaffected
     expect(limiter.record('u2', NOW + 3).allowed).toBe(true);
   });
+
+  it('pruneExpired removes stale entries', () => {
+    const limiter = makeLimiter(3, 60_000);
+    limiter.record('u1', NOW);
+    limiter.record('u2', NOW + 1);
+    // Advance time past the window — both keys are now stale
+    limiter.pruneExpired(NOW + 120_000);
+    // After prune, both keys should behave as fresh (attempt count resets)
+    expect(limiter.record('u1', NOW + 120_001).attemptsInWindow).toBe(1);
+    expect(limiter.record('u2', NOW + 120_002).attemptsInWindow).toBe(1);
+  });
+
+  it('pruneExpired does not prune locked keys until lockout expires', () => {
+    const limiter = makeLimiter(1, 60_000, 120_000);
+    limiter.record('u', NOW);
+    limiter.record('u', NOW + 1); // triggers lockout (lockoutMs = 120_000)
+    // Prune at NOW + 90_000 — within lockout period, key should stay
+    limiter.pruneExpired(NOW + 90_000);
+    expect(limiter.isLocked('u', NOW + 90_000)).toBe(true);
+  });
 });
 
 describe('loginRateLimiter (pre-configured NIST AC-7)', () => {

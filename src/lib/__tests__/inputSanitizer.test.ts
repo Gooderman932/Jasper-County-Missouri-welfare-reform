@@ -4,6 +4,7 @@ import {
   validateEmail,
   validateCaseNumber,
   validateUuid,
+  validateDocumentId,
   detectInjectionAttempt,
   assertSafeInput,
   InputValidationError,
@@ -123,17 +124,61 @@ describe('validateUuid', () => {
   });
 });
 
+describe('validateDocumentId', () => {
+  it('accepts UUID v4', () => {
+    expect(validateDocumentId('f47ac10b-58cc-4372-a567-0e02b2c3d479')).toBe(true);
+  });
+
+  it('accepts Appwrite native 20-char alphanumeric ID', () => {
+    expect(validateDocumentId('abcdefghij1234567890')).toBe(true);
+    expect(validateDocumentId('ABCDEFGHIJ1234567890')).toBe(true);
+  });
+
+  it('rejects IDs of wrong length or format', () => {
+    expect(validateDocumentId('short')).toBe(false);
+    expect(validateDocumentId('not-a-uuid-and-not-20chars')).toBe(false);
+    expect(validateDocumentId(null)).toBe(false);
+  });
+});
+
 describe('detectInjectionAttempt', () => {
   it('returns clean for normal text', () => {
     expect(detectInjectionAttempt('Hello, Kody').clean).toBe(true);
     expect(detectInjectionAttempt('Case review for SD38180').clean).toBe(true);
   });
 
-  it('detects SQL keywords', () => {
+  it('does NOT flag plain English words that happen to be SQL keywords', () => {
+    // "select", "delete", "create", "grant" are common English words —
+    // they must not trigger false positives when used in prose.
+    expect(detectInjectionAttempt('Please select a case from the list').clean).toBe(true);
+    expect(detectInjectionAttempt('I need to delete this note').clean).toBe(true);
+    expect(detectInjectionAttempt('create a new timeline entry').clean).toBe(true);
+    expect(detectInjectionAttempt('grant access to the attorney').clean).toBe(true);
+  });
+
+  it('detects SQL injection: UNION SELECT', () => {
+    const r = detectInjectionAttempt("1 UNION SELECT username, password FROM users");
+    expect(r.clean).toBe(false);
+    expect(r.matchedLabels).toContain('sql_injection');
+  });
+
+  it('detects SQL injection: keyword after semicolon/quote', () => {
     const r = detectInjectionAttempt("'; DROP TABLE cases; --");
     expect(r.clean).toBe(false);
-    expect(r.matchedLabels).toContain('sql_keyword');
+    expect(r.matchedLabels).toContain('sql_injection');
     expect(r.matchedLabels).toContain('sql_comment');
+  });
+
+  it('detects SQL injection: EXEC stored-procedure call', () => {
+    // EXEC(...) / EXECUTE(...) are always SQL/shell; never appear in normal prose
+    expect(detectInjectionAttempt("EXEC xp_cmdshell('dir')").clean).toBe(false);
+    expect(detectInjectionAttempt('EXECUTE(malicious)').clean).toBe(false);
+  });
+
+  it('does NOT flag bare SELECT...FROM without injection context', () => {
+    // Without UNION or a SQL metachar before it, SELECT...FROM could be prose
+    // ("select all items from the list") — we accept this tradeoff.
+    expect(detectInjectionAttempt('SELECT name FROM users').clean).toBe(true);
   });
 
   it('detects SQL comment sequences', () => {
@@ -147,10 +192,15 @@ describe('detectInjectionAttempt', () => {
     expect(r.matchedLabels).toContain('script_tag');
   });
 
-  it('detects event handler attributes', () => {
+  it('detects known HTML event handler attributes', () => {
     const r = detectInjectionAttempt('<img onerror=alert(1)>');
     expect(r.clean).toBe(false);
     expect(r.matchedLabels).toContain('event_handler');
+  });
+
+  it('does NOT flag "online =", "one =", etc. (generic on-words)', () => {
+    expect(detectInjectionAttempt('online = true').clean).toBe(true);
+    expect(detectInjectionAttempt('one = 1').clean).toBe(true);
   });
 
   it('detects path traversal', () => {
@@ -158,16 +208,18 @@ describe('detectInjectionAttempt', () => {
   });
 
   it('detects null bytes', () => {
+    // eslint-disable-next-line no-control-regex
     expect(detectInjectionAttempt('abc\x00def').clean).toBe(false);
   });
 
-  it('detects CRLF injection', () => {
-    expect(detectInjectionAttempt('header\r\nX-Injected: value').clean).toBe(false);
+  it('does NOT flag normal Windows CRLF newlines in multi-line text', () => {
+    // CRLF (\r\n) is a normal line ending from Windows clients — must not
+    // block legitimate multi-line case notes or emails.
+    expect(detectInjectionAttempt('line1\r\nline2\r\nline3').clean).toBe(true);
   });
 
   it('is idempotent across multiple calls (no regex lastIndex leakage)', () => {
     const input = "'; DROP TABLE users; --";
-    // Calling twice must return the same result (tests for stateful global regex bug)
     expect(detectInjectionAttempt(input).clean).toBe(false);
     expect(detectInjectionAttempt(input).clean).toBe(false);
   });

@@ -17,6 +17,12 @@ export interface RateLimitStore {
   getLockUntil(key: string): number;
   setLockUntil(key: string, until: number): void;
   clearKey(key: string): void;
+  /**
+   * Optional: purge entries whose timestamps have all fallen outside `windowMs`
+   * and whose lockout has expired. Implement to prevent unbounded memory growth
+   * in the in-process store; Redis-backed stores rely on key TTLs instead.
+   */
+  pruneExpired?(windowMs: number, nowMs: number): void;
 }
 
 class MemoryStore implements RateLimitStore {
@@ -38,6 +44,20 @@ class MemoryStore implements RateLimitStore {
   clearKey(key: string): void {
     this.timestamps.delete(key);
     this.lockUntil.delete(key);
+  }
+
+  pruneExpired(windowMs: number, nowMs: number): void {
+    const windowStart = nowMs - windowMs;
+    for (const key of [...this.timestamps.keys()]) {
+      const active = (this.timestamps.get(key) ?? []).filter(t => t > windowStart);
+      const locked = (this.lockUntil.get(key) ?? 0) > nowMs;
+      if (active.length === 0 && !locked) {
+        this.timestamps.delete(key);
+        this.lockUntil.delete(key);
+      } else {
+        this.timestamps.set(key, active);
+      }
+    }
   }
 }
 
@@ -116,6 +136,15 @@ export class RateLimiter {
   /** Clears all state for a key (e.g. after a successful authentication). */
   reset(key: string): void {
     this.store.clearKey(key);
+  }
+
+  /**
+   * Purges keys whose window has fully elapsed and whose lockout has expired.
+   * Call periodically (e.g. every 10 minutes) to prevent unbounded memory
+   * growth. No-op when using a store without `pruneExpired` (e.g. Redis).
+   */
+  pruneExpired(nowMs: number = Date.now()): void {
+    this.store.pruneExpired?.(this.windowMs, nowMs);
   }
 }
 

@@ -92,27 +92,25 @@ describe('hmacSha256 / hmacVerify', () => {
 });
 
 describe('deriveKey', () => {
-  it('produces a Buffer of KEY_BYTES length', () => {
+  it('produces a Buffer of KEY_BYTES length', async () => {
     const salt = generateRandomBytes(SALT_BYTES);
-    const key = deriveKey('password', salt);
+    const key = await deriveKey('password', salt);
     expect(Buffer.isBuffer(key)).toBe(true);
     expect(key.length).toBe(KEY_BYTES);
   });
 
-  it('is deterministic for the same password and salt', () => {
+  it('is deterministic for the same password and salt', async () => {
     const salt = generateRandomBytes(SALT_BYTES);
-    expect(deriveKey('password', salt).toString('hex')).toBe(
-      deriveKey('password', salt).toString('hex'),
-    );
+    const [k1, k2] = await Promise.all([deriveKey('password', salt), deriveKey('password', salt)]);
+    expect(k1.toString('hex')).toBe(k2.toString('hex'));
   });
 
-  it('differs for different salts', () => {
+  it('differs for different salts', async () => {
     const salt1 = generateRandomBytes(SALT_BYTES);
     const salt2 = generateRandomBytes(SALT_BYTES);
-    expect(deriveKey('password', salt1).toString('hex')).not.toBe(
-      deriveKey('password', salt2).toString('hex'),
-    );
-  });
+    const [k1, k2] = await Promise.all([deriveKey('password', salt1), deriveKey('password', salt2)]);
+    expect(k1.toString('hex')).not.toBe(k2.toString('hex'));
+  }, 10_000); // PBKDF2 at full iteration count; allow up to 10s per test
 });
 
 describe('encryptAesGcm / decryptAesGcm', () => {

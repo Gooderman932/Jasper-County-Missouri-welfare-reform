@@ -183,8 +183,21 @@ export class ThreatDetector {
   getSummary(userId: string, nowMs: number = Date.now()): ThreatSummary {
     const recent = this.store.getRecent(userId, this.windowMs, nowMs);
 
+    // Find the most recent successful login. Auth failures before this point
+    // are excluded from scoring — the user proved their identity, resetting
+    // the failure streak (analogous to NIST AC-7's reset-on-success requirement).
+    let latestSuccessAt = 0;
+    for (const e of recent) {
+      if (e.type === 'auth.success' && e.occurredAt > latestSuccessAt) {
+        latestSuccessAt = e.occurredAt;
+      }
+    }
+
     const counts: Partial<Record<ThreatEventType, number>> = {};
     for (const e of recent) {
+      if (e.type === 'auth.failure' && e.occurredAt <= latestSuccessAt) {
+        continue; // failures before the last success are forgiven
+      }
       counts[e.type] = (counts[e.type] ?? 0) + 1;
     }
 

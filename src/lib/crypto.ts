@@ -19,7 +19,7 @@ import {
   createHmac,
   createCipheriv,
   createDecipheriv,
-  pbkdf2Sync,
+  pbkdf2,
   timingSafeEqual,
 } from 'crypto';
 
@@ -74,13 +74,22 @@ export function hmacVerify(key: string | Buffer, data: string | Buffer, expected
 /**
  * Derives a 256-bit key from a password + salt using PBKDF2-HMAC-SHA256.
  * The salt should be a fresh random value generated with `generateRandomBytes(SALT_BYTES)`.
+ *
+ * This is async to avoid blocking the Node.js event loop. At 310,000 iterations
+ * `pbkdf2Sync` would block for ~100ms+ on typical hardware — unacceptable in a
+ * server handling concurrent requests.
  */
 export function deriveKey(
   password: string,
   salt: Buffer,
   iterations: number = PBKDF2_ITERATIONS,
-): Buffer {
-  return pbkdf2Sync(password, salt, iterations, KEY_BYTES, 'sha256');
+): Promise<Buffer> {
+  return new Promise((resolve, reject) => {
+    pbkdf2(password, salt, iterations, KEY_BYTES, 'sha256', (err, key) => {
+      if (err) reject(err);
+      else resolve(key);
+    });
+  });
 }
 
 // ---------------------------------------------------------------------------

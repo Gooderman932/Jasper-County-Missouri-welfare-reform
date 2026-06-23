@@ -112,6 +112,30 @@ describe('ThreatDetector sliding window', () => {
   });
 });
 
+describe('auth.success resets failure counter', () => {
+  it('failures before a successful login are not counted', () => {
+    const d = makeFreshDetector();
+    // 5 failures, then a successful login, then 0 more failures
+    for (let i = 0; i < 5; i++) d.recordEvent('u', 'auth.failure', undefined, NOW + i);
+    d.recordEvent('u', 'auth.success', undefined, NOW + 10);
+    const s = d.getSummary('u', NOW + 20);
+    // Failures before success should be excluded
+    expect(s.eventCounts['auth.failure'] ?? 0).toBe(0);
+    expect(s.indicators).not.toContain('excessive_auth_failures');
+    expect(s.suspicious).toBe(false);
+  });
+
+  it('failures after a successful login are still counted', () => {
+    const d = makeFreshDetector();
+    // Success at T=0, then 5 failures afterward
+    d.recordEvent('u', 'auth.success', undefined, NOW);
+    for (let i = 0; i < 5; i++) d.recordEvent('u', 'auth.failure', undefined, NOW + 10 + i);
+    const s = d.getSummary('u', NOW + 20);
+    expect(s.eventCounts['auth.failure']).toBe(5);
+    expect(s.indicators).toContain('excessive_auth_failures');
+  });
+});
+
 describe('ThreatDetector.clearUser', () => {
   it('clears all events for a user', () => {
     const d = makeFreshDetector();
