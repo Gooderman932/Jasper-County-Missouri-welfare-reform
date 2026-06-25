@@ -1,5 +1,8 @@
 // Centralized disclaimer copy. Required in onboarding, settings, exports, coalition features.
 
+/** Public URL for the privacy policy. Required by Google Play and Apple App Store. */
+export const PRIVACY_POLICY_URL = 'https://gooderman932.github.io/Jasper-County-Missouri-welfare-reform/privacy';
+
 export const PRIMARY_DISCLAIMER =
   'This app provides information, organization, and issue-spotting tools. It is not a law firm, does not provide legal representation, and does not determine whether you have a legal claim. For legal advice, consult a licensed attorney.';
 

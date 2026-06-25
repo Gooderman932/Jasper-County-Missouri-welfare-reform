@@ -133,6 +133,15 @@ export class AuthRepositoryMemory implements AuthRepository {
     store.users.set(u.id, next);
     return next;
   }
+  async deleteAccount(_password: string): Promise<void> {
+    const uid = store.currentUserId;
+    if (uid) store.users.delete(uid);
+    store.currentUserId = null;
+    // Wipe related in-memory data
+    for (const [id, c] of store.cases) {
+      if (c.ownerUserId === uid) store.cases.delete(id);
+    }
+  }
 }
 
 // ---------------------------------------------------------------------------

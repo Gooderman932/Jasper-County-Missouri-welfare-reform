@@ -1,4 +1,7 @@
 import 'react-native-get-random-values';
+import { initSentry } from './src/lib/sentry';
+// Initialize Sentry before anything else so the first frame is covered.
+initSentry();
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';

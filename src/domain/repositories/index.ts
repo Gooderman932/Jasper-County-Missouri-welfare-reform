@@ -77,6 +77,8 @@ export interface AuthRepository {
   signOut(): Promise<void>;
   getCurrentUser(): Promise<User | null>;
   updateProfile(input: Partial<User>): Promise<User>;
+  /** Re-authenticates with password, purges all user data, then deletes the account. */
+  deleteAccount(password: string): Promise<void>;
 }
 
 export interface PublishCaseInput {

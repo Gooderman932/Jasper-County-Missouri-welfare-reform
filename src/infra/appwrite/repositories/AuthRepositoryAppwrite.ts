@@ -1,7 +1,7 @@
 import { ID, Query } from 'react-native-appwrite';
 import { User } from '@domain/entities';
 import { AuthRepository } from '@domain/repositories';
-import { account, databases, DATABASE, COLLECTIONS } from '../client';
+import { account, databases, functions, DATABASE, COLLECTIONS } from '../client';
 import { ownerOnly } from '../permissions';
 import { mapUser } from '../mappers';
 
@@ -75,5 +75,16 @@ export class AuthRepositoryAppwrite implements AuthRepository {
       }
     );
     return mapUser(updated as any);
+  }
+
+  async deleteAccount(password: string): Promise<void> {
+    const me = await account.get();
+    // Re-authenticate to confirm identity before irreversible deletion.
+    await account.createEmailPasswordSession(me.email, password);
+    // Server function purges all collections + storage files for this user
+    // using an admin API key — the function reads userId from execution context.
+    await functions.createExecution('delete-account', '', false);
+    // Invalidate all sessions so the device is signed out immediately.
+    try { await account.deleteSessions(); } catch { /* ignore if already gone */ }
   }
 }
