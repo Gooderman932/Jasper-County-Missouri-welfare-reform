@@ -36,7 +36,9 @@ const PREMIUM_PRODUCT_ID = process.env.PREMIUM_PRODUCT_ID ?? 'premium_monthly_59
 const PREMIUM_BASE_PLAN_ID = process.env.PREMIUM_BASE_PLAN_ID ?? 'monthly-autorenew';
 const PREMIUM_OFFER_ID = process.env.PREMIUM_OFFER_ID ?? 'freetrial-1m';
 
-const SENTRY_DSN = process.env.SENTRY_DSN ?? '';
+// DSN is a public client credential — safe to commit (sentry.io/docs/security).
+// Override with SENTRY_DSN env var if you fork the project under a different org.
+const SENTRY_DSN = process.env.SENTRY_DSN ?? 'https://5b6cf054db7121e2ce637a9b07212523@o4511628742033408.ingest.us.sentry.io/4511628770476032';
 
 // Loud warning when a production build is missing Appwrite values. Doesn't
 // fail the build — the app still ships and will run in in-memory mode —
