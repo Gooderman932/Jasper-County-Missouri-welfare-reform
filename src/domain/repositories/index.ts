@@ -77,6 +77,8 @@ export interface AuthRepository {
   signOut(): Promise<void>;
   getCurrentUser(): Promise<User | null>;
   updateProfile(input: Partial<User>): Promise<User>;
+  /** Re-authenticates with password, purges all user data, then deletes the account. */
+  deleteAccount(password: string): Promise<void>;
 }
 
 export interface PublishCaseInput {
@@ -166,6 +168,7 @@ export interface ExportRepository {
   exportIssueSummaryPdf(caseId: string): Promise<{ id: string; uri: string }>;
   exportAttorneyPacket(caseId: string): Promise<{ id: string; uri: string }>;
   exportDocumentZip(caseId: string, documentIds: string[]): Promise<{ id: string; uri: string }>;
+  exportCalendarIcs(caseId: string): Promise<{ id: string; uri: string }>;
 }
 
 export interface NotificationRepository {

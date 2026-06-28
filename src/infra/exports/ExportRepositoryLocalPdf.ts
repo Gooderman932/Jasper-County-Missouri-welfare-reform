@@ -183,6 +183,69 @@ export class ExportRepositoryLocalPdf implements ExportRepository {
     return generatePdfAndUpload(html, `attorney-packet-${caseId}.pdf`, me.$id);
   }
 
+  async exportCalendarIcs(caseId: string): Promise<{ id: string; uri: string }> {
+    const me = await account.get();
+    const { record, events } = await loadCase(caseId);
+
+    const escIcs = (s: string) =>
+      (s ?? '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
+
+    const toIcsDate = (iso: string) => new Date(iso).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+
+    const vevent = (e: CaseEvent) =>
+      [
+        'BEGIN:VEVENT',
+        `UID:${e.id}@family-rights-app`,
+        `DTSTART:${toIcsDate(e.occurredAt)}`,
+        `DTEND:${toIcsDate(e.occurredAt)}`,
+        `SUMMARY:${escIcs(e.eventType.replace(/_/g, ' '))}`,
+        `DESCRIPTION:${escIcs(e.description)}`,
+        'END:VEVENT',
+      ].join('\r\n');
+
+    const icsContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      `PRODID:-//Family Rights App//${escIcs(record.title)}//EN`,
+      `X-WR-CALNAME:${escIcs(record.title)}`,
+      ...events.map(vevent),
+      'END:VCALENDAR',
+    ].join('\r\n');
+
+    const fileName = `timeline-${caseId}.ics`;
+    const localUri = `${FileSystem.cacheDirectory}${fileName}`;
+    await FileSystem.writeAsStringAsync(localUri, icsContent, {
+      encoding: FileSystem.EncodingType.UTF8,
+    });
+
+    try {
+      const upload = await storage.createFile(
+        BUCKETS.exports,
+        ID.unique(),
+        { uri: localUri, name: fileName, type: 'text/calendar' } as any,
+        ownerOnly(me.$id)
+      );
+      const exp = await databases.createDocument(
+        DATABASE,
+        COLLECTIONS.exports,
+        ID.unique(),
+        {
+          ownerUserId: me.$id,
+          fileName,
+          bucketId: BUCKETS.exports,
+          fileId: upload.$id,
+          generatedAt: new Date().toISOString(),
+          kind: 'calendar',
+        },
+        ownerOnly(me.$id)
+      );
+      return { id: (exp as any).$id, uri: localUri };
+    } catch (err) {
+      console.warn('[export] calendar cloud upload failed, returning local uri', err);
+      return { id: 'local-only', uri: localUri };
+    }
+  }
+
   async exportDocumentZip(): Promise<{ id: string; uri: string }> {
     // ZIP creation on-device is heavy; we leave this as a server function in v1.
     // Returning a placeholder PDF that lists the documents and instructs the user.

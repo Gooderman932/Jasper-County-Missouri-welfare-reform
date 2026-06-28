@@ -133,6 +133,15 @@ export class AuthRepositoryMemory implements AuthRepository {
     store.users.set(u.id, next);
     return next;
   }
+  async deleteAccount(_password: string): Promise<void> {
+    const uid = store.currentUserId;
+    if (uid) store.users.delete(uid);
+    store.currentUserId = null;
+    // Wipe related in-memory data
+    for (const [id, c] of store.cases) {
+      if (c.ownerUserId === uid) store.cases.delete(id);
+    }
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -490,6 +499,9 @@ export class ExportRepositoryMemory implements ExportRepository {
   }
   async exportDocumentZip(caseId: string, _documentIds: string[]): Promise<{ id: string; uri: string }> {
     return { id: uuid(), uri: `memory://exports/zip/${caseId}` };
+  }
+  async exportCalendarIcs(caseId: string): Promise<{ id: string; uri: string }> {
+    return { id: uuid(), uri: `memory://exports/calendar/${caseId}.ics` };
   }
 }
 
