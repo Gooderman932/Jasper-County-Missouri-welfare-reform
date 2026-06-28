@@ -21,6 +21,9 @@
 //   PREMIUM_PRODUCT_ID         (default: premium_monthly_599)
 //   PREMIUM_BASE_PLAN_ID       (default: monthly-autorenew)
 //   PREMIUM_OFFER_ID           (default: freetrial-1m)
+//   SENTRY_DSN                 Sentry Data Source Name for crash reporting
+//                              Get one at https://sentry.io (free tier available)
+//                              Project Settings → Client Keys → DSN
 
 import type { ExpoConfig } from '@expo/config-types';
 
@@ -33,6 +36,26 @@ const PREMIUM_PRODUCT_ID = process.env.PREMIUM_PRODUCT_ID ?? 'premium_monthly_59
 const PREMIUM_BASE_PLAN_ID = process.env.PREMIUM_BASE_PLAN_ID ?? 'monthly-autorenew';
 const PREMIUM_OFFER_ID = process.env.PREMIUM_OFFER_ID ?? 'freetrial-1m';
 
+// DSN is a public client credential — safe to commit (sentry.io/docs/security).
+// Override with SENTRY_DSN env var if you fork the project under a different org.
+const SENTRY_DSN = process.env.SENTRY_DSN ?? 'https://5b6cf054db7121e2ce637a9b07212523@o4511628742033408.ingest.us.sentry.io/4511628770476032';
+
+// Loud warning when a production build is missing Appwrite values. Doesn't
+// fail the build — the app still ships and will run in in-memory mode —
+// but operators should see this in the EAS log.
+if (process.env.EAS_BUILD_PROFILE === 'production') {
+  if (APPWRITE_PROJECT_ID === 'REPLACE_ME') {
+    // eslint-disable-next-line no-console
+    console.warn(
+      '[app.config] WARNING: production build with APPWRITE_PROJECT_ID=REPLACE_ME. ' +
+        'Backend features will be disabled. Set APPWRITE_PROJECT_ID via `eas env:create`.',
+    );
+  }
+  if (APPWRITE_ENDPOINT.includes('example.com')) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      '[app.config] WARNING: production build with placeholder APPWRITE_ENDPOINT. ' +
+        'Set APPWRITE_ENDPOINT via `eas env:create`.',
 // Hard-fail when a production/preview build ships with placeholder Appwrite
 // values — a warn-only check is easy to miss in EAS logs and leads to silent
 // backend outages. CI/dev builds intentionally skip this guard.
@@ -105,6 +128,7 @@ const config: ExpoConfig = {
     'expo-notifications',
     'expo-updates',
     './plugins/with-iap-play-flavor.js',
+    '@sentry/react-native/expo',
   ],
   extra: {
     appwriteEndpoint: APPWRITE_ENDPOINT,
@@ -114,6 +138,7 @@ const config: ExpoConfig = {
     premiumProductId: PREMIUM_PRODUCT_ID,
     premiumBasePlanId: PREMIUM_BASE_PLAN_ID,
     premiumOfferId: PREMIUM_OFFER_ID,
+    sentryDsn: SENTRY_DSN,
     // EAS project linking. Hardcoded because EAS CLI cannot auto-edit
     // dynamic config files; run `eas init` once to (re)issue this ID.
     eas: {

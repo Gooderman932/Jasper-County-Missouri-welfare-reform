@@ -24,7 +24,7 @@ export function ExportScreen({ route, navigation }: any) {
 
   const premium = isPremium(entitlement);
 
-  const run = async (kind: 'timeline' | 'issues' | 'attorney') => {
+  const run = async (kind: 'timeline' | 'issues' | 'attorney' | 'calendar') => {
     if (!activeCase) return;
     if (!premium) {
       Alert.alert('Premium required', 'Exports are a Premium feature.', [
@@ -38,6 +38,7 @@ export function ExportScreen({ route, navigation }: any) {
       let result;
       if (kind === 'timeline') result = await container.exports.exportTimelinePdf(activeCase);
       else if (kind === 'issues') result = await container.exports.exportIssueSummaryPdf(activeCase);
+      else if (kind === 'calendar') result = await container.exports.exportCalendarIcs(activeCase);
       else result = await container.exports.exportAttorneyPacket(activeCase);
 
       if (await Sharing.isAvailableAsync()) {
@@ -84,6 +85,11 @@ export function ExportScreen({ route, navigation }: any) {
           <H2>Attorney review packet</H2>
           <Body muted>Full chronological narrative, issue clusters, and supporting documents.</Body>
           <Button label={busy ? 'Generating…' : 'Generate attorney packet'} onPress={() => run('attorney')} disabled={busy} />
+        </Card>
+        <Card>
+          <H2>Calendar (.ics)</H2>
+          <Body muted>Timeline events as a calendar file — import into Google Calendar, Apple Calendar, or Outlook.</Body>
+          <Button label={busy ? 'Generating…' : 'Export calendar (.ics)'} onPress={() => run('calendar')} disabled={busy} />
         </Card>
         <Card>
           <Body muted>{EXPORT_FOOTER}</Body>

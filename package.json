@@ -28,6 +28,7 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "@react-navigation/stack": "^6.3.29",
+    "@sentry/react-native": "^8.16.0",
     "date-fns": "^3.6.0",
     "expo": "~56.0.12",
     "expo-application": "~56.0.3",
