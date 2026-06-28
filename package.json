@@ -27,7 +27,7 @@
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^7.3.4",
     "@react-navigation/native-stack": "^6.9.26",
-    "@react-navigation/stack": "^6.3.29",
+    "@react-navigation/stack": "^7.10.6",
     "@sentry/react-native": "^8.16.0",
     "date-fns": "^4.4.0",
     "expo": "~56.0.12",
