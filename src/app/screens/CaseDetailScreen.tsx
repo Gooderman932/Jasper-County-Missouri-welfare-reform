@@ -15,9 +15,11 @@ export function CaseDetailScreen({ route, navigation }: any) {
   const [flags, setFlags] = useState<IssueFlag[]>([]);
   const [patterns, setPatterns] = useState<PatternMatch[]>([]);
   const [refreshing, setRefreshing] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setRefreshing(true);
+    setLoadError(null);
     try {
       const [r, p, e, d, f, pat] = await Promise.all([
         container.cases.getCaseById(caseId),
@@ -33,6 +35,8 @@ export function CaseDetailScreen({ route, navigation }: any) {
       setDocuments(d);
       setFlags(f);
       setPatterns(pat);
+    } catch (err: any) {
+      setLoadError(err?.message ?? 'Could not load case. Check your connection and try again.');
     } finally {
       setRefreshing(false);
     }
@@ -41,6 +45,15 @@ export function CaseDetailScreen({ route, navigation }: any) {
   useEffect(() => {
     load();
   }, [load]);
+
+  if (loadError) {
+    return (
+      <Screen>
+        <Body muted>{loadError}</Body>
+        <Button label="Retry" onPress={load} />
+      </Screen>
+    );
+  }
 
   if (!record) return <Screen><Body>Loading…</Body></Screen>;
 

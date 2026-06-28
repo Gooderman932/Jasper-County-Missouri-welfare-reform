@@ -44,6 +44,7 @@ export function SignInScreen({ navigation }: any) {
       </Card>
       <Button label={loading ? 'Signing in…' : 'Sign in'} onPress={onSubmit} disabled={loading} />
       <Button label="Create an account" variant="ghost" onPress={() => navigation.navigate('SignUp')} />
+      <Button label="Forgot password?" variant="ghost" onPress={() => navigation.navigate('ForgotPassword')} />
     </Screen>
   );
 }

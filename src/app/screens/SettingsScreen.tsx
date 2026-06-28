@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ScrollView, Alert, TextInput, StyleSheet, Linking } from 'react-native';
 import { Body, Button, Card, H1, H2, Screen } from '@app/components/Common';
 import { useApp } from '@app/hooks/useApp';
-import { PRIMARY_DISCLAIMER, COALITION_DISCLAIMER, SAFETY_NOTE, SUBSCRIPTION_DISCLOSURE, PRIVACY_POLICY_URL } from '@shared/constants/disclaimers';
+import { PRIMARY_DISCLAIMER, COALITION_DISCLAIMER, SAFETY_NOTE, SUBSCRIPTION_DISCLOSURE, PRIVACY_POLICY_URL, ACCOUNT_DELETION_URL } from '@shared/constants/disclaimers';
 import { theme } from '@app/theme';
 
 export function SettingsScreen() {
@@ -99,6 +99,7 @@ export function SettingsScreen() {
           <H2>Privacy</H2>
           <Body muted>Review our privacy policy to understand how your data is stored and protected.</Body>
           <Button label="View Privacy Policy" onPress={() => Linking.openURL(PRIVACY_POLICY_URL)} />
+          <Button label="Account deletion info" variant="ghost" onPress={() => Linking.openURL(ACCOUNT_DELETION_URL)} />
         </Card>
 
         <Card>

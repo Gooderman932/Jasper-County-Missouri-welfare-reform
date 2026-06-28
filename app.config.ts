@@ -43,19 +43,6 @@ const SENTRY_DSN = process.env.SENTRY_DSN ?? 'https://5b6cf054db7121e2ce637a9b07
 // Loud warning when a production build is missing Appwrite values. Doesn't
 // fail the build — the app still ships and will run in in-memory mode —
 // but operators should see this in the EAS log.
-if (process.env.EAS_BUILD_PROFILE === 'production') {
-  if (APPWRITE_PROJECT_ID === 'REPLACE_ME') {
-    // eslint-disable-next-line no-console
-    console.warn(
-      '[app.config] WARNING: production build with APPWRITE_PROJECT_ID=REPLACE_ME. ' +
-        'Backend features will be disabled. Set APPWRITE_PROJECT_ID via `eas env:create`.',
-    );
-  }
-  if (APPWRITE_ENDPOINT.includes('example.com')) {
-    // eslint-disable-next-line no-console
-    console.warn(
-      '[app.config] WARNING: production build with placeholder APPWRITE_ENDPOINT. ' +
-        'Set APPWRITE_ENDPOINT via `eas env:create`.',
 // Hard-fail when a production/preview build ships with placeholder Appwrite
 // values — a warn-only check is easy to miss in EAS logs and leads to silent
 // backend outages. CI/dev builds intentionally skip this guard.

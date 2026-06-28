@@ -3,6 +3,12 @@
 /** Public URL for the privacy policy. Required by Google Play and Apple App Store. */
 export const PRIVACY_POLICY_URL = 'https://gooderman932.github.io/Jasper-County-Missouri-welfare-reform/privacy';
 
+/** Public URL for account deletion. Required by Google Play data deletion policy. */
+export const ACCOUNT_DELETION_URL = 'https://gooderman932.github.io/Jasper-County-Missouri-welfare-reform/account-delete.html';
+
+/** Appwrite password recovery redirect URL. Deep-links back into the app via the familyrights:// scheme. */
+export const ACCOUNT_RESET_URL = 'https://gooderman932.github.io/Jasper-County-Missouri-welfare-reform/reset-password.html';
+
 export const PRIMARY_DISCLAIMER =
   'This app provides information, organization, and issue-spotting tools. It is not a law firm, does not provide legal representation, and does not determine whether you have a legal claim. For legal advice, consult a licensed attorney.';
 

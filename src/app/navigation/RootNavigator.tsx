@@ -9,6 +9,8 @@ import { PrivacyConsentScreen } from '@app/screens/onboarding/PrivacyConsentScre
 import { SubscriptionPreviewScreen } from '@app/screens/onboarding/SubscriptionPreviewScreen';
 import { SignUpScreen } from '@app/screens/onboarding/SignUpScreen';
 import { SignInScreen } from '@app/screens/onboarding/SignInScreen';
+import { ForgotPasswordScreen } from '@app/screens/onboarding/ForgotPasswordScreen';
+import { ResetPasswordScreen } from '@app/screens/onboarding/ResetPasswordScreen';
 import { CreateFirstCaseScreen } from '@app/screens/onboarding/CreateFirstCaseScreen';
 
 import { HomeScreen } from '@app/screens/HomeScreen';
@@ -54,6 +56,8 @@ export function RootNavigator() {
           <Stack.Screen name="SubscriptionPreview" component={SubscriptionPreviewScreen} options={{ title: 'Subscription' }} />
           <Stack.Screen name="SignUp" component={SignUpScreen} options={{ title: 'Create account' }} />
           <Stack.Screen name="SignIn" component={SignInScreen} options={{ title: 'Sign in' }} />
+          <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{ title: 'Reset password' }} />
+          <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} options={{ title: 'New password' }} />
         </>
       ) : (
         <>

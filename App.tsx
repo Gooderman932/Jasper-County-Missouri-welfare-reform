@@ -23,6 +23,15 @@ const USE_MEMORY = process.env.EXPO_PUBLIC_USE_MEMORY_REPOS === 'true';
 // touch (not just navigation) so a user working on a single screen for a long
 // time isn't logged out mid-task. onStartShouldSetResponderCapture returns
 // false so the gesture still reaches child components — we only observe it.
+const linking = {
+  prefixes: ['familyrights://'],
+  config: {
+    screens: {
+      ResetPassword: 'reset-password',
+    },
+  },
+};
+
 function NavigationRoot() {
   const { recordActivity } = useApp();
   const onTouchCapture = (_e: GestureResponderEvent) => {
@@ -31,7 +40,7 @@ function NavigationRoot() {
   };
   return (
     <View style={{ flex: 1 }} onStartShouldSetResponderCapture={onTouchCapture}>
-      <NavigationContainer onStateChange={recordActivity}>
+      <NavigationContainer linking={linking} onStateChange={recordActivity}>
         <StatusBar style="dark" />
         <RootNavigator />
       </NavigationContainer>
