@@ -84,11 +84,6 @@ export function deriveKey(
   salt: Buffer,
   iterations: number = PBKDF2_ITERATIONS,
 ): Promise<Buffer> {
-export function deriveKey(
-  password: string,
-  salt: Buffer,
-  iterations: number = PBKDF2_ITERATIONS,
-): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     pbkdf2(password, salt, iterations, KEY_BYTES, 'sha256', (err, derivedKey) => {
       if (err) reject(err);
