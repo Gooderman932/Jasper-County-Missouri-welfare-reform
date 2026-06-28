@@ -169,7 +169,7 @@ describe('encryptAesGcm / decryptAesGcm', () => {
     const blob = encryptAesGcm('secret', TEST_KEY);
     // Flip a byte in the ciphertext
     const ct = Buffer.from(blob.ciphertext, 'base64');
-    ct[0] ^= 0xff;
+    ct[0] = (ct[0]! ^ 0xff);
     const tampered = { ...blob, ciphertext: ct.toString('base64') };
     expect(() => decryptAesGcm(tampered, TEST_KEY)).toThrow();
   });
@@ -177,7 +177,7 @@ describe('encryptAesGcm / decryptAesGcm', () => {
   it('throws when auth tag is tampered', () => {
     const blob = encryptAesGcm('secret', TEST_KEY);
     const tag = Buffer.from(blob.tag, 'base64');
-    tag[0] ^= 0xff;
+    tag[0] = (tag[0]! ^ 0xff);
     const tampered = { ...blob, tag: tag.toString('base64') };
     expect(() => decryptAesGcm(tampered, TEST_KEY)).toThrow();
   });
