@@ -58,12 +58,9 @@ jobs:
           CI: true
 
       - name: Run ESLint
-        # Lint runs but does NOT fail the workflow on warnings yet — the
-        # codebase still has pre-existing warnings being cleaned up. Hard-fail
-        # only on errors. Flip this to a strict `npm run lint` once the
-        # backlog is clear.
-        run: npx eslint . --ext .ts,.tsx --max-warnings=9999 || true
-        continue-on-error: false
+        # Fails on errors; allows warnings. Remove --max-warnings once the
+        # pre-existing warning backlog is cleared (then just: npm run lint).
+        run: npm run lint -- --max-warnings=9999
 
   jest:
     name: Jest unit tests
