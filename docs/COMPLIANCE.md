@@ -4,7 +4,10 @@ Tracks remediation status from the 2026-06-17 cross-portfolio audit. Domain: **c
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Encryption at rest | runbook | `APPWRITE_ENCRYPTION_KEY` documented in `.env.example` and `docs/HIPAA_RUNBOOK.md` |
+| Encryption at rest | done | `src/lib/crypto.ts` — AES-256-GCM + PBKDF2-HMAC-SHA256 + HMAC-SHA256 (NIST SP 800-57/38D/132). Server-side only; `APPWRITE_ENCRYPTION_KEY` for native Appwrite encryption documented in `.env.example` and `docs/HIPAA_RUNBOOK.md` |
+| Rate limiting / lockout | done | `src/lib/rateLimit.ts` — NIST AC-7: max 5 failed logins → 30-min lockout; separate export and API limiters |
+| Input validation / injection prevention | done | `src/lib/inputSanitizer.ts` — NIST SI-10: sanitization, SQL/XSS/path-traversal detection, domain field validators |
+| Behavioral threat detection | done | `src/lib/threatDetection.ts` — NIST AU-6/SI-3: sliding-window event scoring, 10 event types, configurable thresholds |
 | Audit-log table | scaffolded | `server/schemas/audit_log.sql` template ready; deploy via `scripts/provision-appwrite.ts` follow-up |
 | RBAC enforcement | scaffolded | `src/lib/authz.ts` helper added; every mutation must call `assertCanWrite(user, resource)` |
 | Region: Missouri-compliant | runbook | confirm Appwrite project region in deployment runbook |
