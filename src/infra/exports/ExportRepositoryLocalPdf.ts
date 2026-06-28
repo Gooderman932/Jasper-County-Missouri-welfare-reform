@@ -4,6 +4,7 @@ import * as Print from 'expo-print';
 import * as FileSystem from 'expo-file-system';
 import { Query, ID } from 'react-native-appwrite';
 import { format } from 'date-fns';
+import { enUS } from 'date-fns/locale';
 import { ExportRepository } from '@domain/repositories';
 import { CaseEvent, CaseRecord, DocumentRecord, IssueFlag } from '@domain/entities';
 import { account, databases, storage, DATABASE, COLLECTIONS, BUCKETS } from '@infra/appwrite/client';
@@ -21,7 +22,7 @@ function header(title: string, caseRecord: CaseRecord) {
     <h1 style="margin:4px 0;font-size:20px;">${esc(title)}</h1>
     <div style="font-size:11px;">${esc(caseRecord.title)}</div>
     <div style="font-size:11px;">Jurisdiction: ${esc(caseRecord.jurisdictionState)}${caseRecord.jurisdictionCounty ? ' \u2014 ' + esc(caseRecord.jurisdictionCounty) + ' County' : ''}</div>
-    <div style="font-size:11px;">Generated: ${esc(format(new Date(), 'PPpp'))}</div>
+    <div style="font-size:11px;">Generated: ${esc(format(new Date(), 'PPpp', { locale: enUS }))}</div>
   </div>`;
 }
 
