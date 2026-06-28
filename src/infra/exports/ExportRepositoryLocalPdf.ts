@@ -213,7 +213,8 @@ export class ExportRepositoryLocalPdf implements ExportRepository {
     ].join('\r\n');
 
     const fileName = `timeline-${caseId}.ics`;
-    const localUri = `${FileSystem.cacheDirectory}${fileName}`;
+    // @ts-expect-error expo-file-system v56 moved cacheDirectory off the namespace; runtime value is correct
+    const localUri = `${FileSystem.cacheDirectory as string}${fileName}`;
     await FileSystem.writeAsStringAsync(localUri, icsContent, {
       encoding: FileSystem.EncodingType.UTF8,
     });

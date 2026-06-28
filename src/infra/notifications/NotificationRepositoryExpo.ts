@@ -6,6 +6,8 @@ Notifications.setNotificationHandler({
     shouldShowAlert: true,
     shouldPlaySound: false,
     shouldSetBadge: false,
+    shouldShowBanner: true,
+    shouldShowList: true,
   }),
 });
 
@@ -18,7 +20,7 @@ export class NotificationRepositoryExpo implements NotificationRepository {
         body: input.body,
         data: { caseId: input.caseId },
       },
-      trigger: fireDate,
+      trigger: { type: Notifications.SchedulableTriggerInputTypes.DATE, date: fireDate },
     });
     return id;
   }
