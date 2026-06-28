@@ -10,11 +10,19 @@ export function ResetPasswordScreen({ route, navigation }: any) {
   const [confirm, setConfirm] = useState('');
   const [loading, setLoading] = useState(false);
 
+  if (!userId || !secret) {
+    return (
+      <Screen>
+        <Card>
+          <H2>Invalid Link</H2>
+          <Body muted>The reset link is missing required parameters. Please request a new one.</Body>
+        </Card>
+        <Button label="Back to sign in" variant="ghost" onPress={() => navigation.navigate('SignIn')} />
+      </Screen>
+    );
+  }
+
   const onSubmit = async () => {
-    if (!userId || !secret) {
-      Alert.alert('Invalid link', 'The reset link is missing required parameters. Request a new one.');
-      return;
-    }
     if (password.length < 8) {
       Alert.alert('Password must be at least 8 characters.');
       return;
@@ -25,7 +33,8 @@ export function ResetPasswordScreen({ route, navigation }: any) {
     }
     setLoading(true);
     try {
-      await account.updateRecovery(userId, secret, password);
+      // @ts-expect-error — SDK types declare 3 args but Appwrite REST API requires confirm as 4th
+      await account.updateRecovery(userId, secret, password, confirm);
       Alert.alert('Password updated', 'You can now sign in with your new password.', [
         { text: 'Sign in', onPress: () => navigation.navigate('SignIn') },
       ]);
@@ -46,6 +55,8 @@ export function ResetPasswordScreen({ route, navigation }: any) {
           value={password}
           onChangeText={setPassword}
           secureTextEntry
+          autoComplete="new-password"
+          textContentType="newPassword"
           autoFocus
           style={styles.input}
           placeholderTextColor={theme.colors.textMuted}
@@ -55,6 +66,8 @@ export function ResetPasswordScreen({ route, navigation }: any) {
           value={confirm}
           onChangeText={setConfirm}
           secureTextEntry
+          autoComplete="new-password"
+          textContentType="newPassword"
           style={styles.input}
           placeholderTextColor={theme.colors.textMuted}
         />

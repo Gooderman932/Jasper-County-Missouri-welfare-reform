@@ -5,6 +5,8 @@ import { theme } from '@app/theme';
 import { account } from '@infra/appwrite/client';
 import { ACCOUNT_RESET_URL } from '@shared/constants/disclaimers';
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export function ForgotPasswordScreen({ navigation }: any) {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -14,6 +16,10 @@ export function ForgotPasswordScreen({ navigation }: any) {
     const trimmed = email.trim().toLowerCase();
     if (!trimmed) {
       Alert.alert('Enter your email address.');
+      return;
+    }
+    if (!EMAIL_RE.test(trimmed)) {
+      Alert.alert('Invalid email', 'Please enter a valid email address.');
       return;
     }
     setLoading(true);
@@ -54,6 +60,8 @@ export function ForgotPasswordScreen({ navigation }: any) {
           onChangeText={setEmail}
           autoCapitalize="none"
           keyboardType="email-address"
+          autoComplete="email"
+          textContentType="emailAddress"
           autoFocus
           style={styles.input}
           placeholderTextColor={theme.colors.textMuted}
