@@ -132,7 +132,7 @@ const config: ExpoConfig = {
       projectId: process.env.EAS_PROJECT_ID ?? 'da23cbf7-9e65-48a5-9b6b-2e9fd0dcf9a8',
     },
   },
-  owner: 'poor-dude-holdings-llc',
+  owner: 'gooderman',
 };
 
 export default config;
