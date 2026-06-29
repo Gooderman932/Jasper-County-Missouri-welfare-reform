@@ -52,7 +52,7 @@
     "react-native-get-random-values": "~2.0.0",
     "react-native-iap": "^12.15.0",
     "react-native-paper": "^5.12.3",
-    "react-native-reanimated": "~3.10.1",
+    "react-native-reanimated": "~4.5.0",
     "react-native-safe-area-context": "5.8.0",
     "react-native-screens": "^4.0.0",
     "react-native-svg": "15.2.0",
