@@ -32,7 +32,9 @@ jobs:
 
       - name: Generate case-summary draft (smoke test)
         # Confirms the pure-data module and the export script stay in sync.
-        run: npx ts-node --transpile-only scripts/generate-case-summary.ts
+        # tsx is used instead of ts-node --transpile-only because Node 20 ESM
+        # mode rejects unknown .ts extensions before ts-node can intercept them.
+        run: npx tsx scripts/generate-case-summary.ts
 
       - name: Upload generated case-summary
         uses: actions/upload-artifact@v7
